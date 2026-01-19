@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Photo Gallery | Our Work | Premier Lumber Co</title>
+  <meta name="description" content="Browse photos of our lumber yard, pallets, firewood, and work in action. See the quality of Premier Lumber Co products and services.">
+  <link rel="canonical" href="https://premierlumber.com/gallery.html">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Photo Gallery | Premier Lumber Co">
+  <meta property="og:description" content="See our lumber yard, products, and team in action.">
+  <meta property="og:url" content="https://premierlumber.com/gallery.html">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar__left">
+        <span class="top-bar__item"><i class="fas fa-clock"></i> Mon-Fri: 7AM-5PM | Sat: 8AM-2PM</span>
+      </div>
+      <div class="top-bar__right">
+        <a href="tel:+17085550123" class="top-bar__phone"><i class="fas fa-phone"></i> (708) 555-0123</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="/" class="brand">
+        <img src="logo.png" alt="Premier Lumber Logo">
+        <div class="brand-text">
+          <span class="brand-name">Premier Lumber</span>
+          <span class="brand-tagline">Gary, Indiana</span>
+        </div>
+      </a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li class="nav__item"><a href="/" class="nav__link">Home</a></li>
+          <li class="nav__item nav__item--dropdown">
+            <a href="#" class="nav__link nav__link--dropdown">Products <i class="fas fa-chevron-down"></i></a>
+            <ul class="nav__dropdown">
+              <li><a href="pallets.html">Wood Pallets</a></li>
+              <li><a href="firewood.html">Firewood</a></li>
+              <li><a href="sawdust.html">Sawdust</a></li>
+              <li><a href="log-pickup.html">Log Pickup</a></li>
+            </ul>
+          </li>
+          <li class="nav__item"><a href="about.html" class="nav__link">About</a></li>
+          <li class="nav__item"><a href="gallery.html" class="nav__link active">Gallery</a></li>
+          <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <a href="tel:(219)938-6275" class="btn btn--primary btn--sm header__cta">(219) 938-6275</a>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+    </div>
+  </header>
+  
+  <div class="nav-overlay" id="nav-overlay"></div>
+  
+  <!-- Main Content -->
+  <main id="main-content">
+    
+    <!-- Page Hero -->
+    <section class="page-hero page-hero--short">
+      <div class="page-hero__bg" style="background-image: url('images/hero/gallery-hero.jpg');"></div>
+      <div class="page-hero__overlay"></div>
+      <div class="container">
+        <div class="page-hero__content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span>/</span>
+            <span>Gallery</span>
+          </nav>
+          <h1 class="page-hero__title">Photo Gallery</h1>
+          <p class="page-hero__subtitle">Take a look at our products, facility, and team in action</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section class="section section--white">
+      <div class="container">
+        
+        <!-- Gallery Filters -->
+        <div class="gallery-filters">
+          <button class="gallery-filter active" data-filter="all">All</button>
+          <button class="gallery-filter" data-filter="pallets">Pallets</button>
+          <button class="gallery-filter" data-filter="firewood">Firewood</button>
+          <button class="gallery-filter" data-filter="facility">Facility</button>
+          <button class="gallery-filter" data-filter="delivery">Delivery</button>
+        </div>
+        
+        <!-- Gallery Grid -->
+        <div class="gallery-grid">
+          
+          <!-- Pallets -->
+          <a href="images/gallery/pallets-1-full.jpg" class="gallery-item" data-category="pallets" aria-label="View full size image">
+            <img src="images/gallery/pallets-1.jpg" alt="Stack of new custom pallets" loading="lazy">
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__title">Custom Pallets</span>
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </a>
+          
+          <a href="images/gallery/pallets-2-full.jpg" class="gallery-item" data-category="pallets" aria-label="View full size image">
+            <img src="images/gallery/pallets-2.jpg" alt="Recycled pallets ready for delivery" loading="lazy">
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__title">Recycled Pallets</span>
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </a>
+          
+          <a href="images/gallery/pallets-3-full.jpg" class="gallery-item" data-category="pallets" aria-label="View full size image">
+            <img src="images/gallery/pallets-3.jpg" alt="Heavy duty industrial pallets" loading="lazy">
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__title">Heavy Duty Pallets</span>
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </a>
+          
+          <!-- Firewood -->
+          <a href="images/gallery/firewood-1-full.jpg" class="gallery-item" data-category="firewood" aria-label="View full size image">
+            <img src="images/gallery/firewood-1.jpg" alt="Stacked seasoned firewood" loading="lazy">
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__title">Seasoned Firewood</span>
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </a>
+          
+          <a href="images/gallery/firewood-2-full.jpg" class="gallery-item" data-category="firewood" aria-label="View full size image">
+            <img src="images/gallery/firewood-2.jpg" alt="Bundled firewood for sale" loading="lazy">
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__title">Firewood Bundles</span>
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </a>
+          
+          <a href="images/gallery/firewood-3-full.jpg" class="gallery-item" data-category="firewood" aria-label="View full size image">
+            <img src="images/gallery/firewood-3.jpg" alt="Mixed hardwood firewood pile" loading="lazy">
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__title">Mixed Hardwood</span>
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </a>
+          
+          <!-- Facility -->
+          <a href="images/gallery/facility-1-full.jpg" class="gallery-item" data-category="facility" aria-label="View full size image">
+            <img src="images/gallery/facility-1.jpg" alt="Premier Lumber yard overview" loading="lazy">
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__title">Our Lumber Yard</span>
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </a>
+          
+          <a href="images/gallery/facility-2-full.jpg" class="gallery-item" data-category="facility" aria-label="View full size image">
+            <img src="images/gallery/facility-2.jpg" alt="Pallet assembly area" loading="lazy">
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__title">Pallet Assembly</span>
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </a>
+          
+          <a href="images/gallery/facility-3-full.jpg" class="gallery-item" data-category="facility" aria-label="View full size image">
+            <img src="images/gallery/facility-3.jpg" alt="Sawdust storage area" loading="lazy">
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__title">Sawdust Storage</span>
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </a>
+          
+          <!-- Delivery -->
+          <a href="images/gallery/delivery-1-full.jpg" class="gallery-item" data-category="delivery" aria-label="View full size image">
+            <img src="images/gallery/delivery-1.jpg" alt="Delivery truck loaded with pallets" loading="lazy">
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__title">Pallet Delivery</span>
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </a>
+          
+          <a href="images/gallery/delivery-2-full.jpg" class="gallery-item" data-category="delivery" aria-label="View full size image">
+            <img src="images/gallery/delivery-2.jpg" alt="Firewood delivery to customer" loading="lazy">
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__title">Firewood Delivery</span>
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </a>
+          
+          <a href="images/gallery/delivery-3-full.jpg" class="gallery-item" data-category="delivery" aria-label="View full size image">
+            <img src="images/gallery/delivery-3.jpg" alt="Log pickup from job site" loading="lazy">
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__title">Log Pickup</span>
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </a>
+          
+        </div>
+        
+      </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-band">
+      <div class="container">
+        <div class="cta-band__content">
+          <h2 class="cta-band__title">Like What You See?</h2>
+          <p class="cta-band__text">Contact us today to get started with your order.</p>
+        </div>
+        <div class="cta-band__actions">
+          <a href="contact.html" class="btn btn--primary btn--lg">Get a Quote</a>
+          <a href="tel:+17085550123" class="btn btn--outline-light btn--lg"><i class="fas fa-phone"></i> (708) 555-0123</a>
+        </div>
+      </div>
+    </section>
+    
+  </main>
+  
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-hidden="true">
+    <button class="lightbox__close" aria-label="Close lightbox"><i class="fas fa-times"></i></button>
+    <button class="lightbox__prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+    <button class="lightbox__next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+    <div class="lightbox__content">
+      <img src="" alt="" class="lightbox__image">
+      <p class="lightbox__caption"></p>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__col">
+          <img src="images/logo-white.png" alt="Premier Lumber Co" class="footer__logo" width="180" height="54">
+          <p class="footer__about">Family-owned lumber company serving Calumet City, Chicago, and surrounding areas with quality wood products.</p>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__heading">Products</h4>
+          <ul class="footer__links">
+            <li><a href="pallets.html">Wood Pallets</a></li>
+            <li><a href="firewood.html">Firewood</a></li>
+            <li><a href="sawdust.html">Sawdust</a></li>
+            <li><a href="log-pickup.html">Log Pickup</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__heading">Company</h4>
+          <ul class="footer__links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__heading">Contact</h4>
+          <ul class="footer__contact">
+            <li><i class="fas fa-phone"></i> <a href="tel:+17085550123">(708) 555-0123</a></li>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:info@premierlumber.com">info@premierlumber.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2024 Premier Lumber Co. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <a href="tel:+17085550123" class="mobile-phone-btn" aria-label="Call us"><i class="fas fa-phone"></i></a>
+  <button class="scroll-top" id="scroll-top" aria-label="Scroll to top"><i class="fas fa-chevron-up"></i></button>
+  
+  <script src="js/main.js" defer></script>
+  <script>
+    // Gallery Filter
+    document.addEventListener('DOMContentLoaded', function() {
+      const filters = document.querySelectorAll('.gallery-filter');
+      const items = document.querySelectorAll('.gallery-item');
+      
+      filters.forEach(function(filter) {
+        filter.addEventListener('click', function() {
+          // Update active filter
+          filters.forEach(f => f.classList.remove('active'));
+          this.classList.add('active');
+          
+          const category = this.getAttribute('data-filter');
+          
+          items.forEach(function(item) {
+            if (category === 'all' || item.getAttribute('data-category') === category) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+      
+      // Simple Lightbox
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = lightbox.querySelector('.lightbox__image');
+      const lightboxCaption = lightbox.querySelector('.lightbox__caption');
+      const closeBtn = lightbox.querySelector('.lightbox__close');
+      let currentImages = [];
+      let currentIndex = 0;
+      
+      function openLightbox(src, alt, index) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt;
+        lightboxCaption.textContent = alt;
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        currentIndex = index;
+        document.body.style.overflow = 'hidden';
+      }
+      
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+      
+      items.forEach(function(item, index) {
+        item.addEventListener('click', function(e) {
+          e.preventDefault();
+          currentImages = Array.from(document.querySelectorAll('.gallery-item:not([style*="display: none"]'));
+          const idx = currentImages.indexOf(item);
+          openLightbox(this.href, this.querySelector('img').alt, idx);
+        });
+      });
+      
+      closeBtn.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+      
+      document.querySelector('.lightbox__prev').addEventListener('click', function() {
+        currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+        const item = currentImages[currentIndex];
+        lightboxImg.src = item.href;
+        lightboxImg.alt = item.querySelector('img').alt;
+        lightboxCaption.textContent = item.querySelector('img').alt;
+      });
+      
+      document.querySelector('.lightbox__next').addEventListener('click', function() {
+        currentIndex = (currentIndex + 1) % currentImages.length;
+        const item = currentImages[currentIndex];
+        lightboxImg.src = item.href;
+        lightboxImg.alt = item.querySelector('img').alt;
+        lightboxCaption.textContent = item.querySelector('img').alt;
+      });
+      
+      document.addEventListener('keydown', function(e) {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') document.querySelector('.lightbox__prev').click();
+        if (e.key === 'ArrowRight') document.querySelector('.lightbox__next').click();
+      });
+    });
+  </script>
+</body>
+</html>

@@ -5,6 +5,9 @@
   AddOutputFilterByType DEFLATE image/svg+xml
 </IfModule>
 
+# Prefer PHP for the homepage on Hostinger
+DirectoryIndex index.php index.html
+
 # Browser Caching
 <IfModule mod_expires.c>
   ExpiresActive On

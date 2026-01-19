@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Contact Us | Get a Quote | Premier Lumber Co</title>
+  <meta name="description" content="Contact Premier Lumber Co for quotes on pallets, firewood, sawdust, or log pickup. Call (708) 555-0123 or fill out our contact form. Serving Calumet City, Chicago, and NW Indiana.">
+  <link rel="canonical" href="https://premierlumber.com/contact.html">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Contact Premier Lumber Co">
+  <meta property="og:description" content="Get a quote or ask a question. We're here to help with all your lumber needs.">
+  <meta property="og:url" content="https://premierlumber.com/contact.html">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar__left">
+        <span class="top-bar__item"><i class="fas fa-clock"></i> Mon-Fri: 7AM-5PM | Sat: 8AM-2PM</span>
+      </div>
+      <div class="top-bar__right">
+        <a href="tel:+17085550123" class="top-bar__phone"><i class="fas fa-phone"></i> (708) 555-0123</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="/" class="brand">
+        <img src="logo.png" alt="Premier Lumber Logo">
+        <div class="brand-text">
+          <span class="brand-name">Premier Lumber</span>
+          <span class="brand-tagline">Gary, Indiana</span>
+        </div>
+      </a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li class="nav__item"><a href="/" class="nav__link">Home</a></li>
+          <li class="nav__item nav__item--dropdown">
+            <a href="#" class="nav__link nav__link--dropdown">Products <i class="fas fa-chevron-down"></i></a>
+            <ul class="nav__dropdown">
+              <li><a href="pallets.html">Wood Pallets</a></li>
+              <li><a href="firewood.html">Firewood</a></li>
+              <li><a href="sawdust.html">Sawdust</a></li>
+              <li><a href="log-pickup.html">Log Pickup</a></li>
+            </ul>
+          </li>
+          <li class="nav__item"><a href="about.html" class="nav__link">About</a></li>
+          <li class="nav__item"><a href="gallery.html" class="nav__link">Gallery</a></li>
+          <li class="nav__item"><a href="contact.html" class="nav__link active">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <a href="tel:(219)938-6275" class="btn btn--primary btn--sm header__cta">(219) 938-6275</a>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+    </div>
+  </header>
+  
+  <div class="nav-overlay" id="nav-overlay"></div>
+  
+  <!-- Main Content -->
+  <main id="main-content">
+    
+    <!-- Page Hero -->
+    <section class="page-hero page-hero--short">
+      <div class="page-hero__bg" style="background-image: url('images/hero/contact-hero.jpg');"></div>
+      <div class="page-hero__overlay"></div>
+      <div class="container">
+        <div class="page-hero__content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span>/</span>
+            <span>Contact</span>
+          </nav>
+          <h1 class="page-hero__title">Contact Us</h1>
+          <p class="page-hero__subtitle">Get a quote, ask a question, or schedule a pickup</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="section section--white">
+      <div class="container">
+        <div class="contact-grid">
+          
+          <!-- Contact Form -->
+          <div class="contact-form-wrap">
+            <h2>Send Us a Message</h2>
+            <p>Fill out the form below and we'll get back to you within 24 hours.</p>
+            
+            <form id="contact-form" class="contact-form" action="php/contact.php" method="POST" novalidate>
+              
+              <!-- Honeypot field (hidden) -->
+              <div style="display: none;">
+                <input type="text" name="website" tabindex="-1" autocomplete="off">
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name" class="form-label">Full Name <span class="required">*</span></label>
+                  <input type="text" id="name" name="name" class="form-input" placeholder="John Smith" required>
+                  <span class="form-error"></span>
+                </div>
+              </div>
+              
+              <div class="form-row form-row--2col">
+                <div class="form-group">
+                  <label for="email" class="form-label">Email Address <span class="required">*</span></label>
+                  <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required>
+                  <span class="form-error"></span>
+                </div>
+                <div class="form-group">
+                  <label for="phone" class="form-label">Phone Number <span class="required">*</span></label>
+                  <input type="tel" id="phone" name="phone" class="form-input" placeholder="(708) 555-0123" required>
+                  <span class="form-error"></span>
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="service" class="form-label">What are you interested in?</label>
+                  <select id="service" name="service" class="form-select">
+                    <option value="">Select a service...</option>
+                    <option value="Pallets - New">Pallets - New Custom</option>
+                    <option value="Pallets - Recycled">Pallets - Recycled</option>
+                    <option value="Pallets - Buyback">Pallets - Buyback Program</option>
+                    <option value="Firewood">Firewood</option>
+                    <option value="Sawdust">Sawdust / Shavings</option>
+                    <option value="Log Pickup">Log Pickup (Free)</option>
+                    <option value="Other">Other / General Inquiry</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="message" class="form-label">Message <span class="required">*</span></label>
+                  <textarea id="message" name="message" class="form-textarea" rows="5" placeholder="Tell us about your needs..." required></textarea>
+                  <span class="form-error"></span>
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <button type="submit" class="btn btn--primary btn--lg btn--block">
+                  <span class="btn__text">Send Message</span>
+                  <span class="btn__loader" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span>
+                </button>
+              </div>
+              
+              <div id="form-status" class="form-status" style="display: none;"></div>
+              
+            </form>
+          </div>
+          
+          <!-- Contact Info -->
+          <div class="contact-info">
+            <div class="contact-info__card">
+              <h3>Get in Touch</h3>
+              <p>Prefer to call or stop by? Here's how to reach us.</p>
+              
+              <ul class="contact-info__list">
+                <li>
+                  <div class="contact-info__icon">
+                    <i class="fas fa-phone"></i>
+                  </div>
+                  <div class="contact-info__content">
+                    <strong>Phone</strong>
+                    <a href="tel:+17085550123">(708) 555-0123</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="contact-info__icon">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div class="contact-info__content">
+                    <strong>Email</strong>
+                    <a href="mailto:info@premierlumber.com">info@premierlumber.com</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="contact-info__icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="contact-info__content">
+                    <strong>Address</strong>
+                    <span>123 Industrial Blvd<br>Calumet City, IL 60409</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="contact-info__icon">
+                    <i class="fas fa-clock"></i>
+                  </div>
+                  <div class="contact-info__content">
+                    <strong>Business Hours</strong>
+                    <span>Mon-Fri: 7:00 AM - 5:00 PM<br>Saturday: 8:00 AM - 2:00 PM<br>Sunday: Closed</span>
+                  </div>
+                </li>
+              </ul>
+              
+              <div class="contact-info__social">
+                <span>Follow Us:</span>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Google Business"><i class="fab fa-google"></i></a>
+              </div>
+            </div>
+            
+            <!-- Quick Response -->
+            <div class="contact-info__highlight">
+              <div class="contact-info__highlight-icon">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <div class="contact-info__highlight-content">
+                <h4>Quick Response</h4>
+                <p>Need a quote fast? Call us directly for immediate assistance.</p>
+                <a href="tel:+17085550123" class="btn btn--primary btn--sm">Call Now</a>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+    
+    <!-- Map Section -->
+    <section class="section section--light section--nopad-bottom">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__tag">Find Us</span>
+          <h2 class="section__title">Visit Our Yard</h2>
+          <p class="section__subtitle">Located in Calumet City, IL – easy access from I-94 and I-80/294.</p>
+        </div>
+      </div>
+      <div class="map-container">
+        <!-- Replace with actual Google Maps embed -->
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47600.04687082!2d-87.56!3d41.615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8811d8f26a5e2ca7%3A0x3c0a6f7c2c38b1c0!2sCalumet%20City%2C%20IL!5e0!3m2!1sen!2sus!4v1699999999999!5m2!1sen!2sus" 
+          width="100%" 
+          height="450" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Premier Lumber Co location map">
+        </iframe>
+      </div>
+    </section>
+    
+  </main>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__col">
+          <img src="images/logo-white.png" alt="Premier Lumber Co" class="footer__logo" width="180" height="54">
+          <p class="footer__about">Family-owned lumber company serving Calumet City, Chicago, and surrounding areas with quality wood products.</p>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__heading">Products</h4>
+          <ul class="footer__links">
+            <li><a href="pallets.html">Wood Pallets</a></li>
+            <li><a href="firewood.html">Firewood</a></li>
+            <li><a href="sawdust.html">Sawdust</a></li>
+            <li><a href="log-pickup.html">Log Pickup</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__heading">Company</h4>
+          <ul class="footer__links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__heading">Contact</h4>
+          <ul class="footer__contact">
+            <li><i class="fas fa-phone"></i> <a href="tel:+17085550123">(708) 555-0123</a></li>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:info@premierlumber.com">info@premierlumber.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2024 Premier Lumber Co. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <a href="tel:+17085550123" class="mobile-phone-btn" aria-label="Call us"><i class="fas fa-phone"></i></a>
+  <button class="scroll-top" id="scroll-top" aria-label="Scroll to top"><i class="fas fa-chevron-up"></i></button>
+  
+  <script src="js/main.js" defer></script>
+  <script src="js/forms.js" defer></script>
+</body>
+</html>
