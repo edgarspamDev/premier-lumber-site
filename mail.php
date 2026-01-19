@@ -1,22 +1,36 @@
 <?php
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Content-Type');
-
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit;
-}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
-    echo json_encode(['error' => 'Method not allowed']);
+    echo json_encode(['success' => false, 'error' => 'Method not allowed']);
     exit;
 }
 
-// IMPORTANT: Change this to your actual email address
 $to = 'contact@premierlumber.com';
+$name = htmlspecialchars($_POST['name'] ?? '');
+$email = htmlspecialchars($_POST['email'] ?? '');
+$phone = htmlspecialchars($_POST['phone'] ?? '');
+$project = htmlspecialchars($_POST['project'] ?? '');
+$message = htmlspecialchars($_POST['message'] ?? '');
+
+if (empty($name) || empty($email) || empty($phone) || empty($message)) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'error' => 'Missing required fields']);
+    exit;
+}
+
+$subject = "New Quote Request from Premier Lumber - $name";
+$body = "Name: $name\nEmail: $email\nPhone: $phone\nProject: $project\n\nMessage:\n$message";
+$headers = "From: $email\r\nReply-To: $email\r\nContent-Type: text/plain; charset=UTF-8";
+
+if (mail($to, $subject, $body, $headers)) {
+    echo json_encode(['success' => true, 'message' => 'Email sent successfully']);
+} else {
+    http_response_code(500);
+    echo json_encode(['success' => false, 'error' => 'Failed to send email']);
+}
+?>
 
 // Sanitize inputs
 $name = htmlspecialchars(trim($_POST['name'] ?? ''));

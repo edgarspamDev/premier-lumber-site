@@ -14,20 +14,20 @@ mkdir -p deploy/public_html
 
 # Step 2: Copy files
 echo "📋 Copying files..."
+cp index.html deploy/public_html/
+cp .htaccess deploy/public_html/
+cp robots.txt deploy/public_html/
+cp sitemap.xml deploy/public_html/
+cp mail.php deploy/public_html/
 
-files=("index.html" "products.html" "delivery.html" "contractors.html" "thank-you.html" "privacy.html" "terms.html" "404.html" ".htaccess" "robots.txt" "sitemap.xml" "mail.php" "logo.jpg")
-
-for file in "${files[@]}"; do
-    if [ -f "$file" ]; then
-        cp "$file" deploy/public_html/
-        echo "  ✓ $file"
-    else
-        echo "  ⚠ $file not found (skipped)"
-    fi
-done
-
-# Copy optional image assets if they exist
-optional=("logo.png" "logo-mark.png" "favicon.ico" "apple-touch-icon.png" "og-image.png")
+# Step 3: Set permissions
+echo "🔒 Setting file permissions..."
+chmod 644 deploy/public_html/.htaccess
+chmod 644 deploy/public_html/robots.txt
+chmod 644 deploy/public_html/sitemap.xml
+chmod 644 deploy/public_html/mail.php
+chmod 644 deploy/public_html/index.html
+chmod 755 deploy/public_html
 for file in "${optional[@]}"; do
     if [ -f "$file" ]; then
         cp "$file" deploy/public_html/
