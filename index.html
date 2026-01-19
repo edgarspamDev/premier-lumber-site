@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Premier Lumber Company — Same-day and next-day delivery of quality lumber and building materials in Gary & Northwest Indiana.">
+    <meta name="description" content="Premier Lumber Company - Same-day and next-day delivery of quality lumber and building materials in Gary & Northwest Indiana.">
     <meta property="og:title" content="Premier Lumber Company | Quality Materials & Fast Delivery">
     <meta property="og:description" content="Family-owned. Reliable delivery. Competitive pricing. Get a free quote today.">
     <meta property="og:image" content="og-image.png">
@@ -19,11 +19,26 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <svg aria-hidden="true" style="position:absolute; width:0; height:0; overflow:hidden;">
+        <symbol id="icon-phone" viewBox="0 0 24 24">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.05 12.05 0 0 0 .57 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.03 12.03 0 0 0 2.81.57A2 2 0 0 1 22 16.92z"></path>
+        </symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </symbol>
+        <symbol id="icon-arrow" viewBox="0 0 24 24">
+            <path d="M5 12h14"></path>
+            <path d="M13 5l7 7-7 7"></path>
+        </symbol>
+    </svg>
     <!-- TOP ANNOUNCEMENT BAR -->
     <div class="announcement-bar">
         <div class="container announcement-content">
-            <span>🚚 <strong>Same-Day Delivery Available</strong> — Call now to schedule!</span>
-            <a href="tel:(219)938-6275" class="announcement-cta">📞 (219) 938-6275</a>
+            <span><strong>Same-day delivery available</strong> - call now to schedule.</span>
+            <a href="tel:(219)938-6275" class="announcement-cta">
+                <svg class="icon-svg" aria-hidden="true"><use href="#icon-phone"></use></svg>
+                <span>Call (219) 938-6275</span>
+            </a>
         </div>
     </div>
 
@@ -34,14 +49,19 @@
             </a>
 
             <a class="mobile-phone-btn" href="tel:(219)938-6275">
-                <span class="phone-icon">📞</span>
+                <span class="phone-icon" aria-hidden="true">
+                    <svg class="icon-svg"><use href="#icon-phone"></use></svg>
+                </span>
                 <span class="phone-text">Call Us</span>
             </a>
-            <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+
+            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span class="hamburger" aria-hidden="true"></span>
+            </button>
 
             <ul class="nav-links" id="navLinks">
                 <li><a href="#products">Products</a></li>
-                <li><a href="#services">Services</a></li> <!-- Added Services -->
+                <li><a href="#services">Services</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
 
@@ -52,24 +72,29 @@
         </div>
     </header>
 
-    <main id="home" class="container hero">
+        <main id="home" class="container hero">
         <div class="hero-grid">
             <div class="hero-content">
-                <span class="eyebrow">Family-Owned · 30+ Years in Gary</span>
-                <h1>Lumber & Pallets.<br><span class="text-accent">Delivered Fast.</span></h1>
+                <span class="eyebrow">Family-owned | 30+ years in Gary</span>
+                <h1>Jobsite-ready lumber & pallets.<br><span class="text-accent">Delivered fast.</span></h1>
                 <p class="hero-subtitle">Quality materials for contractors and homeowners. Same-day and next-day delivery throughout Northwest Indiana.</p>
 
                 <div class="hero-actions">
                     <a class="btn btn-primary btn-lg" href="tel:(219)938-6275">
-                        <span class="btn-icon">📞</span> Call (219) 938-6275
+                        <span class="btn-icon" aria-hidden="true"><svg class="icon-svg"><use href="#icon-phone"></use></svg></span>
+                        Call (219) 938-6275
                     </a>
-                    <a class="btn btn-ghost" href="#contact">Get Free Quote</a>
+                    <a class="btn btn-ghost" href="#contact">
+                        <span class="btn-icon" aria-hidden="true"><svg class="icon-svg"><use href="#icon-arrow"></use></svg></span>
+                        Get Free Quote
+                    </a>
                 </div>
+                <p class="hero-note">Fast responses during business hours. Share your list and get a confirmed window.</p>
 
                 <div class="hero-trust">
-                    <div class="trust-item"><span class="trust-icon">✓</span> Same/Next-Day Delivery</div>
-                    <div class="trust-item"><span class="trust-icon">✓</span> We Buy & Sell Pallets</div>
-                    <div class="trust-item"><span class="trust-icon">✓</span> Free Log Pickup</div>
+                    <div class="trust-item"><span class="trust-icon" aria-hidden="true"><svg class="icon-svg"><use href="#icon-check"></use></svg></span> Same/next-day delivery</div>
+                    <div class="trust-item"><span class="trust-icon" aria-hidden="true"><svg class="icon-svg"><use href="#icon-check"></use></svg></span> We buy & sell pallets</div>
+                    <div class="trust-item"><span class="trust-icon" aria-hidden="true"><svg class="icon-svg"><use href="#icon-check"></use></svg></span> Free log pickup</div>
                 </div>
             </div>
 
@@ -80,50 +105,50 @@
                 </div>
                 <div class="hero-card-grid">
                     <div class="hero-card-item">
-                        <span class="hero-card-icon">🪵</span>
+                        <span class="hero-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg></span>
                         <div>
                             <strong>Lumber & Plywood</strong>
                             <span>Framing, studs, sheathing</span>
                         </div>
                     </div>
                     <div class="hero-card-item">
-                        <span class="hero-card-icon">📦</span>
+                        <span class="hero-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></span>
                         <div>
                             <strong>Pallets</strong>
                             <span>Buy & sell all sizes</span>
                         </div>
                     </div>
                     <div class="hero-card-item">
-                        <span class="hero-card-icon">🔥</span>
+                        <span class="hero-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.1.2-2.2.6-3.3.3.3.4.6.4.9a2.5 2.5 0 0 1-5-1.6z"></path></svg></span>
                         <div>
                             <strong>Firewood</strong>
                             <span>Seasoned, by the cord</span>
                         </div>
                     </div>
                     <div class="hero-card-item">
-                        <span class="hero-card-icon">🪚</span>
+                        <span class="hero-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="2" x2="12" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><circle cx="12" cy="12" r="3"></circle></svg></span>
                         <div>
                             <strong>Custom Milling</strong>
                             <span>Cut to your specs</span>
                         </div>
                     </div>
                 </div>
-                <a href="#products" class="hero-card-link">View all products →</a>
+                <a href="#products" class="hero-card-link">View all products <svg class="icon-svg" aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
             </div>
         </div>
 
         <div class="metrics">
             <div class="metric-card">
                 <div class="metric-value">30+</div>
-                <div class="metric-title">Years in Business</div>
+                <div class="metric-title">Years in business</div>
             </div>
             <div class="metric-card">
-                <div class="metric-value">Same-Day</div>
-                <div class="metric-title">Delivery Available</div>
+                <div class="metric-value">Same-day</div>
+                <div class="metric-title">Delivery available</div>
             </div>
             <div class="metric-card">
                 <div class="metric-value">10,000+</div>
-                <div class="metric-title">Projects Completed</div>
+                <div class="metric-title">Loads delivered</div>
             </div>
         </div>
     </main>
@@ -132,15 +157,15 @@
         <div class="section-header">
             <div class="section-kicker">Products</div>
             <h2 class="section-title">Materials built for the jobsite</h2>
-            <p class="section-sub">Premium lumber, plywood, millwork, and more—priced fairly, delivered ready to use.</p>
+            <p class="section-sub">Premium lumber, plywood, millwork, and more - priced fairly, delivered ready to use.</p>
         </div>
         <div class="grid products-grid">
-            <a href="#contact" class="card product-card"><div class="icon">🪵</div><h3>Lumber</h3><p>Premium grade lumber for framing & structural work.</p></a>
-            <a href="#contact" class="card product-card"><div class="icon">📦</div><h3>Plywood & Sheathing</h3><p>Durable panels for roofs, walls, and subfloors.</p></a>
-            <a href="#contact" class="card product-card"><div class="icon">🎨</div><h3>Millwork & Moldings</h3><p>Finish-grade trims, casings, and profiles.</p></a>
-            <a href="#contact" class="card product-card"><div class="icon">🚪</div><h3>Doors & Windows</h3><p>Reliable openings with energy-efficient options.</p></a>
-            <a href="#contact" class="card product-card"><div class="icon">🛠️</div><h3>Building Materials</h3><p>Fasteners, adhesives, wraps—essentials ready to go.</p></a>
-            <a href="#contact" class="card product-card"><div class="icon">🏡</div><h3>Decking & Fencing</h3><p>Outdoor lumber and composites that weather the Midwest.</p></a>
+            <a href="#contact" class="card product-card"><div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg></div><h3>Lumber</h3><p>Premium grade lumber for framing & structural work.</p></a>
+            <a href="#contact" class="card product-card"><div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div><h3>Plywood & Sheathing</h3><p>Durable panels for roofs, walls, and subfloors.</p></a>
+            <a href="#contact" class="card product-card"><div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div><h3>Millwork & Moldings</h3><p>Finish-grade trims, casings, and profiles.</p></a>
+            <a href="#contact" class="card product-card"><div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line></svg></div><h3>Doors & Windows</h3><p>Reliable openings with energy-efficient options.</p></a>
+            <a href="#contact" class="card product-card"><div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></div><h3>Building Materials</h3><p>Fasteners, adhesives, wraps - essentials ready to go.</p></a>
+            <a href="#contact" class="card product-card"><div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18"></path></svg></div><h3>Decking & Fencing</h3><p>Outdoor lumber and composites that weather the Midwest.</p></a>
         </div>
     </section>
     <!-- SOCIAL PROOF / TESTIMONIALS -->
@@ -176,6 +201,109 @@
             </div>
         </div>
     </section>
+
+    <!-- TRUSTED PARTNERS -->
+    <section class="partners-section">
+        <div class="container">
+            <div class="partners-header">
+                <span class="partners-label">Trusted By Local Businesses</span>
+            </div>
+            <div class="partners-grid">
+                <div class="partner-item">
+                    <div class="partner-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 21v-6h6v6"></path></svg>
+                    </div>
+                    <span>Local Contractors</span>
+                </div>
+                <div class="partner-item">
+                    <div class="partner-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    </div>
+                    <span>Warehouses</span>
+                </div>
+                <div class="partner-item">
+                    <div class="partner-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    </div>
+                    <span>Homeowners</span>
+                </div>
+                <div class="partner-item">
+                    <div class="partner-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                    </div>
+                    <span>Manufacturing</span>
+                </div>
+                <div class="partner-item">
+                    <div class="partner-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <span>Property Managers</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICE AREAS -->
+    <section class="container service-areas" id="areas">
+        <div class="section-header">
+            <div class="section-kicker">Delivery Coverage</div>
+            <h2 class="section-title">Serving Northwest Indiana</h2>
+            <p class="section-sub">Same-day and next-day delivery throughout the region</p>
+        </div>
+        <div class="areas-grid">
+            <div class="area-card primary">
+                <div class="area-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <h4>Gary</h4>
+                <span>Headquarters</span>
+            </div>
+            <div class="area-card">
+                <div class="area-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <h4>Hammond</h4>
+            </div>
+            <div class="area-card">
+                <div class="area-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <h4>East Chicago</h4>
+            </div>
+            <div class="area-card">
+                <div class="area-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <h4>Calumet City</h4>
+            </div>
+            <div class="area-card">
+                <div class="area-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <h4>Merrillville</h4>
+            </div>
+            <div class="area-card">
+                <div class="area-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <h4>Portage</h4>
+            </div>
+            <div class="area-card">
+                <div class="area-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <h4>Crown Point</h4>
+            </div>
+            <div class="area-card">
+                <div class="area-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <h4>Valparaiso</h4>
+            </div>
+        </div>
+        <p class="areas-note">Don't see your city? <a href="#contact">Contact us</a> — we likely deliver to your area.</p>
+    </section>
+
     <section class="container" id="why">
         <div class="two-col">
             <div>
@@ -213,26 +341,26 @@
         </div>
         <div class="grid services-grid">
             <a href="#contact" class="service-card">
-                <div class="service-icon">🔄</div>
+                <div class="service-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10h20"></path><path d="M2 14h20"></path><path d="M4 18h16"></path><path d="M6 6h12"></path></svg></div>
                 <h3>Pallets — Buy & Sell</h3>
                 <p>We purchase used pallets and sell refurbished ones. All sizes available. Bulk pickup and delivery.</p>
                 <span class="service-cta">Get Quote →</span>
             </a>
             <a href="#contact" class="service-card">
-                <div class="service-icon">🪵</div>
+                <div class="service-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.1.2-2.2.6-3.3.3.3.4.6.4.9a2.5 2.5 0 0 1-5-1.6z"></path></svg></div>
                 <h3>Firewood</h3>
                 <p>Seasoned hardwood firewood, sold by the cord. Perfect for heating or backyard fires.</p>
                 <span class="service-cta">Order Now →</span>
             </a>
             <a href="#contact" class="service-card">
-                <div class="service-icon">🌾</div>
+                <div class="service-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18"></path></svg></div>
                 <h3>Sawdust & Shavings</h3>
                 <p>Clean sawdust available for animal bedding, landscaping, and industrial uses.</p>
                 <span class="service-cta">Check Availability →</span>
             </a>
             <a href="#contact" class="service-card featured">
                 <div class="service-badge">FREE</div>
-                <div class="service-icon">🌲</div>
+                <div class="service-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10V5a2 2 0 0 1 4 0v5h5l-7 7-7-7h5z"></path></svg></div>
                 <h3>Free Log Pickup</h3>
                 <p>Have logs you need removed? We'll pick them up at no charge. We use them for milling and firewood.</p>
                 <span class="service-cta">Schedule Pickup →</span>
@@ -431,3 +559,11 @@
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
+

@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start \"\" \"C:\\\\Users\\\\Hunti\\\\Downloads\\\\premier-lumber-site\\\\index.html\")"
+    ]
+  }
+}
