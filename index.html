@@ -3,856 +3,282 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Premier Lumber Company - Quality building materials with same-day and next-day delivery in Gary and Northwest Indiana.">
-    <meta name="keywords" content="lumber, building materials, Gary Indiana, delivery, contractors">
-    <meta property="og:title" content="Premier Lumber Company - Local Quality Materials">
-    <meta property="og:description" content="Same-day and next-day delivery. Family-owned, competitive pricing, quality assured.">
-    <meta property="og:type" content="business.business">
-    <title>Premier Lumber Company | Quality Materials & Fast Delivery in Gary, IN</title>
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --teal: #2186a8;
-            --teal-dark: #1a6b85;
-            --teal-light: #e6f4f7;
-            --charcoal: #2d2d2d;
-            --gray-light: #f5f5f5;
-            --gray-mid: #e0e0e0;
-            --gray-dark: #6b6b6b;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --error: #ef4444;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--charcoal);
-            background: white;
-        }
-
-        /* HEADER & NAVIGATION */
-        header {
-            position: sticky;
-            top: 0;
-            background: white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            z-index: 100;
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--teal);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo-emoji {
-            font-size: 2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--charcoal);
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--teal);
-        }
-
-        .nav-phone {
-            background: var(--success);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s ease;
-        }
-
-        .nav-phone:hover {
-            background: #059669;
-        }
-
-        /* MOBILE MENU */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .nav-phone {
-                padding: 0.5rem 1rem;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* HERO SECTION */
-        .hero {
-            background: linear-gradient(135deg, var(--teal-light) 0%, white 100%);
-            padding: 6rem 2rem;
-            text-align: center;
-        }
-
-        .hero-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            color: var(--charcoal);
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--gray-dark);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: var(--success);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #059669;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(16, 185, 129, 0.3);
-        }
-
-        .btn-secondary {
-            background: var(--teal);
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background: var(--teal-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(33, 134, 168, 0.3);
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        /* TRUST BADGES */
-        .trust-section {
-            background: white;
-            padding: 4rem 2rem;
-        }
-
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .badge {
-            background: var(--teal-light);
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            border-left: 4px solid var(--teal);
-        }
-
-        .badge-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .badge h3 {
-            color: var(--teal);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .badge p {
-            color: var(--gray-dark);
-            font-size: 0.95rem;
-        }
-
-        /* PRODUCTS SECTION */
-        .products {
-            background: var(--gray-light);
-            padding: 4rem 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--charcoal);
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            width: 60px;
-            height: 4px;
-            background: var(--success);
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .product-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        }
-
-        .product-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .product-card h3 {
-            color: var(--teal);
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-        }
-
-        /* WHY CHOOSE US */
-        .why-us {
-            padding: 4rem 2rem;
-            background: white;
-        }
-
-        .why-us-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-top: 2rem;
-        }
-
-        .why-us-list {
-            list-style: none;
-        }
-
-        .why-us-list li {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .why-us-list li::before {
-            content: '✓';
-            color: var(--success);
-            font-weight: bold;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .why-us-image {
-            font-size: 6rem;
-            text-align: center;
-        }
-
-        /* HOW IT WORKS */
-        .how-it-works {
-            background: linear-gradient(135deg, var(--teal-light) 0%, var(--teal) 100%);
-            padding: 4rem 2rem;
-            color: white;
-        }
-
-        .how-it-works .section-title {
-            color: white;
-        }
-
-        .how-it-works .section-title::after {
-            background: var(--warning);
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .step {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-        }
-
-        .step-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: var(--warning);
-        }
-
-        .step h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* SHIPPING & DELIVERY */
-        .shipping {
-            padding: 4rem 2rem;
-            background: white;
-        }
-
-        .shipping-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-top: 2rem;
-        }
-
-        .shipping-content h3 {
-            color: var(--teal);
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .shipping-list {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .shipping-list li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--gray-mid);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .shipping-list li::before {
-            content: '🚚';
-            font-size: 1.2rem;
-        }
-
-        .shipping-truck {
-            font-size: 5rem;
-            text-align: center;
-        }
-
-        .urgency-badge {
-            background: var(--warning);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-top: 1.5rem;
-        }
-
-        /* CTA BANNER */
-        .cta-banner {
-            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .cta-banner h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta-banner .btn {
-            background: white;
-            color: var(--teal);
-            margin-top: 1rem;
-        }
-
-        .cta-banner .btn:hover {
-            background: var(--gray-light);
-        }
-
-        /* CONTACT SECTION */
-        .contact {
-            padding: 4rem 2rem;
-            background: var(--gray-light);
-        }
-
-        .contact-info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-            margin-top: 2rem;
-        }
-
-        .info-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        .info-card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .info-card h3 {
-            color: var(--teal);
-            margin-bottom: 0.5rem;
-        }
-
-        .info-card p {
-            color: var(--gray-dark);
-        }
-
-        .info-card a {
-            color: var(--success);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        /* CONTACT FORM */
-        .contact-form-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--charcoal);
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--gray-mid);
-            border-radius: 6px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--teal);
-            box-shadow: 0 0 0 3px rgba(33, 134, 168, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .form-submit {
-            width: 100%;
-            background: var(--success);
-            color: white;
-            padding: 1rem;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .form-submit:hover {
-            background: #059669;
-            transform: translateY(-2px);
-        }
-
-        .form-message {
-            margin-top: 1rem;
-            padding: 1rem;
-            border-radius: 6px;
-            text-align: center;
-            display: none;
-        }
-
-        .form-message.success {
-            background: rgba(16, 185, 129, 0.1);
-            color: #059669;
-            display: block;
-        }
-
-        .form-message.error {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--error);
-            display: block;
-        }
-
-        /* FOOTER */
-        footer {
-            background: var(--charcoal);
-            color: white;
-            padding: 3rem 2rem;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: var(--success);
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-section a {
-            color: var(--gray-light);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: var(--success);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            text-align: center;
-            color: var(--gray-dark);
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .why-us-grid,
-            .shipping-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .why-us-image,
-            .shipping-truck {
-                font-size: 3rem;
-            }
-
-            .cta-banner h2 {
-                font-size: 1.5rem;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-                text-align: center;
-            }
-        }
-    </style>
+    <meta name="description" content="Premier Lumber Company — Same-day and next-day delivery of quality lumber and building materials in Gary & Northwest Indiana.">
+    <meta property="og:title" content="Premier Lumber Company | Quality Materials & Fast Delivery">
+    <meta property="og:description" content="Family-owned. Reliable delivery. Competitive pricing. Get a free quote today.">
+    <meta property="og:image" content="og-image.png">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://premierlumber.com/">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Premier Lumber Company | Quality Materials & Fast Delivery</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- HEADER -->
     <header>
-        <nav>
-            <a href="#home" class="logo">
-                <span class="logo-emoji">🪵</span>
-                <span>Premier Lumber</span>
+        <div class="container nav">
+            <a class="brand" href="#home" style="color:var(--ink);">
+                <img src="logo.jpg" alt="Premier Lumber Logo" style="height:55px; width:auto;">
+                <!-- <span>Premier Lumber</span> --> <!-- Logo contains text now -->
             </a>
-            <ul class="nav-links">
+
+            <a class="mobile-phone" href="tel:(219)938-6275" aria-label="Call us">📞</a>
+            <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#products">Products</a></li>
-                <li><a href="#shipping">Shipping</a></li>
+                <li><a href="#services">Services</a></li> <!-- Added Services -->
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <a href="tel:(219)938-6275" class="nav-phone">(219) 938-6275</a>
-        </nav>
+
+            <div class="nav-cta">
+                <span class="pill" style="color:var(--teal-dark); background:var(--teal-light);">Same/Next-Day Delivery</span>
+                <a class="btn btn-primary" href="tel:(219)938-6275" style="background:var(--teal); color:white;">Call (219) 938-6275</a>
+            </div>
+        </div>
     </header>
 
-    <!-- HERO -->
-    <section class="hero" id="home">
-        <div class="hero-container">
-            <h1>Your Local Source for Quality Lumber</h1>
-            <p>Serving Gary & Northwest Indiana with premium building materials, reliable delivery & expert service</p>
-            <div class="hero-cta">
-                <a href="#contact" class="btn btn-primary">Get Free Quote</a>
-                <a href="#shipping" class="btn btn-secondary">Learn About Delivery</a>
+    <main id="home" class="container hero">
+        <div class="hero-grid">
+            <div>
+                <span class="eyebrow" style="color:var(--teal-dark); background:#ffedd5;">Family-owned · Gary & NW Indiana</span>
+                <h1>Your local source for Lumber, Pallets & Custom Wood.</h1>
+                <p>We stock <strong>dimensional lumber</strong> and <strong>plywood</strong>, plus we are your go-to for <strong>pallets</strong> (buy & sell), <strong>firewood</strong>, and <strong>custom milling</strong>.</p>
+
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#contact" style="background:var(--teal);">Get Free Quote</a>
+                    <a class="btn btn-ghost" href="#products">View Inventory</a>
+                    <span class="badge-urgency" style="font-size:0.85rem; padding:0.6rem 1rem;">🔥 Limited Stock — Order Today</span>
+                </div>
+
+                <div class="hero-meta">
+                    <span class="pill" style="background:#fff7ed;color:#c2410c;">We Buy & Sell Pallets</span>
+                    <span class="pill" style="background:#ecfdf3;color:#15803d;">Free Log Pickup Available</span>
+                </div>
+            </div>
+
+            <div class="hero-card">
+                <h3>What We Sell & Do</h3> <!-- "This what they sell" -->
+                <ul class="checklist" style="margin-bottom:0;">
+                    <li><span class="checkmark">✓</span> <strong>Lumber & Plywood:</strong> Framing, studs, sheathing.</li>
+                    <li><span class="checkmark">✓</span> <strong>Pallets:</strong> We buy & sell sizes.</li>
+                    <li><span class="checkmark">✓</span> <strong>Firewood:</strong> Seasoned, by the cord.</li>
+                    <li><span class="checkmark">✓</span> <strong>Sawdust:</strong> Clean, available now.</li>
+                    <li><span class="checkmark">✓</span> <strong>Custom Lumber:</strong> Milled to specs.</li>
+                    <li><span class="checkmark">✓</span> <strong>Log Pickup:</strong> We pick up logs FREE.</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="metrics">
+            <div class="metric-card"><div class="metric-title">Years in Business</div><div class="metric-value">30+ Years</div></div>
+            <div class="metric-card"><div class="metric-title">Turnaround</div><div class="metric-value">Same/Next-Day</div></div>
+            <div class="metric-card"><div class="metric-title">Projects Delivered</div><div class="metric-value">10,000+</div></div>
+            <div class="metric-card"><div class="metric-title">Guarantee</div><div class="metric-value">100% Satisfaction</div></div>
+        </div>
+    </main>
+
+    <section class="container" id="products">
+        <div class="section-header">
+            <div class="section-kicker">Products</div>
+            <h2 class="section-title">Materials built for the jobsite</h2>
+            <p class="section-sub">Premium lumber, plywood, millwork, and more—priced fairly, delivered ready to use.</p>
+        </div>
+        <div class="grid products-grid">
+            <a href="#contact" class="card product-card"><div class="icon">🪵</div><h3>Lumber</h3><p>Premium grade lumber for framing & structural work.</p></a>
+            <a href="#contact" class="card product-card"><div class="icon">📦</div><h3>Plywood & Sheathing</h3><p>Durable panels for roofs, walls, and subfloors.</p></a>
+            <a href="#contact" class="card product-card"><div class="icon">🎨</div><h3>Millwork & Moldings</h3><p>Finish-grade trims, casings, and profiles.</p></a>
+            <a href="#contact" class="card product-card"><div class="icon">🚪</div><h3>Doors & Windows</h3><p>Reliable openings with energy-efficient options.</p></a>
+            <a href="#contact" class="card product-card"><div class="icon">🛠️</div><h3>Building Materials</h3><p>Fasteners, adhesives, wraps—essentials ready to go.</p></a>
+            <a href="#contact" class="card product-card"><div class="icon">🏡</div><h3>Decking & Fencing</h3><p>Outdoor lumber and composites that weather the Midwest.</p></a>
+        </div>
+    </section>
+    <!-- SOCIAL PROOF / TESTIMONIALS -->
+    <section class="container" id="testimonials">
+        <div class="section-header">
+            <div class="section-kicker">Trusted by Contractors & Homeowners</div>
+            <h2 class="section-title">What Our Customers Say</h2>
+        </div>
+        <div class="grid testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Premier Lumber saved my project timeline. Same-day delivery on studs and plywood—arrived in perfect condition. Best lumber yard in NW Indiana."</p>
+                <div class="testimonial-author">
+                    <strong>Mike R.</strong>
+                    <span>General Contractor, Hammond</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"We buy and sell pallets through Premier. Fair pricing, reliable pickups, and they actually answer the phone. Hard to find that these days."</p>
+                <div class="testimonial-author">
+                    <strong>Sarah T.</strong>
+                    <span>Warehouse Manager, Gary</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Needed custom milling for a renovation. They delivered exactly what I needed, on time, and the quality was top-notch. Highly recommend!"</p>
+                <div class="testimonial-author">
+                    <strong>Carlos M.</strong>
+                    <span>Homeowner, Merrillville</span>
+                </div>
             </div>
         </div>
     </section>
-
-    <!-- TRUST BADGES -->
-    <section class="trust-section">
-        <div class="section-container">
-            <div class="trust-grid">
-                <div class="badge">
-                    <div class="badge-icon">👨‍👩‍👧</div>
-                    <h3>Family-Owned</h3>
-                    <p>Serving our community with pride and integrity</p>
-                </div>
-                <div class="badge">
-                    <div class="badge-icon">⚡</div>
-                    <h3>Prompt Delivery</h3>
-                    <p>Same-day or next-day shipping available</p>
-                </div>
-                <div class="badge">
-                    <div class="badge-icon">💰</div>
-                    <h3>Competitive Pricing</h3>
-                    <p>Best value in Northwest Indiana</p>
-                </div>
-                <div class="badge">
-                    <div class="badge-icon">✓</div>
-                    <h3>Quality Assured</h3>
-                    <p>Graded & certified materials</p>
-                </div>
+    <section class="container" id="why">
+        <div class="two-col">
+            <div>
+                <div class="section-kicker">Why Premier</div>
+                <h2 class="section-title">Built around contractors, trusted by homeowners</h2>
+                <p class="section-sub" style="text-align:left; margin: 0.6rem 0 1.2rem;">We combine quality control, predictable delivery, and pricing that respects your margin.</p>
+                <ul class="checklist">
+                    <li><span class="checkmark">✓</span> Premium grade, inspected before it leaves the yard</li>
+                    <li><span class="checkmark">✓</span> Personalized service—talk to a real pro, not a ticket system</li>
+                    <li><span class="checkmark">✓</span> Same/next-day runs when you’re on deadline</li>
+                    <li><span class="checkmark">✓</span> Competitive pricing without big-box headaches</li>
+                    <li><span class="checkmark">✓</span> Local expertise: Gary & Northwest Indiana jobsite know-how</li>
+                    <li><span class="checkmark">✓</span> Contractors welcome—bulk and repeat schedules</li>
+                </ul>
             </div>
-        </div>
-    </section>
-
-    <!-- PRODUCTS -->
-    <section class="products" id="products">
-        <div class="section-container">
-            <h2 class="section-title">Our Products</h2>
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-icon">🪵</div>
-                    <h3>Lumber</h3>
-                    <p>Premium grade lumber for all your framing needs</p>
-                </div>
-                <div class="product-card">
-                    <div class="product-icon">📦</div>
-                    <h3>Plywood & Sheathing</h3>
-                    <p>Durable sheathing and plywood products</p>
-                </div>
-                <div class="product-card">
-                    <div class="product-icon">🎨</div>
-                    <h3>Millwork & Moldings</h3>
-                    <p>Decorative trim and finishing materials</p>
-                </div>
-                <div class="product-card">
-                    <div class="product-icon">🚪</div>
-                    <h3>Doors & Windows</h3>
-                    <p>High-quality doors and window frames</p>
-                </div>
-                <div class="product-card">
-                    <div class="product-icon">🛠️</div>
-                    <h3>Building Materials</h3>
-                    <p>Complete range of construction supplies</p>
-                </div>
-                <div class="product-card">
-                    <div class="product-icon">🏡</div>
-                    <h3>Decking & Fencing</h3>
-                    <p>Outdoor building materials for patios & decks</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- WHY CHOOSE US -->
-    <section class="why-us">
-        <div class="section-container">
-            <h2 class="section-title">Why Choose Premier Lumber?</h2>
-            <div class="why-us-grid">
-                <div>
-                    <ul class="why-us-list">
-                        <li>Premium grade materials</li>
-                        <li>Personalized expert service</li>
-                        <li>Prompt delivery options</li>
-                        <li>Competitive pricing</li>
-                        <li>Local expertise & knowledge</li>
-                        <li>Contractors welcome</li>
-                    </ul>
-                </div>
-                <div class="why-us-image">📊</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section class="how-it-works">
-        <div class="section-container">
-            <h2 class="section-title">How Ordering Works</h2>
-            <div class="steps-grid">
-                <div class="step">
-                    <div class="step-number">1️⃣</div>
-                    <h3>Select Materials</h3>
-                    <p>Choose what you need</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2️⃣</div>
-                    <h3>Get a Quote</h3>
-                    <p>Receive fair pricing</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3️⃣</div>
-                    <h3>Schedule Delivery</h3>
-                    <p>Pick your preferred time</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4️⃣</div>
-                    <h3>Receive Materials</h3>
-                    <p>Get your order on time</p>
+            <div class="visual-box">
+                <div class="stat-chip">Live arrival guarantee</div>
+                <h3 style="margin-bottom:0.4rem; color:var(--ink);">Predictable drops, safer loads</h3>
+                <p style="color:#4a5568; margin-bottom:1rem;">We plan routing, straps, and staging so your crew stays productive.</p>
+                <div class="grid" style="grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap:0.9rem;">
+                    <div class="card" style="box-shadow:none; border-color:#c8d9e3;"><strong>Priority windows</strong><br><span style="color:#4b5563;">Schedule AM/PM slots that stick.</span></div>
+                    <div class="card" style="box-shadow:none; border-color:#c8d9e3;"><strong>Handling check</strong><br><span style="color:#4b5563;">Moisture + surface check before loading.</span></div>
+                    <div class="card" style="box-shadow:none; border-color:#c8d9e3;"><strong>Direct line</strong><br><span style="color:#4b5563;">Call the driver, not a queue.</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SHIPPING & DELIVERY -->
-    <section class="shipping" id="shipping">
-        <div class="section-container">
-            <h2 class="section-title">Reliable Shipping & Delivery</h2>
-            <div class="shipping-grid">
-                <div class="shipping-content">
-                    <h3>Fast & Reliable Service</h3>
-                    <ul class="shipping-list">
-                        <li>Same-day or next-day delivery available</li>
-                        <li>Professional delivery trucks</li>
-                        <li>Careful handling & secure loading</li>
-                        <li>Service to residential & commercial sites</li>
-                        <li>Bulk orders welcome</li>
-                        <li>Live arrival guarantee on all shipments</li>
-                    </ul>
-                    <div class="urgency-badge">🚚 ORDER NOW FOR DELIVERY THIS WEEK</div>
+    <!-- SERVICES SECTION -->
+    <section class="container section-alt" id="services">
+        <div class="section-header">
+            <div class="section-kicker">Services</div>
+            <h2 class="section-title">More Than Just Lumber</h2>
+            <p class="section-sub">We buy, sell, and deliver specialty wood products—pallets, firewood, sawdust, and more.</p>
+        </div>
+        <div class="grid services-grid">
+            <a href="#contact" class="service-card">
+                <div class="service-icon">🔄</div>
+                <h3>Pallets — Buy & Sell</h3>
+                <p>We purchase used pallets and sell refurbished ones. All sizes available. Bulk pickup and delivery.</p>
+                <span class="service-cta">Get Quote →</span>
+            </a>
+            <a href="#contact" class="service-card">
+                <div class="service-icon">🪵</div>
+                <h3>Firewood</h3>
+                <p>Seasoned hardwood firewood, sold by the cord. Perfect for heating or backyard fires.</p>
+                <span class="service-cta">Order Now →</span>
+            </a>
+            <a href="#contact" class="service-card">
+                <div class="service-icon">🌾</div>
+                <h3>Sawdust & Shavings</h3>
+                <p>Clean sawdust available for animal bedding, landscaping, and industrial uses.</p>
+                <span class="service-cta">Check Availability →</span>
+            </a>
+            <a href="#contact" class="service-card featured">
+                <div class="service-badge">FREE</div>
+                <div class="service-icon">🌲</div>
+                <h3>Free Log Pickup</h3>
+                <p>Have logs you need removed? We'll pick them up at no charge. We use them for milling and firewood.</p>
+                <span class="service-cta">Schedule Pickup →</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="container" id="process">
+        <div class="section-header">
+            <div class="section-kicker">How It Works</div>
+            <h2 class="section-title">Simple, contractor-friendly flow</h2>
+        </div>
+        <div class="grid steps-grid">
+            <div class="step"><div class="step-number">1</div><h3>Select materials</h3><p>Tell us quantities, grades, and timing.</p></div>
+            <div class="step"><div class="step-number">2</div><h3>Get a quote</h3><p>Fast, transparent pricing that respects your margin.</p></div>
+            <div class="step"><div class="step-number">3</div><h3>Schedule delivery</h3><p>Pick AM/PM windows; we confirm with the driver.</p></div>
+            <div class="step"><div class="step-number">4</div><h3>Receive on time</h3><p>Careful unload, live arrival guarantee, done.</p></div>
+        </div>
+    </section>
+
+    <section class="container" id="shipping">
+        <div class="section-header">
+            <div class="section-kicker">Shipping & Delivery</div>
+            <h2 class="section-title">Right materials, right place, right time</h2>
+            <p class="section-sub">Same-day or next-day delivery available. Bulk orders welcome. Residential and commercial sites covered.</p>
+        </div>
+        <div class="shipping-grid">
+            <div>
+                <ul class="shipping-list">
+                    <li><span class="icon" style="background:#ecfdf3;color:#0f9b63;">✓</span> Live arrival guarantee on every shipment</li>
+                    <li><span class="icon" style="background:#eef7ff;color:#1a6b85;">🚚</span> Fleet of professional delivery trucks</li>
+                    <li><span class="icon" style="background:#fff7ed;color:#b45309;">🎯</span> Same-day or next-day routes when you need speed</li>
+                    <li><span class="icon" style="background:#f0f9ff;color:#0ea5e9;">📦</span> Careful handling & secure loading to reduce waste</li>
+                    <li><span class="icon" style="background:#fef2f2;color:#b91c1c;">🏗</span> Residential + commercial sites; bulk orders welcome</li>
+                </ul>
+                <div style="margin-top:1.2rem; display:flex; gap:0.8rem; flex-wrap:wrap; align-items:center;">
+                    <span class="badge-urgency">🚚 ORDER NOW FOR DELIVERY THIS WEEK</span>
+                    <a class="btn btn-primary" href="#contact">Schedule Delivery</a>
                 </div>
-                <div class="shipping-truck">🚚</div>
+            </div>
+            <div class="shipping-visual">
+                <h4>On-time promise</h4>
+                <p>We plan staging, tie-downs, and routes ahead of time so your crew stays moving.</p>
+                <div style="margin-top:1rem; display:grid; gap:0.7rem;">
+                    <div style="display:flex; gap:0.65rem; align-items:center;"><span class="icon" style="background:rgba(255,255,255,0.15); color:#fff;">⏱</span><span>ETA updates and direct driver contact.</span></div>
+                    <div style="display:flex; gap:0.65rem; align-items:center;"><span class="icon" style="background:rgba(255,255,255,0.15); color:#fff;">🛡</span><span>Protected loads for fewer defects.</span></div>
+                    <div style="display:flex; gap:0.65rem; align-items:center;"><span class="icon" style="background:rgba(255,255,255,0.15); color:#fff;">📍</span><span>Gary & Northwest Indiana coverage.</span></div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA BANNER -->
-    <section class="cta-banner">
-        <h2>Ready to Build?</h2>
-        <p style="font-size: 1.2rem; margin-bottom: 1rem;">Get your free quote and delivery estimate today</p>
-        <a href="#contact" class="btn" style="background: white; color: var(--teal);">Request Quote Now</a>
+    <section class="container" id="cta">
+        <div class="cta-banner">
+            <h2>Ready to build? Get pricing and delivery times today.</h2>
+            <p style="color:#e2e8f0;">Talk to a real person in minutes. We’ll confirm stock, routing, and arrival windows.</p>
+            <div class="cta-actions">
+                <a class="btn btn-primary" href="#contact">Get My Quote</a>
+                <a class="btn btn-ghost" href="tel:(219)938-6275">Call (219) 938-6275</a>
+            </div>
+        </div>
     </section>
 
-    <!-- CONTACT -->
-    <section class="contact" id="contact">
-        <div class="section-container">
-            <h2 class="section-title">Get Your Free Quote</h2>
+    <section class="container" id="contact">
+        <div class="section-header">
+            <div class="section-kicker">Contact</div>
+            <h2 class="section-title">Get your free quote</h2>
+            <p class="section-sub">Share your project details—materials, timing, and delivery location—and we’ll respond fast.</p>
+        </div>
 
-            <!-- INFO CARDS -->
-            <div class="contact-info-grid">
-                <div class="info-card">
-                    <div class="info-card-icon">📞</div>
-                    <h3>Phone</h3>
-                    <p><a href="tel:(219)938-6275">(219) 938-6275</a></p>
-                </div>
-                <div class="info-card">
-                    <div class="info-card-icon">📍</div>
-                    <h3>Address</h3>
-                    <p>6717 Atcheson Drive<br>Gary, IN 46403</p>
-                </div>
-                <div class="info-card">
-                    <div class="info-card-icon">⏰</div>
-                    <h3>Hours</h3>
-                    <p>Mon-Fri: 7:00 AM - 3:00 PM</p>
-                </div>
+        <div class="contact-wrap">
+            <div class="info-card">
+                <span class="info-label">Phone</span>
+                <a class="info-value" href="tel:(219)938-6275">(219) 938-6275</a>
+                <p>Call for rush delivery or bulk orders.</p>
             </div>
+            <div class="info-card">
+                <span class="info-label">Address</span>
+                <div class="info-value">6717 Atcheson Drive<br>Gary, IN 46403</div>
+                <p>Serving Gary & Northwest Indiana.</p>
+            </div>
+            <div class="info-card">
+                <span class="info-label">Hours</span>
+                <div class="info-value">Mon–Fri · 7:00 AM – 3:00 PM</div>
+                <p>Need off-hours? Call and we’ll work with you.</p>
+            </div>
+        </div>
 
-            <!-- CONTACT FORM -->
-            <div class="contact-form-container">
-                <form id="contactForm">
+        <div style="margin-top:1.8rem;" class="contact-form">
+            <form id="contactForm">
+                <div class="form-row">
                     <div class="form-group">
                         <label for="name">Name *</label>
                         <input type="text" id="name" name="name" required>
@@ -861,6 +287,8 @@
                         <label for="email">Email *</label>
                         <input type="email" id="email" name="email" required>
                     </div>
+                </div>
+                <div class="form-row">
                     <div class="form-group">
                         <label for="phone">Phone *</label>
                         <input type="tel" id="phone" name="phone" required>
@@ -875,111 +303,85 @@
                             <option value="other">Other</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="form-submit">Send Quote Request</button>
-                    <div id="formMessage" class="form-message"></div>
-                </form>
-            </div>
+                </div>
+                <div class="form-group" style="margin-top:1rem;">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" placeholder="Tell us quantities, materials, and delivery timing" required></textarea>
+                </div>
+                <button type="submit" id="submitBtn" class="btn btn-primary" style="width:100%; margin-top:1rem;">Send Quote Request</button>
+                <div id="formMessage" class="form-message" aria-live="polite"></div>
+            </form>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-section">
-                <h3>📍 Premier Lumber</h3>
-                <p>6717 Atcheson Drive<br>Gary, IN 46403</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#products">Products</a></li>
-                    <li><a href="#shipping">Delivery</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contact Info</h3>
-                <ul>
-                    <li><a href="tel:(219)938-6275">📞 (219) 938-6275</a></li>
-                    <li>Mon-Fri: 7 AM - 3 PM</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Premier Lumber Company. All rights reserved.</p>
-        </div>
+    <footer class="container">
+        <p>&copy; 2026 Premier Lumber Company · <a href="tel:(219)938-6275">(219) 938-6275</a> · Gary, IN</p>
     </footer>
 
+    <a class="floating-call" href="tel:(219)938-6275">📞 Call Now</a>
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+
     <script>
-        // SMOOTH SCROLL
+        // Mobile nav toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => navLinks.classList.toggle('show'));
+
+        // Smooth scroll for in-page links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+            anchor.addEventListener('click', e => {
+                const target = document.querySelector(anchor.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    navLinks.classList.remove('show');
                 }
             });
         });
 
-        // CONTACT FORM HANDLER
-        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+        // Contact form submission with loading state
+        const form = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-
-            const formData = new FormData(e.target);
-            const messageEl = document.getElementById('formMessage');
+            const formData = new FormData(form);
+            
+            // Clear previous message and show loading
+            formMessage.style.display = 'none';
+            formMessage.className = 'form-message';
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
 
             try {
-                // Use FormSubmit.co for email
-                const response = await fetch('https://formsubmit.co/ajax/contact@premierlumber.com', {
+                const res = await fetch('https://formsubmit.co/ajax/contact@premierlumber.com', {
                     method: 'POST',
                     body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
+                    headers: { 'Accept': 'application/json' }
                 });
 
-                if (response.ok) {
-                    messageEl.textContent = '✓ Quote request sent successfully! We\'ll contact you soon.';
-                    messageEl.className = 'form-message success';
-                    e.target.reset();
+                if (!res.ok) throw new Error('Form submit failed');
 
-                    setTimeout(() => {
-                        messageEl.style.display = 'none';
-                    }, 5000);
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            } catch (error) {
-                messageEl.textContent = '✗ Error sending request. Please try again or call us directly.';
-                messageEl.className = 'form-message error';
+                formMessage.textContent = '✓ Quote request sent successfully! We will contact you soon.';
+                formMessage.className = 'form-message success';
+                form.reset();
+            } catch (err) {
+                formMessage.textContent = '✗ Error sending request. Please try again or call us directly.';
+                formMessage.className = 'form-message error';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Quote Request';
             }
         });
 
-        // PRODUCT CARDS ANIMATION
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.product-card, .badge, .step').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('show', window.scrollY > 400);
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
 </body>
