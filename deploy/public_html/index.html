@@ -19,14 +19,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="announcement-bar">
+        <div class="container announcement-content">
+            <span>🚚 <strong>Same-Day Delivery Available</strong> — Call now to schedule!</span>
+            <a href="tel:(219)938-6275" class="announcement-cta">📞 (219) 938-6275</a>
+        </div>
+    </div>
+
     <header>
         <div class="container nav">
             <a class="brand" href="#home" style="color:var(--ink);">
                 <img src="logo.jpg" alt="Premier Lumber Logo" style="height:55px; width:auto;">
-                <!-- <span>Premier Lumber</span> --> <!-- Logo contains text now -->
             </a>
 
-            <a class="mobile-phone" href="tel:(219)938-6275" aria-label="Call us">📞</a>
+            <a class="mobile-phone-btn" href="tel:(219)938-6275">
+                <span class="phone-icon">📞</span>
+                <span class="phone-text">Call Us</span>
+            </a>
             <button class="nav-toggle" aria-label="Toggle menu">☰</button>
 
             <ul class="nav-links" id="navLinks">
@@ -44,42 +54,77 @@
 
     <main id="home" class="container hero">
         <div class="hero-grid">
-            <div>
-                <span class="eyebrow" style="color:var(--teal-dark); background:#ffedd5;">Family-owned · Gary & NW Indiana</span>
-                <h1>Your local source for Lumber, Pallets & Custom Wood.</h1>
-                <p>We stock <strong>dimensional lumber</strong> and <strong>plywood</strong>, plus we are your go-to for <strong>pallets</strong> (buy & sell), <strong>firewood</strong>, and <strong>custom milling</strong>.</p>
+            <div class="hero-content">
+                <span class="eyebrow">Family-Owned · 30+ Years in Gary</span>
+                <h1>Lumber & Pallets.<br><span class="text-accent">Delivered Fast.</span></h1>
+                <p class="hero-subtitle">Quality materials for contractors and homeowners. Same-day and next-day delivery throughout Northwest Indiana.</p>
 
                 <div class="hero-actions">
-                    <a class="btn btn-primary" href="#contact" style="background:var(--teal);">Get Free Quote</a>
-                    <a class="btn btn-ghost" href="#products">View Inventory</a>
-                    <span class="badge-urgency" style="font-size:0.85rem; padding:0.6rem 1rem;">🔥 Limited Stock — Order Today</span>
+                    <a class="btn btn-primary btn-lg" href="tel:(219)938-6275">
+                        <span class="btn-icon">📞</span> Call (219) 938-6275
+                    </a>
+                    <a class="btn btn-ghost" href="#contact">Get Free Quote</a>
                 </div>
 
-                <div class="hero-meta">
-                    <span class="pill" style="background:#fff7ed;color:#c2410c;">We Buy & Sell Pallets</span>
-                    <span class="pill" style="background:#ecfdf3;color:#15803d;">Free Log Pickup Available</span>
+                <div class="hero-trust">
+                    <div class="trust-item"><span class="trust-icon">✓</span> Same/Next-Day Delivery</div>
+                    <div class="trust-item"><span class="trust-icon">✓</span> We Buy & Sell Pallets</div>
+                    <div class="trust-item"><span class="trust-icon">✓</span> Free Log Pickup</div>
                 </div>
             </div>
 
             <div class="hero-card">
-                <h3>What We Sell & Do</h3> <!-- "This what they sell" -->
-                <ul class="checklist" style="margin-bottom:0;">
-                    <li><span class="checkmark">✓</span> <strong>Lumber & Plywood:</strong> Framing, studs, sheathing.</li>
-                    <li><span class="checkmark">✓</span> <strong>Pallets:</strong> We buy & sell sizes.</li>
-                    <li><span class="checkmark">✓</span> <strong>Firewood:</strong> Seasoned, by the cord.</li>
-                    <li><span class="checkmark">✓</span> <strong>Sawdust:</strong> Clean, available now.</li>
-                    <li><span class="checkmark">✓</span> <strong>Custom Lumber:</strong> Milled to specs.</li>
-                    <li><span class="checkmark">✓</span> <strong>Log Pickup:</strong> We pick up logs FREE.</li>
-                </ul>
+                <div class="hero-card-header">
+                    <span class="hero-card-badge">Popular</span>
+                    <h3>What We Offer</h3>
+                </div>
+                <div class="hero-card-grid">
+                    <div class="hero-card-item">
+                        <span class="hero-card-icon">🪵</span>
+                        <div>
+                            <strong>Lumber & Plywood</strong>
+                            <span>Framing, studs, sheathing</span>
+                        </div>
+                    </div>
+                    <div class="hero-card-item">
+                        <span class="hero-card-icon">📦</span>
+                        <div>
+                            <strong>Pallets</strong>
+                            <span>Buy & sell all sizes</span>
+                        </div>
+                    </div>
+                    <div class="hero-card-item">
+                        <span class="hero-card-icon">🔥</span>
+                        <div>
+                            <strong>Firewood</strong>
+                            <span>Seasoned, by the cord</span>
+                        </div>
+                    </div>
+                    <div class="hero-card-item">
+                        <span class="hero-card-icon">🪚</span>
+                        <div>
+                            <strong>Custom Milling</strong>
+                            <span>Cut to your specs</span>
+                        </div>
+                    </div>
+                </div>
+                <a href="#products" class="hero-card-link">View all products →</a>
             </div>
         </div>
 
-
         <div class="metrics">
-            <div class="metric-card"><div class="metric-title">Years in Business</div><div class="metric-value">30+ Years</div></div>
-            <div class="metric-card"><div class="metric-title">Turnaround</div><div class="metric-value">Same/Next-Day</div></div>
-            <div class="metric-card"><div class="metric-title">Projects Delivered</div><div class="metric-value">10,000+</div></div>
-            <div class="metric-card"><div class="metric-title">Guarantee</div><div class="metric-value">100% Satisfaction</div></div>
+            <div class="metric-card">
+                <div class="metric-value">30+</div>
+                <div class="metric-title">Years in Business</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">Same-Day</div>
+                <div class="metric-title">Delivery Available</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">10,000+</div>
+                <div class="metric-title">Projects Completed</div>
+            </div>
         </div>
     </main>
 
@@ -90,41 +135,41 @@
             <p class="section-sub">Premium lumber, plywood, millwork, and more—priced fairly, delivered ready to use.</p>
         </div>
         <div class="grid products-grid">
-            <div class="card product-card"><div class="icon">🪵</div><h3>Lumber</h3><p>Premium grade lumber for framing & structural work.</p></div>
-            <div class="card product-card"><div class="icon">📦</div><h3>Plywood & Sheathing</h3><p>Durable panels for roofs, walls, and subfloors.</p></div>
-            <div class="card product-card"><div class="icon">🎨</div><h3>Millwork & Moldings</h3><p>Finish-grade trims, casings, and profiles.</p></div>
-            <div class="card product-card"><div class="icon">🚪</div><h3>Doors & Windows</h3><p>Reliable openings with energy-efficient options.</p></div>
-            <div class="card product-card"><div class="icon">🛠️</div><h3>Building Materials</h3><p>Fasteners, adhesives, wraps—essentials ready to go.</p></div>
-            <div class="card product-card"><div class="icon">🏡</div><h3>Decking & Fencing</h3><p>Outdoor lumber and composites that weather the Midwest.</p></div>
+            <a href="#contact" class="card product-card"><div class="icon">🪵</div><h3>Lumber</h3><p>Premium grade lumber for framing & structural work.</p></a>
+            <a href="#contact" class="card product-card"><div class="icon">📦</div><h3>Plywood & Sheathing</h3><p>Durable panels for roofs, walls, and subfloors.</p></a>
+            <a href="#contact" class="card product-card"><div class="icon">🎨</div><h3>Millwork & Moldings</h3><p>Finish-grade trims, casings, and profiles.</p></a>
+            <a href="#contact" class="card product-card"><div class="icon">🚪</div><h3>Doors & Windows</h3><p>Reliable openings with energy-efficient options.</p></a>
+            <a href="#contact" class="card product-card"><div class="icon">🛠️</div><h3>Building Materials</h3><p>Fasteners, adhesives, wraps—essentials ready to go.</p></a>
+            <a href="#contact" class="card product-card"><div class="icon">🏡</div><h3>Decking & Fencing</h3><p>Outdoor lumber and composites that weather the Midwest.</p></a>
         </div>
     </section>
     <!-- SOCIAL PROOF / TESTIMONIALS -->
-    <section class=\"container\" id=\"testimonials\">
-        <div class=\"section-header\">
-            <div class=\"section-kicker\">Trusted by Contractors & Homeowners</div>
-            <h2 class=\"section-title\">What Our Customers Say</h2>
+    <section class="container" id="testimonials">
+        <div class="section-header">
+            <div class="section-kicker">Trusted by Contractors & Homeowners</div>
+            <h2 class="section-title">What Our Customers Say</h2>
         </div>
-        <div class=\"grid testimonials-grid\">
-            <div class=\"testimonial-card\">
-                <div class=\"testimonial-stars\">★★★★★</div>
-                <p class=\"testimonial-text\">\"Premier Lumber saved my project timeline. Same-day delivery on studs and plywood—arrived in perfect condition. Best lumber yard in NW Indiana.\"</p>
-                <div class=\"testimonial-author\">
+        <div class="grid testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Premier Lumber saved my project timeline. Same-day delivery on studs and plywood—arrived in perfect condition. Best lumber yard in NW Indiana."</p>
+                <div class="testimonial-author">
                     <strong>Mike R.</strong>
                     <span>General Contractor, Hammond</span>
                 </div>
             </div>
-            <div class=\"testimonial-card\">
-                <div class=\"testimonial-stars\">★★★★★</div>
-                <p class=\"testimonial-text\">\"We buy and sell pallets through Premier. Fair pricing, reliable pickups, and they actually answer the phone. Hard to find that these days.\"</p>
-                <div class=\"testimonial-author\">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"We buy and sell pallets through Premier. Fair pricing, reliable pickups, and they actually answer the phone. Hard to find that these days."</p>
+                <div class="testimonial-author">
                     <strong>Sarah T.</strong>
                     <span>Warehouse Manager, Gary</span>
                 </div>
             </div>
-            <div class=\"testimonial-card\">
-                <div class=\"testimonial-stars\">★★★★★</div>
-                <p class=\"testimonial-text\">\"Needed custom milling for a renovation. They delivered exactly what I needed, on time, and the quality was top-notch. Highly recommend!\"</p>
-                <div class=\"testimonial-author\">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Needed custom milling for a renovation. They delivered exactly what I needed, on time, and the quality was top-notch. Highly recommend!"</p>
+                <div class="testimonial-author">
                     <strong>Carlos M.</strong>
                     <span>Homeowner, Merrillville</span>
                 </div>
@@ -156,6 +201,42 @@
                     <div class="card" style="box-shadow:none; border-color:#c8d9e3;"><strong>Direct line</strong><br><span style="color:#4b5563;">Call the driver, not a queue.</span></div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="container section-alt" id="services">
+        <div class="section-header">
+            <div class="section-kicker">Services</div>
+            <h2 class="section-title">More Than Just Lumber</h2>
+            <p class="section-sub">We buy, sell, and deliver specialty wood products—pallets, firewood, sawdust, and more.</p>
+        </div>
+        <div class="grid services-grid">
+            <a href="#contact" class="service-card">
+                <div class="service-icon">🔄</div>
+                <h3>Pallets — Buy & Sell</h3>
+                <p>We purchase used pallets and sell refurbished ones. All sizes available. Bulk pickup and delivery.</p>
+                <span class="service-cta">Get Quote →</span>
+            </a>
+            <a href="#contact" class="service-card">
+                <div class="service-icon">🪵</div>
+                <h3>Firewood</h3>
+                <p>Seasoned hardwood firewood, sold by the cord. Perfect for heating or backyard fires.</p>
+                <span class="service-cta">Order Now →</span>
+            </a>
+            <a href="#contact" class="service-card">
+                <div class="service-icon">🌾</div>
+                <h3>Sawdust & Shavings</h3>
+                <p>Clean sawdust available for animal bedding, landscaping, and industrial uses.</p>
+                <span class="service-cta">Check Availability →</span>
+            </a>
+            <a href="#contact" class="service-card featured">
+                <div class="service-badge">FREE</div>
+                <div class="service-icon">🌲</div>
+                <h3>Free Log Pickup</h3>
+                <p>Have logs you need removed? We'll pick them up at no charge. We use them for milling and firewood.</p>
+                <span class="service-cta">Schedule Pickup →</span>
+            </a>
         </div>
     </section>
 
