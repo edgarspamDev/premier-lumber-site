@@ -1,0 +1,18 @@
+# ==========================================
+# PROTECT /data/ FOLDER - NO PUBLIC ACCESS
+# ==========================================
+
+# Block all direct access to files in this directory
+<FilesMatch "\.txt|\.json|\.php|\.csv|\.log">
+    Require all denied
+</FilesMatch>
+
+# Prevent directory listing
+Options -Indexes
+
+# Prevent PHP execution in this directory
+php_flag engine off
+
+# Deny access to all files (extra protection)
+Order allow,deny
+Deny from all

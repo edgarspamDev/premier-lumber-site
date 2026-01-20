@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const accordions = document.querySelectorAll('.accordion');
   
   accordions.forEach(function(accordion) {
-    const headers = accordion.querySelectorAll('.accordion__header');
+    const headers = accordion.querySelectorAll('.accordion__trigger');
     
     headers.forEach(function(header) {
       header.addEventListener('click', function() {
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const allItems = accordion.querySelectorAll('.accordion__item');
         allItems.forEach(function(otherItem) {
           if (otherItem !== item) {
-            const otherHeader = otherItem.querySelector('.accordion__header');
+            const otherHeader = otherItem.querySelector('.accordion__trigger');
             const otherContent = otherItem.querySelector('.accordion__content');
             
             otherHeader.setAttribute('aria-expanded', 'false');

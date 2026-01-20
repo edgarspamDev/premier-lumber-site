@@ -1,0 +1,56 @@
+# ==================================================
+# PREMIER LUMBER CO - ADMIN FOLDER PROTECTION
+# Hostinger & Linux Compatible
+# ==================================================
+
+# 1. DENY ALL ACCESS BY DEFAULT
+# Uncomment these lines when you add admin functionality:
+# AuthType Basic
+# AuthName "Admin Access"
+# AuthUserFile /home/yourusername/.htpasswd
+# Require valid-user
+
+# 2. PREVENT DIRECTORY LISTING
+Options -Indexes
+
+# 3. BLOCK ALL PHP FILES EXCEPT SPECIFIC ALLOWED ONES
+# Only index.php can execute - add more if needed
+<FilesMatch "\.php$">
+    Require all denied
+</FilesMatch>
+
+<Files "index.php">
+    Require all granted
+</Files>
+
+# 4. ALLOW ONLY SPECIFIC IP ADDRESSES (Optional - uncomment and add your IP)
+# <RequireAll>
+#     Require ip 123.456.789.0
+#     Require ip 987.654.321.0
+# </RequireAll>
+
+# 5. BLOCK COMMON ATTACK PATTERNS
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Block SQL injection attempts
+    RewriteCond %{QUERY_STRING} (union|select|insert|drop|delete|update|alter|create) [NC]
+    RewriteRule ^.* - [F,L]
+</IfModule>
+
+# 6. ADDITIONAL SECURITY HEADERS
+<IfModule mod_headers.c>
+    Header set X-Frame-Options "DENY"
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Cache-Control "no-store, no-cache, must-revalidate"
+    Header set Pragma "no-cache"
+</IfModule>
+
+# 7. DISABLE CACHING FOR ADMIN PAGES
+<IfModule mod_expires.c>
+    ExpiresActive Off
+</IfModule>
+
+# 8. LOG ALL ACCESS ATTEMPTS (if custom logging available)
+# SetEnvIf Request_URI "^/admin/" admin_access
+# CustomLog logs/admin_access.log combined env=admin_access

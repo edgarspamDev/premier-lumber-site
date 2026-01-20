@@ -17,6 +17,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Analytics - Rule #10: Conversion Tracking -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+      
+      // Track phone clicks
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
+          link.addEventListener('click', function() {
+            gtag('event', 'phone_click', {
+              'event_category': 'engagement',
+              'event_label': 'Phone Number Click'
+            });
+          });
+        });
+      });
+    </script>
 </head>
 <body>
     <svg aria-hidden="true" style="position:absolute; width:0; height:0; overflow:hidden;">
@@ -102,13 +123,40 @@
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
             <circle cx="12" cy="10" r="3"></circle>
         </symbol>
+        <symbol id="icon-zap" viewBox="0 0 24 24">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </symbol>
+        <symbol id="icon-check-circle" viewBox="0 0 24 24">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </symbol>
+        <symbol id="icon-package" viewBox="0 0 24 24">
+            <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </symbol>
+        <symbol id="icon-dollar" viewBox="0 0 24 24">
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+        </symbol>
+        <symbol id="icon-users" viewBox="0 0 24 24">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </symbol>
+        <symbol id="icon-home" viewBox="0 0 24 24">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </symbol>
     </svg>
     <!-- TOP ANNOUNCEMENT BAR - Rule #9: Honest Urgency -->
     <div class="announcement-bar">
         <div class="container announcement-content">
             <span class="announcement-text">
-                <svg class="icon-svg text-accent" style="width:16px; height:16px; margin-right:4px;"><use href="#icon-fire"></use></svg>
-                <strong>Limited firewood inventory</strong> - order now for winter delivery
+                <svg class="icon-svg text-accent" style="width:16px; height:16px; margin-right:4px;"><use href="#icon-clock"></use></svg>
+                <strong>Order by 10 AM for same-day delivery</strong> • Open Mon-Fri 7 AM-5 PM, Sat 8 AM-12 PM
             </span>
             <a href="tel:(219)938-6275" class="announcement-cta" data-tracking="announcement-call">
                 <svg class="icon-svg" aria-hidden="true"><use href="#icon-phone"></use></svg>
@@ -174,9 +222,6 @@
                     <a class="btn btn-primary btn-lg" href="tel:(219)938-6275" data-tracking="hero-call-cta">
                         <svg class="icon-svg" aria-hidden="true"><use href="#icon-phone"></use></svg>
                         Call (219) 938-6275
-                    </a>
-                    <a class="btn btn-ghost btn-lg" href="#contact" data-tracking="hero-quote-cta">
-                        Get Same-Day Pricing
                     </a>
                 </div>
 
@@ -323,6 +368,52 @@
         </div>
     </section>
 
+    <!-- Rule #15: Differentiated Messaging for Customer Segments -->
+    <section class="container" style="padding: 2rem 0;">
+        <div class="section-header">
+            <div class="section-kicker">We Serve</div>
+            <h2 class="section-title">Tailored Solutions for Every Customer</h2>
+        </div>
+        <div class="grid-3" style="margin-top: 2rem;">
+            <div class="card" style="text-align: center; padding: 2rem;">
+                <div style="width: 60px; height: 60px; background: #fff7ed; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                </div>
+                <h3 style="color: #1f242b; font-size: 1.3rem; margin-bottom: 0.5rem;">Contractors & Builders</h3>
+                <p style="color: #64748b; margin-bottom: 1rem;">Bulk orders, account terms, same-day delivery to job sites. We know you're on a deadline.</p>
+                <ul style="text-align: left; list-style: none; padding: 0; color: #64748b; font-size: 0.9rem;">
+                    <li style="margin: 0.5rem 0;">✓ Account billing available</li>
+                    <li style="margin: 0.5rem 0;">✓ Job site delivery by 10 AM</li>
+                    <li style="margin: 0.5rem 0;">✓ Bulk discounts on pallets & lumber</li>
+                </ul>
+            </div>
+            <div class="card" style="text-align: center; padding: 2rem;">
+                <div style="width: 60px; height: 60px; background: #fff7ed; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+                <h3 style="color: #1f242b; font-size: 1.3rem; margin-bottom: 0.5rem;">Homeowners</h3>
+                <p style="color: #64748b; margin-bottom: 1rem;">DIY projects, deck builds, firewood for winter. Fair pricing, helpful advice, no minimums.</p>
+                <ul style="text-align: left; list-style: none; padding: 0; color: #64748b; font-size: 0.9rem;">
+                    <li style="margin: 0.5rem 0;">✓ Small quantity orders welcome</li>
+                    <li style="margin: 0.5rem 0;">✓ Free advice on materials</li>
+                    <li style="margin: 0.5rem 0;">✓ Affordable firewood delivery</li>
+                </ul>
+            </div>
+            <div class="card" style="text-align: center; padding: 2rem;">
+                <div style="width: 60px; height: 60px; background: #fff7ed; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                </div>
+                <h3 style="color: #1f242b; font-size: 1.3rem; margin-bottom: 0.5rem;">Farms & Manufacturers</h3>
+                <p style="color: #64748b; margin-bottom: 1rem;">Bulk sawdust, pallet sales & buybacks, custom milling. We handle large volumes.</p>
+                <ul style="text-align: left; list-style: none; padding: 0; color: #64748b; font-size: 0.9rem;">
+                    <li style="margin: 0.5rem 0;">✓ Truckload sawdust for bedding</li>
+                    <li style="margin: 0.5rem 0;">✓ We buy your used pallets</li>
+                    <li style="margin: 0.5rem 0;">✓ Custom lumber milling</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
     <section class="container" id="products">
         <div class="section-header">
             <div class="section-kicker">Products</div>
@@ -439,60 +530,132 @@
         <div class="section-header">
             <div class="section-kicker">Delivery Coverage</div>
             <h2 class="section-title">Serving Northwest Indiana</h2>
-            <p class="section-sub">Same-day and next-day delivery throughout the region</p>
+            <p class="section-sub">Fast, reliable delivery with same-day and next-day options</p>
         </div>
+        
+        <div class="delivery-highlights">
+            <div class="delivery-stat">
+                <div class="stat-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="1" y="3" width="15" height="13"></rect>
+                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                        <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                    </svg>
+                </div>
+                <div class="stat-value">Same-Day</div>
+                <div class="stat-label">Order by 10 AM</div>
+            </div>
+            <div class="delivery-stat">
+                <div class="stat-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                </div>
+                <div class="stat-value">8 Cities</div>
+                <div class="stat-label">Primary Coverage</div>
+            </div>
+            <div class="delivery-stat">
+                <div class="stat-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                </div>
+                <div class="stat-value">FREE*</div>
+                <div class="stat-label">On qualifying orders</div>
+            </div>
+        </div>
+
         <div class="areas-grid">
             <div class="area-card primary">
+                <div class="area-badge">HQ</div>
                 <div class="area-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 </div>
                 <h4>Gary</h4>
-                <span>Headquarters</span>
+                <div class="area-details">
+                    <span class="area-distance">0 miles</span>
+                    <span class="area-time">Headquarters</span>
+                </div>
             </div>
             <div class="area-card">
                 <div class="area-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 </div>
                 <h4>Hammond</h4>
+                <div class="area-details">
+                    <span class="area-distance">5 miles</span>
+                    <span class="area-time">Same-day</span>
+                </div>
             </div>
             <div class="area-card">
                 <div class="area-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 </div>
                 <h4>East Chicago</h4>
+                <div class="area-details">
+                    <span class="area-distance">3 miles</span>
+                    <span class="area-time">Same-day</span>
+                </div>
             </div>
             <div class="area-card">
                 <div class="area-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 </div>
                 <h4>Calumet City</h4>
+                <div class="area-details">
+                    <span class="area-distance">8 miles</span>
+                    <span class="area-time">Same-day</span>
+                </div>
             </div>
             <div class="area-card">
                 <div class="area-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 </div>
                 <h4>Merrillville</h4>
+                <div class="area-details">
+                    <span class="area-distance">12 miles</span>
+                    <span class="area-time">Next-day</span>
+                </div>
             </div>
             <div class="area-card">
                 <div class="area-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 </div>
                 <h4>Portage</h4>
+                <div class="area-details">
+                    <span class="area-distance">15 miles</span>
+                    <span class="area-time">Next-day</span>
+                </div>
             </div>
             <div class="area-card">
                 <div class="area-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 </div>
                 <h4>Crown Point</h4>
+                <div class="area-details">
+                    <span class="area-distance">18 miles</span>
+                    <span class="area-time">Next-day</span>
+                </div>
             </div>
             <div class="area-card">
                 <div class="area-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 </div>
                 <h4>Valparaiso</h4>
+                <div class="area-details">
+                    <span class="area-distance">22 miles</span>
+                    <span class="area-time">Next-day</span>
+                </div>
             </div>
         </div>
-        <p class="areas-note">Don&apos;t see your city? <a href="#contact">Contact us</a> - we likely deliver to your area.</p>
+        <div class="areas-footer">
+            <p class="areas-note">Don't see your city? <a href="#contact">Contact us</a> - we likely deliver to your area!</p>
+            <div class="areas-cta">
+                <a href="#contact" class="btn btn-primary">Request Delivery Quote</a>
+            </div>
+        </div>
     </section>
 
     <section class="container" id="why">
@@ -568,50 +731,6 @@
         </div>
     </section>
 
-    <!-- BUSINESS INFO BAR: Hours + Payment Options -->
-    <section class="container" id="info">
-        <div class="info-bar">
-            <div class="info-card hours-card">
-                <div class="info-header">
-                    <span class="info-icon"><svg class="icon-svg"><use href="#icon-clock"></use></svg></span>
-                    <h3>Business Hours</h3>
-                    <span class="status-badge" id="openStatus">Checking...</span>
-                </div>
-                <ul class="hours-list">
-                    <li><span>Monday - Friday</span><span class="hours-time">7:00 AM - 5:00 PM</span></li>
-                    <li><span>Saturday</span><span class="hours-time">8:00 AM - 12:00 PM</span></li>
-                    <li><span>Sunday</span><span class="hours-time closed">Closed</span></li>
-                </ul>
-                <p class="hours-note">Emergency deliveries available - call us</p>
-            </div>
-            <div class="info-card payment-card">
-                <div class="info-header">
-                    <span class="info-icon"><svg class="icon-svg"><use href="#icon-credit-card"></use></svg></span>
-                    <h3>Payment Options</h3>
-                </div>
-                <div class="payment-grid">
-                    <div class="payment-item">
-                        <svg width="56" height="36" viewBox="0 0 56 36" fill="none"><rect width="56" height="36" rx="6" fill="#1A1F71"/><circle cx="22" cy="18" r="10" fill="#EA001B"/><circle cx="34" cy="18" r="10" fill="#F79E1B" fill-opacity="0.8"/></svg>
-                        <span>Mastercard</span>
-                    </div>
-                    <div class="payment-item">
-                        <svg width="56" height="36" viewBox="0 0 56 36" fill="none"><rect width="56" height="36" rx="6" fill="#1A1F71"/><text x="28" y="22" font-size="14" font-weight="bold" fill="white" text-anchor="middle">VISA</text></svg>
-                        <span>Visa</span>
-                    </div>
-                    <div class="payment-item">
-                        <svg width="56" height="36" viewBox="0 0 56 36" fill="none"><rect width="56" height="36" rx="6" fill="#22C55E"/><text x="28" y="22" font-size="11" font-weight="bold" fill="white" text-anchor="middle">CASH</text></svg>
-                        <span>Cash</span>
-                    </div>
-                    <div class="payment-item">
-                        <svg width="56" height="36" viewBox="0 0 56 36" fill="none"><rect width="56" height="36" rx="6" fill="#0070BA"/><text x="28" y="22" font-size="10" font-weight="bold" fill="white" text-anchor="middle">CHECK</text></svg>
-                        <span>Check</span>
-                    </div>
-                </div>
-                <p class="payment-note">Net-30 terms available for approved contractors</p>
-            </div>
-        </div>
-    </section>
-
     <!-- FAQ SECTION -->
     <section class="container" id="faq">
         <div class="section-header">
@@ -619,6 +738,55 @@
             <h2 class="section-title">Frequently Asked Questions</h2>
         </div>
         <div class="faq-grid">
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span><svg class="icon-svg"><use href="#icon-clock"></use></svg> What are your business hours?</span>
+                    <svg class="faq-chevron icon-svg"><use href="#icon-chevron-down"></use></svg>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-hours">
+                        <div class="hours-status">
+                            <span class="status-badge" id="openStatus">Checking...</span>
+                        </div>
+                        <ul class="hours-list">
+                            <li><span>Monday - Friday</span><span class="hours-time">7:00 AM - 5:00 PM</span></li>
+                            <li><span>Saturday</span><span class="hours-time">8:00 AM - 12:00 PM</span></li>
+                            <li><span>Sunday</span><span class="hours-time closed">Closed</span></li>
+                        </ul>
+                        <p class="hours-note"><strong>Note:</strong> Emergency deliveries available - call us anytime!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span><svg class="icon-svg"><use href="#icon-credit-card"></use></svg> What payment methods do you accept?</span>
+                    <svg class="faq-chevron icon-svg"><use href="#icon-chevron-down"></use></svg>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-payment">
+                        <p>We accept multiple payment methods for your convenience:</p>
+                        <div class="payment-grid">
+                            <div class="payment-item">
+                                <svg width="56" height="36" viewBox="0 0 56 36" fill="none"><rect width="56" height="36" rx="6" fill="#1A1F71"/><circle cx="22" cy="18" r="10" fill="#EA001B"/><circle cx="34" cy="18" r="10" fill="#F79E1B" fill-opacity="0.8"/></svg>
+                                <span>Mastercard</span>
+                            </div>
+                            <div class="payment-item">
+                                <svg width="56" height="36" viewBox="0 0 56 36" fill="none"><rect width="56" height="36" rx="6" fill="#1A1F71"/><text x="28" y="22" font-size="14" font-weight="bold" fill="white" text-anchor="middle">VISA</text></svg>
+                                <span>Visa</span>
+                            </div>
+                            <div class="payment-item">
+                                <svg width="56" height="36" viewBox="0 0 56 36" fill="none"><rect width="56" height="36" rx="6" fill="#22C55E"/><text x="28" y="22" font-size="11" font-weight="bold" fill="white" text-anchor="middle">CASH</text></svg>
+                                <span>Cash</span>
+                            </div>
+                            <div class="payment-item">
+                                <svg width="56" height="36" viewBox="0 0 56 36" fill="none"><rect width="56" height="36" rx="6" fill="#0070BA"/><text x="28" y="22" font-size="10" font-weight="bold" fill="white" text-anchor="middle">CHECK</text></svg>
+                                <span>Check</span>
+                            </div>
+                        </div>
+                        <p class="payment-note"><strong>Contractors:</strong> Net-30 terms available for approved accounts.</p>
+                    </div>
+                </div>
+            </div>
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
                     <span><svg class="icon-svg"><use href="#icon-truck"></use></svg> How fast can I get delivery?</span>
@@ -807,7 +975,8 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <img src="logo.png" alt="Premier Lumber" class="footer-logo">
+                    <img src="logo.png" alt="Premier Lumber Co - Family-Owned Since 1994" class="footer-logo">
+                    <h3 style="color: white; font-size: 1.5rem; margin: 1rem 0 0.5rem 0; font-weight: 700;">Premier Lumber Co.</h3>
                     <p>Family-owned lumber yard serving Northwest Indiana. Quality materials, fast delivery, fair prices.</p>
                 </div>
 
@@ -850,7 +1019,10 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2026 Premier Lumber Company. All rights reserved.</p>
+                <div class="footer-copy">
+                    <p>&copy; 2026 Premier Lumber Company. All rights reserved.</p>
+                    <p class="footer-updated">Last updated: <span id="lastUpdated"></span></p>
+                </div>
                 <div class="footer-legal">
                     <a href="privacy.html">Privacy Policy</a>
                     <a href="terms.html">Terms of Service</a>
@@ -859,11 +1031,16 @@
         </div>
     </footer>
 
-    <!-- Rule #1 & #6: Floating Call Button for Mobile -->
-    <a class="floating-call" href="tel:(219)938-6275" data-tracking="floating-call-cta" aria-label="Call Premier Lumber">
-        <svg class="icon-svg" aria-hidden="true"><use href="#icon-phone"></use></svg>
-        <span>Call Now</span>
-    </a>
+    <!-- Mobile CTA Bar (Rule #1, #6) -->
+    <div class="mobile-cta-bar">
+        <a href="tel:(219)938-6275" class="mobile-cta-call" data-tracking="mobile-bar-call">
+            <svg class="icon-svg" aria-hidden="true"><use href="#icon-phone"></use></svg>
+            Call Now
+        </a>
+        <a href="#contact" class="mobile-cta-quote">
+            Quick Quote
+        </a>
+    </div>
     <button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg></button>
 
     <!-- STICKY MOBILE CTA BAR -->
@@ -1143,6 +1320,32 @@
                 } finally {
                     submitBtn.disabled = false;
                     submitBtn.textContent = originalText;
+                }
+            });
+        }
+    </script>
+
+    <!-- Footer Timestamp Script -->
+    <script>
+        // Display last updated date in footer
+        const lastUpdatedEl = document.getElementById('lastUpdated');
+        if (lastUpdatedEl) {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            lastUpdatedEl.textContent = now.toLocaleDateString('en-US', options);
+        }
+
+        // Add pulse animation to mobile CTA bar on scroll
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const mobileCTA = document.querySelector('.mobile-cta-bar');
+            if (mobileCTA && window.scrollY > 200) {
+                mobileCTA.classList.add('visible');
+            } else if (mobileCTA) {
+                mobileCTA.classList.remove('visible');
+            }
+        });
+    </script>
 </body>
 </html>
 

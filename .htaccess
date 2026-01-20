@@ -28,12 +28,106 @@ DirectoryIndex index.php index.html
 # Custom Error Pages
 ErrorDocument 404 /404.html
 
-# Security Headers
-<IfModule mod_headers.c>
-  Header set X-Content-Type-Options "nosniff"
-  Header set X-Frame-Options "SAMEORIGIN"
-  Header set X-XSS-Protection "1; mode=block"
+# ==========================================
+# SECURITY HARDENING - OWASP TOP 10 COMPLIANT
+# ==========================================
+
+# 1. FORCE HTTPS (OWASP #2 - Cryptographic Failures)
+<IfModule mod_rewrite.c>
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
+
+# 2. PREVENT DIRECTORY LISTING
+Options -Indexes
+
+# 3. DISABLE DANGEROUS PHP FUNCTIONS (PHP 7.x)
+<IfModule mod_php7.c>
+  php_value disable_functions "exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source,eval"
+  php_flag expose_php Off
+  php_flag display_errors Off
+  php_flag log_errors On
+  php_value session.cookie_httponly 1
+  php_value session.cookie_secure 1
+  php_value session.use_strict_mode 1
+</IfModule>
+
+# 3b. DISABLE DANGEROUS PHP FUNCTIONS (PHP 8.x - Hostinger default)
+<IfModule mod_php.c>
+  php_value disable_functions "exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source,eval"
+  php_flag expose_php Off
+  php_flag display_errors Off
+  php_flag log_errors On
+  php_value session.cookie_httponly 1
+  php_value session.cookie_secure 1
+  php_value session.use_strict_mode 1
+</IfModule>
+
+# 4. BLOCK COMMON ATTACK PATTERNS (OWASP #3 - Injection)
+<IfModule mod_rewrite.c>
+  RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
+  RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+  RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2}) [OR]
+  RewriteCond %{QUERY_STRING} (union.*select|select.*union) [NC,OR]
+  RewriteCond %{QUERY_STRING} (insert|update|delete|drop|create|alter|exec|script|declare).*(table|database|index) [NC]
+  RewriteRule ^.* - [F,L]
+</IfModule>
+
+# 5. BLOCK ACCESS TO SENSITIVE DIRECTORIES (OWASP #1 - Access Control)
+RedirectMatch 403 ^/php/
+RedirectMatch 403 ^/data/
+RedirectMatch 403 ^/config/
+RedirectMatch 403 ^/logs/
+
+# 6. COMPREHENSIVE SECURITY HEADERS
+<IfModule mod_headers.c>
+  # Prevent clickjacking
+  Header always set X-Frame-Options "SAMEORIGIN"
+  
+  # Prevent MIME type sniffing
+  Header always set X-Content-Type-Options "nosniff"
+  
+  # Enable XSS protection
+  Header always set X-XSS-Protection "1; mode=block"
+  
+  # Referrer policy
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  
+  # Force HTTPS for 1 year
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+  
+  # Content Security Policy
+  Header always set Content-Security-Policy "default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; frame-ancestors 'self';"
+
+  # Permissions Policy (disable unnecessary browser features)
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(self)"
+</IfModule>
+
+# 7. PROTECT SENSITIVE FILES
+<FilesMatch "\.(env|git|gitignore|htaccess|htpasswd|ini|log|sh|sql|bak|old|config)$">
+  Require all denied
+</FilesMatch>
+
+# 8. BLOCK BAD BOTS
+<IfModule mod_rewrite.c>
+  RewriteCond %{HTTP_USER_AGENT} (libwww-perl|wget|python|nikto|curl|scan|java|winhttp|HTTrack|clshttp|archiver|loader|email|harvest|extract|grab|miner) [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} (<|>|'|%0A|%0D|%27|%3C|%3E|%00) [NC]
+  RewriteRule ^.* - [F,L]
+</IfModule>
+
+# 9. PREVENT HOTLINKING (Image theft)
+<IfModule mod_rewrite.c>
+  RewriteCond %{HTTP_REFERER} !^$
+  RewriteCond %{HTTP_REFERER} !^https://(www\.)?premierlumber\.com [NC]
+  RewriteRule \.(jpg|jpeg|png|gif|webp|svg)$ - [F,L]
+</IfModule>
+
+# 10. BLOCK PHP EXECUTION IN UPLOADS/IMAGES
+<Directory "/images">
+  <FilesMatch "\.php$">
+    Require all denied
+  </FilesMatch>
+</Directory>
 
 # Remove .html extension (optional clean URLs)
 <IfModule mod_rewrite.c>
@@ -57,9 +151,26 @@ ErrorDocument 404 /404.html
   Deny from all
 </FilesMatch>
 
-# PHP Configuration (if needed)
+# PHP Configuration (PHP 7.x)
 <IfModule mod_php7.c>
   php_value upload_max_filesize 10M
   php_value post_max_size 10M
   php_value max_execution_time 30
+  php_value max_input_time 30
+  php_value memory_limit 128M
+</IfModule>
+
+# PHP Configuration (PHP 8.x - Hostinger default)
+<IfModule mod_php.c>
+  php_value upload_max_filesize 10M
+  php_value post_max_size 10M
+  php_value max_execution_time 30
+  php_value max_input_time 30
+  php_value memory_limit 128M
+</IfModule>
+
+# BLOCK WORDPRESS VULNERABILITY SCANNERS
+<IfModule mod_rewrite.c>
+  RewriteCond %{REQUEST_URI} (wp-admin|wp-login|wp-content|wp-includes|xmlrpc\.php|wp-config) [NC]
+  RewriteRule ^.* - [F,L]
 </IfModule>
