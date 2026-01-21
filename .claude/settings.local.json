@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(start \"\" \"C:\\\\Users\\\\Hunti\\\\Downloads\\\\premier-lumber-site\\\\index.html\")"
+      "Bash(start \"\" \"C:\\\\Users\\\\Hunti\\\\Downloads\\\\premier-lumber-site\\\\index.html\")",
+      "Bash(git config:*)",
+      "Bash(git quickpush:*)"
     ]
   }
 }
