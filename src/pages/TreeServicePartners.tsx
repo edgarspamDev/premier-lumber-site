@@ -2,12 +2,43 @@ import { Link } from 'react-router-dom';
 import { PageHeader } from '../components/PageHeader';
 import { SEO } from '../components/SEO';
 import { Icon } from '../components/Icons';
+import { FadeInOnScroll } from '../components/Animations';
 
 export function TreeServicePartners() {
+  const steps = [
+    {
+      num: 1,
+      title: 'Call & Describe',
+      desc: 'Tell us the tree location, species, and approximate size.',
+    },
+    {
+      num: 2,
+      title: 'Get Referrals',
+      desc: 'We share referral options for licensed, insured local crews.',
+    },
+    {
+      num: 3,
+      title: 'Hire Directly',
+      desc: 'You contract directly with the tree service company.',
+    },
+    {
+      num: 4,
+      title: 'We Pick Up Logs',
+      desc: 'After the tree is down, we evaluate log pickup eligibility — for free.',
+    },
+  ];
+
+  const tips = [
+    { icon: '📋', text: 'Confirm city permits or HOA requirements if applicable' },
+    { icon: '🛡️', text: 'Ask the tree service for license and insurance proof' },
+    { icon: '🪵', text: 'Keep logs separated by species when possible' },
+    { icon: '🚛', text: 'Keep a clear path for safe truck access' },
+  ];
+
   return (
     <div>
       <SEO
-        title="Tree Service Partners"
+        title="Tree Service Partners | Premier Lumber Co"
         description="Need tree removal before log pickup? We can refer you to independent licensed tree service partners in Gary and Northwest Indiana."
         path="/tree-service-partners"
       />
@@ -16,62 +47,112 @@ export function TreeServicePartners() {
         subtitle="Need a tree removed first? We can connect you with independent licensed crews."
       />
 
+      {/* Important Notice */}
       <section className="section bg-white">
         <div className="container-custom max-w-4xl">
-          <div className="bg-brand-cream rounded-2xl border border-orange-100 p-6 md:p-8 mb-8">
-            <h2 className="font-extrabold mb-4">Important Notice</h2>
-            <ul className="space-y-3 text-sm md:text-base text-stone-700">
-              <li className="flex items-start gap-3">
-                <Icon name="check" size={18} className="text-green-600 mt-0.5 shrink-0" />
-                Premier Lumber picks up qualifying logs after a tree is already down and accessible.
-              </li>
-              <li className="flex items-start gap-3">
-                <Icon name="check" size={18} className="text-green-600 mt-0.5 shrink-0" />
-                We do not provide tree cutting, pruning, stump grinding, or tree removal services.
-              </li>
-              <li className="flex items-start gap-3">
-                <Icon name="check" size={18} className="text-green-600 mt-0.5 shrink-0" />
-                Any tree service work is handled by independent licensed and insured partners.
-              </li>
-            </ul>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-            <div className="card p-6">
-              <h3 className="font-bold mb-3">How Referrals Work</h3>
-              <ol className="space-y-2 text-sm text-stone-600">
-                <li>1. Call us and describe the tree location and species.</li>
-                <li>2. We share referral options for licensed local crews.</li>
-                <li>3. You contract directly with the tree service company.</li>
-                <li>4. After the tree is down, we evaluate log pickup eligibility.</li>
-              </ol>
+          <FadeInOnScroll>
+            <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl border border-orange-200/60 p-6 md:p-10 mb-12 shadow-sm">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
+                  <Icon name="shield" size={22} className="text-primary" />
+                </div>
+                <h2 className="font-extrabold text-xl md:text-2xl">Important Notice</h2>
+              </div>
+              <div className="space-y-4">
+                {[
+                  'Premier Lumber picks up qualifying logs after a tree is already down and accessible.',
+                  'We do not provide tree cutting, pruning, stump grinding, or tree removal services.',
+                  'Any tree service work is handled by independent licensed and insured partners.',
+                ].map((text, i) => (
+                  <div key={i} className="flex items-start gap-3 bg-white/60 rounded-xl p-4 border border-orange-100/50">
+                    <div className="w-6 h-6 bg-success/10 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                      <Icon name="check" size={14} className="text-success" />
+                    </div>
+                    <p className="text-sm md:text-base text-stone-700 leading-relaxed">{text}</p>
+                  </div>
+                ))}
+              </div>
             </div>
+          </FadeInOnScroll>
 
-            <div className="card p-6">
-              <h3 className="font-bold mb-3">Before You Schedule</h3>
-              <ul className="space-y-2 text-sm text-stone-600">
-                <li>- Confirm city permits or HOA requirements if applicable.</li>
-                <li>- Ask the tree service for license and insurance proof.</li>
-                <li>- Keep logs separated by species when possible.</li>
-                <li>- Keep a clear path for safe truck access.</li>
-              </ul>
+          {/* How Referrals Work — Numbered Steps */}
+          <FadeInOnScroll delay={100}>
+            <div className="mb-12">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+                  <Icon name="quote" size={22} className="text-white" />
+                </div>
+                <h2 className="font-extrabold text-xl md:text-2xl">How Referrals Work</h2>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                {steps.map((step, i) => (
+                  <div
+                    key={i}
+                    className="group relative bg-white rounded-2xl border border-stone-200 p-6 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
+                  >
+                    {/* Step Number */}
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-primary to-orange-600 rounded-xl flex items-center justify-center shrink-0 shadow-md shadow-primary/20 group-hover:scale-110 transition-transform">
+                        <span className="text-white font-extrabold text-lg">{step.num}</span>
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-base md:text-lg text-charcoal mb-1">{step.title}</h3>
+                        <p className="text-sm text-stone-500 leading-relaxed">{step.desc}</p>
+                      </div>
+                    </div>
+                    {/* Connector line (only between 1→2, 3→4 on desktop) */}
+                    {i % 2 === 0 && i < steps.length - 1 && (
+                      <div className="hidden sm:block absolute top-1/2 -right-3 md:-right-3 w-6 h-[2px] bg-stone-200 -translate-y-1/2" />
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          </FadeInOnScroll>
 
-          <div className="bg-stone-50 rounded-2xl border border-stone-200 p-6 md:p-8 text-center">
-            <h3 className="font-bold mb-3">Need a Referral?</h3>
-            <p className="text-stone-600 mb-6">
-              Call us for current partner options in Gary and Northwest Indiana.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:+12199386275" className="btn btn-primary">
-                <Icon name="phone" size={18} className="mr-2" /> (219) 938-6275
-              </a>
-              <Link to="/log-pickup" className="btn btn-secondary">
-                Back to Log Pickup
-              </Link>
+          {/* Before You Schedule — Tips */}
+          <FadeInOnScroll delay={200}>
+            <div className="mb-12">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-10 h-10 bg-charcoal rounded-xl flex items-center justify-center">
+                  <Icon name="check" size={22} className="text-white" />
+                </div>
+                <h2 className="font-extrabold text-xl md:text-2xl">Before You Schedule</h2>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {tips.map((tip, i) => (
+                  <div
+                    key={i}
+                    className="flex items-start gap-4 bg-stone-50 rounded-xl border border-stone-100 p-5 hover:bg-white hover:border-stone-200 hover:shadow-sm transition-all"
+                  >
+                    <span className="text-2xl shrink-0">{tip.icon}</span>
+                    <p className="text-sm md:text-base text-stone-700 leading-relaxed">{tip.text}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          </FadeInOnScroll>
+
+          {/* CTA Section */}
+          <FadeInOnScroll delay={300}>
+            <div className="bg-gradient-to-br from-charcoal to-dark-soft rounded-2xl p-8 md:p-12 text-center text-white">
+              <div className="w-14 h-14 bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-5">
+                <Icon name="phone" size={28} className="text-primary" />
+              </div>
+              <h3 className="font-extrabold text-2xl md:text-3xl mb-3">Need a Referral?</h3>
+              <p className="text-stone-300 mb-8 max-w-md mx-auto leading-relaxed">
+                Call us for current partner options in Gary and Northwest Indiana. We'll point you in the right direction.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="tel:+12199386275" className="btn btn-primary text-lg">
+                  <Icon name="phone" size={20} className="mr-2" /> (219) 938-6275
+                </a>
+                <Link to="/log-pickup" className="btn bg-white/10 text-white border border-white/20 hover:bg-white/20 text-lg">
+                  ← Back to Log Pickup
+                </Link>
+              </div>
+            </div>
+          </FadeInOnScroll>
         </div>
       </section>
     </div>
