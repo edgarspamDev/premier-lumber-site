@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { PageHeader } from '../components/PageHeader';
 import { SEO } from '../components/SEO';
-import { Icon } from '../components/Icons';
+import { Icon, type IconName } from '../components/Icons';
 import { FadeInOnScroll } from '../components/Animations';
 
 export function TreeServicePartners() {
@@ -28,11 +28,11 @@ export function TreeServicePartners() {
     },
   ];
 
-  const tips = [
-    { icon: '📋', text: 'Confirm city permits or HOA requirements if applicable' },
-    { icon: '🛡️', text: 'Ask the tree service for license and insurance proof' },
-    { icon: '🪵', text: 'Keep logs separated by species when possible' },
-    { icon: '🚛', text: 'Keep a clear path for safe truck access' },
+  const tips: { icon: IconName; text: string }[] = [
+    { icon: 'quote', text: 'Confirm city permits or HOA requirements if applicable' },
+    { icon: 'shield', text: 'Ask the tree service for license and insurance proof' },
+    { icon: 'lumber', text: 'Keep logs separated by species when possible' },
+    { icon: 'truck', text: 'Keep a clear path for safe truck access' },
   ];
 
   return (
@@ -125,7 +125,9 @@ export function TreeServicePartners() {
                     key={i}
                     className="flex items-start gap-4 bg-stone-50 rounded-xl border border-stone-100 p-5 hover:bg-white hover:border-stone-200 hover:shadow-sm transition-all"
                   >
-                    <span className="text-2xl shrink-0">{tip.icon}</span>
+                    <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center shrink-0">
+                      <Icon name={tip.icon} size={20} className="text-primary" />
+                    </div>
                     <p className="text-sm md:text-base text-stone-700 leading-relaxed">{tip.text}</p>
                   </div>
                 ))}
