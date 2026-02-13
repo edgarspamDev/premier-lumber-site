@@ -1,43 +1,76 @@
-import forms from '@tailwindcss/forms'
-import { defineConfig } from 'tailwindcss'
-
-export default defineConfig({
-  content: ['./index.html', './src/**/*.{ts,tsx}'],
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['Manrope Variable', 'Manrope', 'Segoe UI', 'sans-serif'],
-        heading: ['Space Grotesk Variable', 'Space Grotesk', 'Segoe UI', 'sans-serif'],
-      },
       colors: {
-        brand: {
-          50: '#fff3e6',
-          100: '#ffe2c4',
-          200: '#ffcb94',
-          300: '#ffa75a',
-          400: '#f97316',
-          500: '#ea580c',
-          600: '#c2410c',
-          700: '#9a3412',
-          800: '#7c2d12',
-          900: '#4f1d0a',
+        // Hormozi-style: high contrast, bold
+        primary: {
+          DEFAULT: '#ea580c', // Darker orange - more refined, less neon
+          dark: '#c2410c',
+          darker: '#9a3412',
+          light: '#fff7ed',
+          glow: 'rgba(234, 88, 12, 0.4)',
         },
-        ink: '#0f1729',
-        ash: '#1f2a3d',
-        sand: '#f6f1e8',
-        slate: '#e6e5e3',
-        forest: '#0b4336',
+        accent: {
+          DEFAULT: '#fbbf24', // Bright yellow-gold for urgency
+          hover: '#f59e0b',
+          dark: '#d97706',
+        },
+        charcoal: '#0f0f0f', // True dark - not muddy
+        dark: {
+          DEFAULT: '#0f0f0f',
+          soft: '#1a1a1a',
+          muted: '#2a2a2a',
+        },
+        brand: {
+          brown: '#92400e',
+          cream: '#fefcf8', // Slightly warmer
+          surface: '#ffffff',
+          text: '#0f0f0f',
+          muted: '#525252',
+        },
+        success: '#22c55e',
+      },
+      fontFamily: {
+        sans: ['"Manrope Variable"', 'Manrope', 'system-ui', 'sans-serif'],
+        heading: ['"Space Grotesk Variable"', 'Space Grotesk', 'system-ui', 'sans-serif'],
+      },
+      fontSize: {
+        // Hormozi-style: bigger, bolder headlines
+        'display': ['4.5rem', { lineHeight: '1', letterSpacing: '-0.02em', fontWeight: '800' }],
+        'display-sm': ['3.5rem', { lineHeight: '1.05', letterSpacing: '-0.02em', fontWeight: '800' }],
+        'headline': ['2.5rem', { lineHeight: '1.1', letterSpacing: '-0.01em', fontWeight: '700' }],
+        'headline-sm': ['1.875rem', { lineHeight: '1.15', letterSpacing: '-0.01em', fontWeight: '700' }],
       },
       boxShadow: {
-        card: '0 18px 48px rgba(16, 24, 40, 0.12)',
-        subtle: '0 10px 28px rgba(16, 24, 40, 0.08)',
+        'brutal': '4px 4px 0px 0px #0f0f0f',
+        'brutal-sm': '2px 2px 0px 0px #0f0f0f',
+        'brutal-primary': '4px 4px 0px 0px #c2410c',
+        'glow': '0 0 40px rgba(234, 88, 12, 0.3)',
+        'glow-lg': '0 0 60px rgba(234, 88, 12, 0.4)',
+        'lift': '0 20px 40px -10px rgba(0,0,0,0.3)',
       },
       backgroundImage: {
-        grid: 'radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.2) 1px, transparent 0)',
-        'grainy-gradient':
-          'linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(234, 88, 12, 0.12), rgba(14, 165, 233, 0.1))',
+        'hero-gradient': 'linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%)',
+        'cta-gradient': 'linear-gradient(135deg, #ea580c 0%, #c2410c 100%)',
       },
+      animation: {
+        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'bounce-subtle': 'bounce-subtle 2s ease-in-out infinite',
+      },
+      keyframes: {
+        'bounce-subtle': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-5px)' },
+        }
+      }
     },
   },
-  plugins: [forms],
-})
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
+}

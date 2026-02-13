@@ -3,7 +3,9 @@
     "allow": [
       "Bash(start \"\" \"C:\\\\Users\\\\Hunti\\\\Downloads\\\\premier-lumber-site\\\\index.html\")",
       "Bash(git config:*)",
-      "Bash(git quickpush:*)"
+      "Bash(git quickpush:*)",
+      "Bash(timeout:*)",
+      "Bash(ls -la \"C:\\\\Users\\\\Hunti\\\\Downloads\\\\premier-lumber-site\\\\public\\\\images\"\" 2>/dev/null || dir \"C:UsersHuntiDownloadspremier-lumber-sitepublicimages\"\")"
     ]
   }
 }

@@ -22,7 +22,7 @@ export function Pallets() {
         <div className="container-custom">
 
           {/* Tap to Call - Mobile */}
-          <a href="tel:2199386275" className="tap-to-call mb-8">
+          <a href="tel:+12199386275" className="tap-to-call mb-8">
             <div className="flex items-center gap-3">
               <Icon name="phone" size={22} />
               <div>
@@ -75,7 +75,7 @@ export function Pallets() {
                   <Icon name="check" size={18} className="text-green-600 shrink-0" /> Fair, consistent pricing
                 </li>
               </ul>
-              <a href="tel:2199386275" className="btn btn-secondary w-full sm:w-auto">
+              <a href="tel:+12199386275" className="btn btn-secondary w-full sm:w-auto">
                 <Icon name="phone" size={18} className="mr-2" /> Call About Selling
               </a>
             </div>

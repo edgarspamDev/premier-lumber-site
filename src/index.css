@@ -1,68 +1,222 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import '@fontsource-variable/manrope';
+@import '@fontsource-variable/space-grotesk';
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
   }
-  a:hover {
-    color: #747bff;
+
+  a, button, [role="button"] {
+    touch-action: manipulation;
   }
-  button {
-    background-color: #f9f9f9;
+
+  body {
+    @apply bg-brand-cream text-brand-text font-sans antialiased;
+    font-size: 16px;
+    line-height: 1.6;
   }
+
+  /* HORMOZI-STYLE TYPOGRAPHY: Bold, high contrast, clear hierarchy */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight text-brand-text;
+    line-height: 1.1;
+  }
+
+  /* Weight spectrum for hierarchy */
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-display-sm xl:text-display font-extrabold;
+    letter-spacing: -0.03em;
+  }
+  h2 {
+    @apply text-3xl md:text-headline-sm lg:text-headline font-bold;
+    letter-spacing: -0.02em;
+  }
+  h3 {
+    @apply text-xl md:text-2xl font-bold;
+  }
+  h4 {
+    @apply text-lg md:text-xl font-semibold;
+  }
+
+  /* Prevent iOS zoom on form focus */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+
+  /* Selection color */
+  ::selection {
+    @apply bg-primary text-white;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* BUTTONS: Bold but refined */
+  .btn {
+    @apply inline-flex items-center justify-center px-7 py-3.5 text-base font-bold rounded-lg transition-all duration-200 focus:outline-none;
+    min-height: 50px;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white;
+    box-shadow: 0 4px 14px -3px rgba(249, 115, 22, 0.5);
+  }
+
+  @media (hover: hover) {
+    .btn-primary:hover {
+      @apply bg-primary-dark;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -4px rgba(249, 115, 22, 0.5);
+    }
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px -2px rgba(249, 115, 22, 0.4);
+  }
+
+  .btn-white {
+    @apply bg-white text-charcoal font-bold;
+    box-shadow: 0 4px 14px -3px rgba(0, 0, 0, 0.15);
+  }
+
+  @media (hover: hover) {
+    .btn-white:hover {
+      @apply bg-stone-50;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .btn-secondary {
+    @apply bg-white text-brand-text border border-stone-300;
+    box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.08);
+  }
+
+  @media (hover: hover) {
+    .btn-secondary:hover {
+      @apply border-stone-400 bg-stone-50;
+      transform: translateY(-1px);
+    }
+  }
+
+  .btn-accent {
+    @apply bg-accent text-charcoal font-bold;
+    box-shadow: 0 4px 14px -3px rgba(251, 191, 36, 0.5);
+  }
+
+  @media (hover: hover) {
+    .btn-accent:hover {
+      @apply bg-accent-hover;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -4px rgba(251, 191, 36, 0.5);
+    }
+  }
+
+  /* CARDS: Clean with subtle depth */
+  .card {
+    @apply bg-white rounded-2xl border border-stone-200 transition-all duration-300 overflow-hidden;
+    box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.08);
+  }
+
+  @media (hover: hover) {
+    .card:hover {
+      @apply border-stone-300;
+      box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.15);
+      transform: translateY(-4px);
+    }
+  }
+
+  .section {
+    @apply py-10 sm:py-12 lg:py-16;
+  }
+
+  /* Tap to Call - Mobile CTA */
+  .tap-to-call {
+    @apply hidden md:flex lg:hidden bg-primary text-white rounded-xl p-4 items-center justify-between gap-3;
+    min-height: 56px;
+    box-shadow: 0 4px 14px -3px rgba(249, 115, 22, 0.4);
+  }
+
+  @media (hover: hover) {
+    .tap-to-call:hover {
+      @apply bg-primary-dark;
+    }
+  }
+}
+
+/* ========================================
+   ANIMATIONS - Smooth, professional
+   ======================================== */
+
+/* Drawer slide in */
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Fade in up - hero content */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Subtle bounce for scroll indicator */
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0) translateX(-50%); }
+  50% { transform: translateY(-8px) translateX(-50%); }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+/* Stagger children animation helper */
+.stagger-children > * {
+  opacity: 0;
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+
+/* Smooth image zoom on hover */
+.img-zoom {
+  @apply transition-transform duration-500 ease-out;
+}
+
+.img-zoom:hover {
+  transform: scale(1.05);
+}
+
+/* Focus visible for accessibility */
+.btn:focus-visible,
+a:focus-visible {
+  @apply outline-none ring-2 ring-primary ring-offset-2;
 }

@@ -1,126 +1,86 @@
 import { Link } from 'react-router-dom';
+import { Icon } from './Icons';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          {/* Company Info */}
-          <div>
-            <h3 className="text-lg font-bold mb-4">Premier Lumber</h3>
-            <p className="text-slate-400 text-sm">
-              Your trusted source for high-quality lumber and materials.
+    <footer className="bg-dark text-white pt-12 md:pt-16 pb-8">
+      <div className="container-custom">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-10 md:mb-12">
+
+          {/* Brand Column */}
+          <div className="col-span-2 lg:col-span-1">
+            <Link to="/" className="inline-flex items-center gap-3 mb-6">
+              <img
+                src="/logo.png"
+                alt="Premier Lumber Co"
+                className="h-14 w-auto object-contain"
+              />
+              <div className="flex flex-col">
+                <span className="font-extrabold text-lg leading-none">Premier <span className="text-primary">Lumber</span></span>
+                <span className="text-xs text-primary/70 font-semibold">Quality Wood Products</span>
+              </div>
+            </Link>
+            <p className="text-stone-400 mb-6 text-sm leading-relaxed">
+              Serving Gary & Northwest Indiana since 1985. Pallets, firewood, custom lumber.
+              <span className="text-white font-medium"> Family-owned.</span>
             </p>
+            <a href="tel:+12199386275" className="inline-flex items-center gap-2 text-primary font-bold hover:text-primary-light transition-colors">
+              <Icon name="phone" size={16} />
+              (219) 938-6275
+            </a>
           </div>
 
-          {/* Quick Links */}
+          {/* Products */}
           <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm text-slate-400">
-              <li>
-                <Link to="/" className="hover:text-white transition">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/products" className="hover:text-white transition">
-                  Products
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="hover:text-white transition">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link to="/projects" className="hover:text-white transition">
-                  Projects
-                </Link>
-              </li>
+            <h3 className="font-bold text-base mb-4 text-white uppercase tracking-wide">Products</h3>
+            <ul className="space-y-2">
+              <li><Link to="/pallets" className="text-stone-400 hover:text-white transition-colors">Pallets (New & Used)</Link></li>
+              <li><Link to="/firewood" className="text-stone-400 hover:text-white transition-colors">Seasoned Firewood</Link></li>
+              <li><Link to="/sawdust" className="text-stone-400 hover:text-white transition-colors">Bulk Sawdust</Link></li>
+              <li><Link to="/custom-lumber" className="text-stone-400 hover:text-white transition-colors">Custom Lumber</Link></li>
             </ul>
           </div>
 
-          {/* Support */}
+          {/* Services */}
           <div>
-            <h4 className="font-semibold mb-4">Support</h4>
-            <ul className="space-y-2 text-sm text-slate-400">
-              <li>
-                <Link to="/about" className="hover:text-white transition">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="hover:text-white transition">
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/faq" className="hover:text-white transition">
-                  FAQs
-                </Link>
-              </li>
-              <li>
-                <a href="tel:+15551234567" className="hover:text-white transition">
-                  Call Us
-                </a>
-              </li>
+            <h3 className="font-bold text-base mb-4 text-white uppercase tracking-wide">Services</h3>
+            <ul className="space-y-2">
+              <li><Link to="/log-pickup" className="text-stone-400 hover:text-white transition-colors">Free Log Pickup</Link></li>
+              <li><Link to="/tree-service-partners" className="text-stone-400 hover:text-white transition-colors">Tree Service Partners</Link></li>
+              <li><Link to="/contact" className="text-stone-400 hover:text-white transition-colors">Pallet Recycling</Link></li>
+              <li><Link to="/contact" className="text-stone-400 hover:text-white transition-colors">Local Delivery</Link></li>
+              <li><Link to="/contact" className="text-stone-400 hover:text-white transition-colors">Get a Quote</Link></li>
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Contact Info */}
           <div>
-            <h4 className="font-semibold mb-4">Legal</h4>
-            <ul className="space-y-2 text-sm text-slate-400">
-              <li>
-                <Link to="/privacy" className="hover:text-white transition">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link to="/terms" className="hover:text-white transition">
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link to="/accessibility" className="hover:text-white transition">
-                  Accessibility
-                </Link>
-              </li>
-            </ul>
+            <h3 className="font-bold text-base mb-4 text-white uppercase tracking-wide">Visit Us</h3>
+            <div className="space-y-3 text-stone-400">
+              <div className="flex items-start gap-3">
+                <Icon name="location" className="text-primary mt-0.5 shrink-0" size={18} />
+                <span>6717 Atcheson Dr<br />Gary, IN 46403</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Icon name="clock" className="text-primary shrink-0" size={18} />
+                <span>Mon-Fri: 7AM - 3PM</span>
+              </div>
+            </div>
+            <div className="mt-6">
+              <Link to="/contact" className="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-2 rounded-lg font-bold text-sm hover:bg-primary/30 transition-colors border border-primary/30">
+                Get Directions →
+              </Link>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-slate-700 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-slate-400">
-            <p>&copy; {currentYear} Premier Lumber. All rights reserved.</p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a
-                href="https://www.facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition"
-              >
-                Facebook
-              </a>
-              <a
-                href="https://www.linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition"
-              >
-                LinkedIn
-              </a>
-              <a
-                href="https://www.instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition"
-              >
-                Instagram
-              </a>
-            </div>
+        <div className="border-t border-dark-muted pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-stone-500 gap-4">
+          <p>© {currentYear} Premier Lumber Co. All rights reserved.</p>
+          <div className="flex gap-6">
+            <Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link>
+            <Link to="/terms" className="hover:text-white transition-colors">Terms</Link>
           </div>
         </div>
       </div>

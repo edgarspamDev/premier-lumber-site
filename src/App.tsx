@@ -1,34 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import { MainLayout } from './layouts/MainLayout';
+import { ScrollToTop } from './components/ScrollToTop';
+import { 
+  Home, 
+  Firewood, 
+  Pallets, 
+  Sawdust, 
+  CustomLumber, 
+  LogPickup, 
+  TreeServicePartners,
+  Contact,
+  Privacy,
+  Terms
+} from './pages';
+import PhotoReview from './pages/PhotoReview';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <HelmetProvider>
+    <BrowserRouter>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<Navigate to="/" replace />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="firewood" element={<Firewood />} />
+          <Route path="pallets" element={<Pallets />} />
+          <Route path="sawdust" element={<Sawdust />} />
+          <Route path="custom-lumber" element={<CustomLumber />} />
+          <Route path="log-pickup" element={<LogPickup />} />
+          <Route path="tree-service-partners" element={<TreeServicePartners />} />
+          <Route path="privacy" element={<Privacy />} />
+          <Route path="terms" element={<Terms />} />
+          <Route path="photo-review" element={<PhotoReview />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+    </HelmetProvider>
   )
 }
 

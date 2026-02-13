@@ -1,9 +1,4 @@
 User-agent: *
 Allow: /
 
-# Disallow admin areas if any
-Disallow: /admin/
-Disallow: /private/
-
-# Sitemap location
 Sitemap: https://premierlumber.com/sitemap.xml

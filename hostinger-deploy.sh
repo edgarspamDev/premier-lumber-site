@@ -1,59 +1,61 @@
 #!/bin/bash
-# Premier Lumber Company - Mac/Linux Hostinger Deployment
-# Usage: bash hostinger-deploy.sh
+# Premier Lumber -- Hostinger Deploy Script (Mac/Linux)
+# Creates deploy/public_html with all site files ready for upload
 
-echo ""
-echo "========================================"
-echo " Premier Lumber - Linux/Mac Deployment"
-echo "========================================"
-echo ""
+set -e
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+DEPLOY="$ROOT/deploy/public_html"
 
-# Step 1: Create deployment structure
-echo "📁 Creating deployment folders..."
-mkdir -p deploy/public_html
+echo "Premier Lumber - Hostinger Deploy Script"
+echo "========================================="
 
-# Step 2: Copy files
-echo "📋 Copying files..."
-cp index.html deploy/public_html/
-cp .htaccess deploy/public_html/
-cp robots.txt deploy/public_html/
-cp sitemap.xml deploy/public_html/
-cp mail.php deploy/public_html/
+# Clean and create deploy directory
+rm -rf "$DEPLOY"
+mkdir -p "$DEPLOY"
 
-# Step 3: Set permissions
-echo "🔒 Setting file permissions..."
-chmod 644 deploy/public_html/.htaccess
-chmod 644 deploy/public_html/robots.txt
-chmod 644 deploy/public_html/sitemap.xml
-chmod 644 deploy/public_html/mail.php
-chmod 644 deploy/public_html/index.html
-chmod 755 deploy/public_html
-for file in "${optional[@]}"; do
-    if [ -f "$file" ]; then
-        cp "$file" deploy/public_html/
-        echo "  ✓ $file"
-    fi
+# HTML pages
+for page in index.html about.html pallets.html firewood.html sawdust.html custom-lumber.html log-pickup.html gallery.html contact.html privacy.html terms.html; do
+  cp "$ROOT/$page" "$DEPLOY/$page"
+  echo "  Copied: $page"
 done
 
-# Step 3: Set permissions
-echo ""
-echo "🔒 Setting file permissions..."
-chmod 644 deploy/public_html/.htaccess 2>/dev/null
-chmod 644 deploy/public_html/robots.txt 2>/dev/null
-chmod 644 deploy/public_html/sitemap.xml 2>/dev/null
-chmod 644 deploy/public_html/mail.php 2>/dev/null
-chmod 755 deploy/public_html 2>/dev/null
+# Supporting files
+for file in .htaccess robots.txt sitemap.xml mail.php logo.jpg logo.png favicon.ico apple-touch-icon.png og-image.png; do
+  if [ -f "$ROOT/$file" ]; then
+    cp "$ROOT/$file" "$DEPLOY/$file"
+    echo "  Copied: $file"
+  fi
+done
+
+# CSS
+mkdir -p "$DEPLOY/css"
+cp "$ROOT/css/premier.css" "$DEPLOY/css/premier.css"
+echo "  Copied: css/premier.css"
+
+# JS
+mkdir -p "$DEPLOY/js"
+cp "$ROOT/js/premier.js" "$DEPLOY/js/premier.js"
+echo "  Copied: js/premier.js"
+
+# Images
+if [ -d "$ROOT/images" ]; then
+  cp -r "$ROOT/images" "$DEPLOY/images"
+  echo "  Copied: images/ directory"
+fi
 
 echo ""
-echo "✅ Deployment Ready!"
+echo "Deploy package created at: deploy/public_html/"
 echo ""
-echo "📂 Files created in: deploy/public_html/"
+echo "NEXT STEPS:"
+echo "1. Log in to Hostinger File Manager"
+echo "2. Navigate to public_html/"
+echo "3. Upload ALL contents of deploy/public_html/ into public_html/"
+echo "4. Set permissions: folders 755, files 644"
+echo "5. Test the site: check forms, links, mobile, and security headers"
 echo ""
-echo "Next Steps:"
-echo "  1. Open Hostinger File Manager"
-echo "  2. Navigate to public_html/"
-echo "  3. Upload all files from deploy/public_html/"
-echo "  4. Set permissions: .htaccess (644), folders (755)"
-echo "  5. Update email in mail.php to your actual email"
-echo "  6. Test at https://yourdomain.com"
-echo ""
+echo "VERIFY AFTER UPLOAD:"
+echo "- No Lorem Ipsum or placeholders remain"
+echo "- Contact form submits and sends email"
+echo "- Privacy and Terms links work"
+echo "- Mobile menu and Call Now buttons work"
+echo "- Security headers present (X-Frame-Options, X-Content-Type-Options)"

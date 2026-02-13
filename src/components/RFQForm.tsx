@@ -1,31 +1,23 @@
 import { useState } from 'react';
-import { validateRFQForm, sanitizeText } from '../utils/validation';
+import { validateRFQForm, sanitizeText, type FormErrors } from '../utils/validation';
 import { submitForm } from '../utils/formSubmission';
-import { FormErrors } from '../utils/validation';
+import { Icon } from './Icons';
 
 interface RFQFormData {
   name: string;
-  company: string;
   phone: string;
   email: string;
-  location: string;
-  productNeeds: string;
-  timeline: string;
-  projectType: string;
-  comments: string;
+  serviceType: string;
+  message: string;
 }
 
 export function RFQForm() {
   const [formData, setFormData] = useState<RFQFormData>({
     name: '',
-    company: '',
     phone: '',
     email: '',
-    location: '',
-    productNeeds: '',
-    timeline: 'within-1-month',
-    projectType: 'new-construction',
-    comments: '',
+    serviceType: '',
+    message: '',
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
@@ -37,16 +29,9 @@ export function RFQForm() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-    // Clear error for this field when user starts typing
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: '',
-      }));
+      setErrors((prev) => ({ ...prev, [name]: '' }));
     }
   };
 
@@ -55,42 +40,30 @@ export function RFQForm() {
     setSubmitStatus('idle');
     setSubmitMessage('');
 
-    // Validate form
     const newErrors = validateRFQForm({
       name: formData.name,
-      company: formData.company,
       phone: formData.phone,
       email: formData.email,
-      location: formData.location,
-      productNeeds: formData.productNeeds,
-      timeline: formData.timeline,
+      message: formData.message,
     });
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      setSubmitStatus('error');
-      setSubmitMessage('Please correct the errors below and try again.');
       return;
     }
 
     setIsSubmitting(true);
 
-    // Sanitize all text fields
     const sanitizedData = {
       name: sanitizeText(formData.name),
-      company: sanitizeText(formData.company),
       phone: sanitizeText(formData.phone),
       email: sanitizeText(formData.email),
-      location: sanitizeText(formData.location),
-      productNeeds: sanitizeText(formData.productNeeds),
-      timeline: sanitizeText(formData.timeline),
-      projectType: sanitizeText(formData.projectType),
-      comments: sanitizeText(formData.comments),
+      productNeeds: sanitizeText(formData.serviceType),
+      comments: sanitizeText(formData.message),
     };
 
-    // Submit form
     const response = await submitForm(sanitizedData, {
-      endpoint: '/api/rfq', // This will be handled by backend
+      endpoint: '/mail.php',
       method: 'POST',
       timeout: 10000,
     });
@@ -100,18 +73,7 @@ export function RFQForm() {
     if (response.success) {
       setSubmitStatus('success');
       setSubmitMessage(response.message);
-      // Reset form
-      setFormData({
-        name: '',
-        company: '',
-        phone: '',
-        email: '',
-        location: '',
-        productNeeds: '',
-        timeline: 'within-1-month',
-        projectType: 'new-construction',
-        comments: '',
-      });
+      setFormData({ name: '', phone: '', email: '', serviceType: '', message: '' });
       setErrors({});
     } else {
       setSubmitStatus('error');
@@ -119,253 +81,210 @@ export function RFQForm() {
     }
   };
 
+  if (submitStatus === 'success') {
+    return (
+      <div className="text-center py-8">
+        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <Icon name="check" size={32} className="text-green-600" />
+        </div>
+        <h3 className="text-xl font-bold text-green-800 mb-2">Quote Request Sent!</h3>
+        <p className="text-stone-600 mb-4">{submitMessage}</p>
+        <p className="text-sm text-stone-500">
+          Need faster help? Call <a href="tel:+12199386275" className="font-bold text-primary">(219) 938-6275</a>
+        </p>
+      </div>
+    );
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Status Messages */}
-      {submitStatus === 'success' && (
-        <div className="p-4 bg-green-50 border border-green-200 rounded-md">
-          <p className="text-green-800 font-medium">{submitMessage}</p>
-          <p className="text-green-700 text-sm mt-2">
-            Need immediate assistance? Call us at <a href="tel:+15551234567" className="font-semibold">+1 (555) 123-4567</a>
-          </p>
-        </div>
-      )}
+    <form
+      id="contact-form"
+      onSubmit={handleSubmit}
+      className="space-y-5 scroll-mt-28 md:scroll-mt-32"
+      noValidate
+      method="post"
+      action="/mail.php"
+    >
+      {/* Helper text */}
+      <p className="text-sm text-stone-500 text-center font-medium">Get a quote in 2 minutes</p>
 
+      {/* Error Banner */}
       {submitStatus === 'error' && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-md">
-          <p className="text-red-800 font-medium">{submitMessage}</p>
-          <p className="text-red-700 text-sm mt-2">
-            Or reach out directly at <a href="tel:+15551234567" className="font-semibold">+1 (555) 123-4567</a>
+        <div className="p-4 bg-red-50 border border-red-200 rounded-xl">
+          <p className="text-red-800 font-medium text-sm">{submitMessage}</p>
+          <p className="text-red-700 text-xs mt-1">
+            Or call us at <a href="tel:+12199386275" className="font-bold">(219) 938-6275</a>
           </p>
         </div>
       )}
 
-      {/* Name */}
+      {/* Name (Required) */}
       <div>
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-          Full Name <span className="text-red-500">*</span>
+        <label htmlFor="name" className="block text-sm font-bold text-stone-700 mb-1.5">
+          Your Name <span className="text-red-500">*</span>
         </label>
         <input
           id="name"
           type="text"
           name="name"
+          autoComplete="name"
+          autoCapitalize="words"
+          autoCorrect="off"
+          spellCheck={false}
           value={formData.name}
           onChange={handleChange}
-          minLength={2}
-          maxLength={100}
           placeholder="John Smith"
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition min-h-[44px]"
+          maxLength={100}
+          required
+          className={`w-full px-4 py-3.5 border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition text-base min-h-[48px] ${
+            errors.name ? 'border-red-400 bg-red-50' : 'border-stone-300'
+          }`}
           aria-invalid={!!errors.name}
           aria-describedby={errors.name ? 'name-error' : undefined}
         />
         {errors.name && (
-          <p id="name-error" className="mt-1 text-sm text-red-600">
-            {errors.name}
-          </p>
+          <p id="name-error" className="mt-1 text-xs text-red-600 font-medium">{errors.name}</p>
         )}
       </div>
 
-      {/* Company */}
+      {/* Phone (Required) */}
       <div>
-        <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-          Company Name <span className="text-red-500">*</span>
-        </label>
-        <input
-          id="company"
-          type="text"
-          name="company"
-          value={formData.company}
-          onChange={handleChange}
-          minLength={2}
-          maxLength={150}
-          placeholder="ABC Construction"
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition min-h-[44px]"
-          aria-invalid={!!errors.company}
-          aria-describedby={errors.company ? 'company-error' : undefined}
-        />
-        {errors.company && (
-          <p id="company-error" className="mt-1 text-sm text-red-600">
-            {errors.company}
-          </p>
-        )}
-      </div>
-
-      {/* Phone */}
-      <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="phone" className="block text-sm font-bold text-stone-700 mb-1.5">
           Phone Number <span className="text-red-500">*</span>
         </label>
         <input
           id="phone"
           type="tel"
           name="phone"
+          inputMode="tel"
+          autoComplete="tel"
+          autoCapitalize="off"
+          autoCorrect="off"
+          spellCheck={false}
           value={formData.phone}
           onChange={handleChange}
-          placeholder="(555) 123-4567"
+          placeholder="(219) 555-1234"
           maxLength={20}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition min-h-[44px]"
+          pattern="[0-9()+\\-\\s]{7,20}"
+          required
+          className={`w-full px-4 py-3.5 border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition text-base min-h-[48px] ${
+            errors.phone ? 'border-red-400 bg-red-50' : 'border-stone-300'
+          }`}
           aria-invalid={!!errors.phone}
           aria-describedby={errors.phone ? 'phone-error' : undefined}
         />
         {errors.phone && (
-          <p id="phone-error" className="mt-1 text-sm text-red-600">
-            {errors.phone}
-          </p>
+          <p id="phone-error" className="mt-1 text-xs text-red-600 font-medium">{errors.phone}</p>
         )}
       </div>
 
-      {/* Email */}
+      {/* Email (Required) */}
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-          Email Address <span className="text-red-500">*</span>
+        <label htmlFor="email" className="block text-sm font-bold text-stone-700 mb-1.5">
+          Email <span className="text-red-500">*</span>
         </label>
         <input
           id="email"
           type="email"
           name="email"
+          inputMode="email"
+          autoComplete="email"
+          autoCapitalize="off"
+          autoCorrect="off"
+          spellCheck={false}
           value={formData.email}
           onChange={handleChange}
           placeholder="john@example.com"
           maxLength={254}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition min-h-[44px]"
+          required
+          className={`w-full px-4 py-3.5 border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition text-base min-h-[48px] ${
+            errors.email ? 'border-red-400 bg-red-50' : 'border-stone-300'
+          }`}
           aria-invalid={!!errors.email}
           aria-describedby={errors.email ? 'email-error' : undefined}
         />
         {errors.email && (
-          <p id="email-error" className="mt-1 text-sm text-red-600">
-            {errors.email}
-          </p>
+          <p id="email-error" className="mt-1 text-xs text-red-600 font-medium">{errors.email}</p>
         )}
       </div>
 
-      {/* Location */}
+      {/* Service Type (Optional) */}
       <div>
-        <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
-          Project Location (City/Region) <span className="text-red-500">*</span>
-        </label>
-        <input
-          id="location"
-          type="text"
-          name="location"
-          value={formData.location}
-          onChange={handleChange}
-          placeholder="Portland, OR"
-          maxLength={100}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition min-h-[44px]"
-          aria-invalid={!!errors.location}
-          aria-describedby={errors.location ? 'location-error' : undefined}
-        />
-        {errors.location && (
-          <p id="location-error" className="mt-1 text-sm text-red-600">
-            {errors.location}
-          </p>
-        )}
-      </div>
-
-      {/* Product Needs */}
-      <div>
-        <label htmlFor="productNeeds" className="block text-sm font-medium text-gray-700 mb-2">
-          Product Needs <span className="text-red-500">*</span>
-        </label>
-        <textarea
-          id="productNeeds"
-          name="productNeeds"
-          value={formData.productNeeds}
-          onChange={handleChange}
-          placeholder="Tell us about the lumber or materials you need..."
-          maxLength={500}
-          rows={3}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition"
-          aria-invalid={!!errors.productNeeds}
-          aria-describedby={errors.productNeeds ? 'productNeeds-error' : undefined}
-        />
-        <p className="mt-1 text-xs text-gray-500">
-          {formData.productNeeds.length}/500 characters
-        </p>
-        {errors.productNeeds && (
-          <p id="productNeeds-error" className="mt-1 text-sm text-red-600">
-            {errors.productNeeds}
-          </p>
-        )}
-      </div>
-
-      {/* Project Type */}
-      <div>
-        <label htmlFor="projectType" className="block text-sm font-medium text-gray-700 mb-2">
-          Project Type
+        <label htmlFor="serviceType" className="block text-sm font-bold text-stone-700 mb-1.5">
+          Service Needed <span className="text-stone-400 font-normal">(optional)</span>
         </label>
         <select
-          id="projectType"
-          name="projectType"
-          value={formData.projectType}
+          id="serviceType"
+          name="serviceType"
+          value={formData.serviceType}
           onChange={handleChange}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition min-h-[44px]"
+          className="w-full px-4 py-3.5 border border-stone-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition text-base min-h-[48px] bg-white"
         >
-          <option value="new-construction">New Construction</option>
-          <option value="remodel">Remodel/Renovation</option>
-          <option value="deck-fence">Deck/Fence</option>
-          <option value="commercial">Commercial</option>
+          <option value="">Select a service...</option>
+          <option value="pallets">Pallets (Buy or Sell)</option>
+          <option value="firewood">Firewood</option>
+          <option value="sawdust">Sawdust / Shavings</option>
+          <option value="custom-lumber">Custom Lumber / Milling</option>
+          <option value="log-pickup">Free Log Pickup</option>
+          <option value="delivery">Delivery</option>
           <option value="other">Other</option>
         </select>
       </div>
 
-      {/* Timeline */}
+      {/* Message (Required) */}
       <div>
-        <label htmlFor="timeline" className="block text-sm font-medium text-gray-700 mb-2">
-          Project Timeline <span className="text-red-500">*</span>
+        <label htmlFor="message" className="block text-sm font-bold text-stone-700 mb-1.5">
+          What do you need? <span className="text-red-500">*</span>
         </label>
-        <select
-          id="timeline"
-          name="timeline"
-          value={formData.timeline}
+        <textarea
+          id="message"
+          name="message"
+          value={formData.message}
           onChange={handleChange}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition min-h-[44px]"
-          aria-invalid={!!errors.timeline}
-          aria-describedby={errors.timeline ? 'timeline-error' : undefined}
-        >
-          <option value="within-1-month">Within 1 Month</option>
-          <option value="1-3-months">1-3 Months</option>
-          <option value="3-6-months">3-6 Months</option>
-          <option value="6-plus-months">6+ Months</option>
-        </select>
-        {errors.timeline && (
-          <p id="timeline-error" className="mt-1 text-sm text-red-600">
-            {errors.timeline}
-          </p>
+          placeholder="Tell us what you're looking for (quantity, dimensions, service, etc.)"
+          maxLength={500}
+          rows={4}
+          autoCapitalize="sentences"
+          autoCorrect="on"
+          spellCheck={true}
+          required
+          className={`w-full px-4 py-3.5 border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition text-base ${
+            errors.message ? 'border-red-400 bg-red-50' : 'border-stone-300'
+          }`}
+          aria-invalid={!!errors.message}
+          aria-describedby={errors.message ? 'message-error' : undefined}
+        />
+        {errors.message && (
+          <p id="message-error" className="mt-1 text-xs text-red-600 font-medium">{errors.message}</p>
         )}
       </div>
 
-      {/* Additional Comments */}
-      <div>
-        <label htmlFor="comments" className="block text-sm font-medium text-gray-700 mb-2">
-          Additional Comments
-        </label>
-        <textarea
-          id="comments"
-          name="comments"
-          value={formData.comments}
-          onChange={handleChange}
-          placeholder="Any additional details we should know?"
-          maxLength={500}
-          rows={2}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition"
-        />
-        <p className="mt-1 text-xs text-gray-500">
-          {formData.comments.length}/500 characters
-        </p>
+      {/* Honeypot (hidden from humans) */}
+      <div className="hidden" aria-hidden="true">
+        <input type="text" name="website_url" tabIndex={-1} autoComplete="off" />
       </div>
 
       {/* Submit Button */}
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-3 bg-amber-500 text-white font-semibold rounded-lg hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed transition min-h-[44px] flex items-center justify-center"
+        className="w-full px-6 py-4 bg-primary text-white font-bold text-lg rounded-xl hover:bg-primary-dark active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed transition-all min-h-[52px] flex items-center justify-center shadow-lg shadow-orange-500/20"
       >
-        {isSubmitting ? 'Submitting...' : 'Request Quote'}
+        {isSubmitting ? (
+          <span className="flex items-center gap-2">
+            <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+            </svg>
+            Sending...
+          </span>
+        ) : (
+          'Get Free Quote'
+        )}
       </button>
 
-      <p className="text-xs text-gray-600 text-center">
-        We respect your privacy. Your information will only be used to respond to your inquiry.
+      <p className="text-xs text-stone-400 text-center">
+        We respect your privacy. Info is only used to respond to your request.
       </p>
     </form>
   );

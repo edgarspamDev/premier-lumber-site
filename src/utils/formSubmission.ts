@@ -36,21 +36,60 @@ export async function submitForm(
       },
       body: JSON.stringify(formData),
       signal: controller.signal,
+      credentials: 'same-origin',
     });
 
     clearTimeout(timeoutId);
 
+    const contentType = response.headers.get('content-type') || '';
+    const payload = contentType.includes('application/json')
+      ? await response.json().catch(() => null)
+      : null;
+
     if (!response.ok) {
+      const serverMessage =
+        (payload &&
+          typeof payload === 'object' &&
+          (('message' in payload && typeof payload.message === 'string' && payload.message) ||
+            ('error' in payload && typeof payload.error === 'string' && payload.error))) ||
+        '';
+
       return {
         success: false,
-        message: 'Failed to submit form. Please try again or call us.',
+        message: serverMessage || 'Failed to submit form. Please try again or call us.',
         error: 'Server responded with error',
+      };
+    }
+
+    const isSuccessfulPayload =
+      !payload ||
+      (typeof payload === 'object' &&
+        ((('success' in payload && payload.success === true) ||
+          ('ok' in payload && payload.ok === true))));
+
+    if (!isSuccessfulPayload) {
+      return {
+        success: false,
+        message:
+          (payload &&
+            typeof payload === 'object' &&
+            'message' in payload &&
+            typeof payload.message === 'string' &&
+            payload.message) ||
+          'Unable to submit form. Please try again or call us.',
+        error: 'Server rejected request',
       };
     }
 
     return {
       success: true,
-      message: 'Thank you! We received your request and will contact you shortly.',
+      message:
+        (payload &&
+          typeof payload === 'object' &&
+          'message' in payload &&
+          typeof payload.message === 'string' &&
+          payload.message) ||
+        'Thank you! We received your request and will contact you shortly.',
     };
   } catch (err) {
     // Generic error message - don't expose technical details
