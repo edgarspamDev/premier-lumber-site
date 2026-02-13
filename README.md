@@ -1,73 +1,57 @@
-# React + TypeScript + Vite
+# Premier Lumber Co — Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Family-owned lumber company in Gary, Indiana. React + Vite + TailwindCSS.
 
-Currently, two official plugins are available:
+## Quick Start (Any PC)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+# 1. Clone the repo
+git clone https://github.com/edgarspamDev/premier-lumber-site.git
+cd premier-lumber-site
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 2. Install & run (requires Node 18+)
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Browser opens automatically at **http://localhost:3000**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Scripts
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| Command           | What it does                                |
+| ----------------- | ------------------------------------------- |
+| `npm run dev`     | Start dev server (auto-opens browser)       |
+| `npm run build`   | Build production bundle to `dist/`          |
+| `npm run preview` | Preview production build locally            |
+| `npm run setup`   | Install deps + build (one command)          |
+| `npm run deploy`  | Build + create Hostinger `deploy_fixed.zip` |
+| `npm run lint`    | Run ESLint                                  |
+
+## Deploy to Hostinger
+
+1. Run `npm run deploy` (creates `deploy_fixed.zip`)
+2. Upload to Hostinger → File Manager → `public_html/`
+3. Extract the zip
+4. Edit `mail.php` — set your real email address
+
+## Phone Testing
+
+Dev server is accessible from any device on your WiFi:
+
+1. Run `npm run dev`
+2. Find your IP in the terminal output (e.g. `Network: http://192.168.1.5:3000`)
+3. Open that URL on your phone
+
+## Tech Stack
+
+- **React 19** + TypeScript
+- **Vite 7** (dev server + bundler)
+- **TailwindCSS 3** (styling)
+- **PHP** (form handler — `mail.php`)
+
+## Security
+
+- HSTS, CSP, Permissions-Policy headers
+- 5-layer anti-bot protection on contact form
+- Rate limiting (3 submissions / 10 min per IP)
+- No database, no admin panel, minimal attack surface
