@@ -34,7 +34,7 @@ export function Header() {
 
   return (
     <>
-      <header className="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-stone-200/60 transition-all duration-300">
+      <header className="bg-white/95 backdrop-blur-md sticky top-0 z-50 border-b border-stone-200/80 shadow-sm transition-all duration-300">
         {/* Top Bar - Desktop only (dark, bold) */}
         <div className="hidden md:block bg-dark text-white text-sm py-2.5">
           <div className="container-custom flex justify-between items-center">
@@ -52,16 +52,16 @@ export function Header() {
         {/* Main Header Bar */}
         <div className="container-custom py-3 md:py-4">
           <div className="flex justify-between items-center">
-            {/* Logo - Beaver mascot with text */}
+            {/* Logo - Always shows name */}
             <Link to="/" className="flex items-center gap-3 group">
               <img
                 src="/logo.png"
                 alt="Premier Lumber Co - Beaver mascot with log truck"
-                className="h-12 md:h-14 lg:h-16 w-auto object-contain group-hover:scale-105 transition-transform"
+                className="h-14 md:h-16 lg:h-[4.5rem] w-auto object-contain group-hover:scale-105 transition-transform"
               />
-              <div className="hidden md:flex flex-col">
-                <span className="font-extrabold text-lg md:text-xl leading-none"><span className="text-charcoal">Premier </span><span className="text-primary">Lumber</span></span>
-                <span className="text-xs md:text-sm text-primary/70 font-semibold">Quality Wood Products</span>
+              <div className="flex flex-col">
+                <span className="font-extrabold text-lg md:text-xl lg:text-2xl leading-none tracking-tight"><span className="text-charcoal">Premier </span><span className="text-primary">Lumber</span></span>
+                <span className="text-[11px] md:text-xs lg:text-sm text-stone-500 font-semibold tracking-wide uppercase mt-0.5">Quality Wood Products</span>
               </div>
             </Link>
 
