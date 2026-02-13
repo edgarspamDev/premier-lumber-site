@@ -1,0 +1,66 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run security audit
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
+
+      - name: Type check
+        run: npx tsc -b
+
+      - name: Build production bundle
+        run: npm run build
+
+      - name: Copy static files to dist
+        run: |
+          cp public/.htaccess dist/
+          cp public/mail.php dist/
+          cp public/robots.txt dist/
+          cp public/sitemap.xml dist/
+          cp -r public/images dist/ 2>/dev/null || true
+
+      - name: Create deployment package
+        run: |
+          cd dist
+          zip -r ../deploy_fixed.zip . -x "*.map"
+
+      - name: Upload deployment artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: deploy-package
+          path: deploy_fixed.zip
+          retention-days: 30
+
+      - name: Build summary
+        run: |
+          echo "## ✅ Build Successful" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit**: \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch**: \`${{ github.ref_name }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Artifact**: \`deploy_fixed.zip\` (download from Actions tab)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📦 Upload to Hostinger" >> $GITHUB_STEP_SUMMARY
+          echo "1. Download \`deploy-package\` artifact above" >> $GITHUB_STEP_SUMMARY
+          echo "2. Extract \`deploy_fixed.zip\`" >> $GITHUB_STEP_SUMMARY
+          echo "3. Upload contents to \`public_html/\` via File Manager" >> $GITHUB_STEP_SUMMARY

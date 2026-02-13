@@ -34,6 +34,39 @@ if (!empty($data['website_url'])) {
     exit;
 }
 
+// 4b. Timestamp Anti-Bot Check (human fills form in >3 seconds)
+if (isset($data['_ts'])) {
+    $elapsed = time() - intval($data['_ts']);
+    if ($elapsed < 3) {
+        // Too fast — likely a bot. Silent fake success.
+        echo json_encode(["success" => true, "message" => "Message sent successfully."]);
+        exit;
+    }
+}
+
+// 4c. Rate Limiting (max 3 submissions per 10 minutes per IP)
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$rate_file = sys_get_temp_dir() . '/pl_rate_' . md5($ip) . '.txt';
+$rate_window = 600; // 10 minutes
+$max_attempts = 3;
+
+if (file_exists($rate_file)) {
+    $rate_data = json_decode(file_get_contents($rate_file), true);
+    // Clean old entries
+    $rate_data = array_filter($rate_data, function($t) use ($rate_window) {
+        return (time() - $t) < $rate_window;
+    });
+    if (count($rate_data) >= $max_attempts) {
+        http_response_code(429);
+        echo json_encode(["success" => false, "message" => "Too many requests. Please try again in a few minutes."]);
+        exit;
+    }
+    $rate_data[] = time();
+    file_put_contents($rate_file, json_encode($rate_data));
+} else {
+    file_put_contents($rate_file, json_encode([time()]));
+}
+
 // 5. Validation & Sanitization
 function clean_header($text) {
     // Strip newlines to prevent header injection

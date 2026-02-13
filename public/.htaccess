@@ -4,6 +4,9 @@
 AddType image/svg+xml .svg .svgz
 AddEncoding gzip .svgz
 
+# ─── Default charset ───
+AddDefaultCharset UTF-8
+
 # ─── Enable Rewrite Engine ───
 <IfModule mod_rewrite.c>
   RewriteEngine On
@@ -12,6 +15,24 @@ AddEncoding gzip .svgz
   # Enforce HTTPS
   RewriteCond %{HTTPS} off
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # ─── Bot Protection: Block known bad bots ───
+  RewriteCond %{HTTP_USER_AGENT} (AhrefsBot|SemrushBot|MJ12bot|DotBot|BLEXBot|SearchmetricsBot|YandexBot|Sogou|MegaIndex|Majestic|Rogerbot|Exabot|Gigabot|BacklinkCrawler|spbot|Screaming|Frog|SEOkicks|serpstatbot) [NC]
+  RewriteRule .* - [F,L]
+
+  # ─── Block empty User-Agents (headless scrapers) ───
+  RewriteCond %{HTTP_USER_AGENT} ^$ 
+  RewriteRule .* - [F,L]
+
+  # ─── Block direct POST to mail.php from outside our domain ───
+  RewriteCond %{REQUEST_METHOD} POST
+  RewriteCond %{REQUEST_URI} ^/mail\.php$
+  RewriteCond %{HTTP_REFERER} !^https://(www\.)?premierlumber\.com [NC]
+  RewriteRule .* - [F,L]
+
+  # Allow .well-known for SSL verification
+  RewriteCond %{REQUEST_URI} ^/\.well-known/
+  RewriteRule .* - [L]
 
   # SPA Routing - serve index.html for all non-file routes
   RewriteRule ^index\.html$ - [L]
@@ -29,23 +50,22 @@ Options -Indexes
   Require all denied
 </FilesMatch>
 
-<FilesMatch "\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op]|md|env)$">
+<FilesMatch "\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op]|md|env|ps1)$">
   Require all denied
 </FilesMatch>
 
-# Allow .well-known for SSL verification
-<IfModule mod_rewrite.c>
-  RewriteCond %{REQUEST_URI} ^/\.well-known/
-  RewriteRule .* - [L]
-</IfModule>
-
-# ─── Security Headers ───
+# ─── Security Headers (Full Suite) ───
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options "nosniff"
   Header set X-Frame-Options "SAMEORIGIN"
   Header set X-XSS-Protection "1; mode=block"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
-  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  # HSTS - Force HTTPS for 1 year
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  # Permissions Policy - Disable unused features
+  Header always set Permissions-Policy "geolocation=(self), microphone=(), camera=(), payment=(), usb=(), vr=()"
+  # CSP - Block XSS and unauthorized resources
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://www.google-analytics.com https://*.google.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com; frame-src 'self' https://www.google.com https://maps.google.com;"
 </IfModule>
 
 # ─── GZIP Compression ───
@@ -71,7 +91,7 @@ Options -Indexes
   ExpiresDefault "access plus 2 days"
 </IfModule>
 
-# Do not cache mail.php
+# ─── Do not cache mail.php ───
 <Files "mail.php">
   <IfModule mod_headers.c>
     Header set Cache-Control "no-cache, no-store, must-revalidate"
@@ -79,3 +99,7 @@ Options -Indexes
     Header set Expires 0
   </IfModule>
 </Files>
+
+# ─── Error Documents ───
+ErrorDocument 404 /index.html
+

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { validateRFQForm, sanitizeText, type FormErrors } from '../utils/validation';
 import { submitForm } from '../utils/formSubmission';
 import { Icon } from './Icons';
@@ -12,6 +12,12 @@ interface RFQFormData {
 }
 
 export function RFQForm() {
+  // Anti-bot: track when form loaded (bots fill in <3s)
+  const loadTime = useRef(Math.floor(Date.now() / 1000));
+  useEffect(() => {
+    loadTime.current = Math.floor(Date.now() / 1000);
+  }, []);
+
   const [formData, setFormData] = useState<RFQFormData>({
     name: '',
     phone: '',
@@ -60,6 +66,7 @@ export function RFQForm() {
       email: sanitizeText(formData.email),
       productNeeds: sanitizeText(formData.serviceType),
       comments: sanitizeText(formData.message),
+      _ts: String(loadTime.current), // Anti-bot timestamp
     };
 
     const response = await submitForm(sanitizedData, {
