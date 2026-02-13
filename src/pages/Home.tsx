@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Icon } from '../components/Icons';
 import { SEO } from '../components/SEO';
+import { AnimatedCounter, FadeInOnScroll } from '../components/Animations';
 import heroImage from '../assets/images/lumbrr/20260119_102704.jpg'; // Sawmill with log on machine
 import palletImage from '../assets/images/lumbrr/IMG-20260209-WA0016.jpg'; // Stack of Pallets
 import firewoodImage from '../assets/images/lumbrr/IMG-20260210-WA0002.jpg'; // Seasoned firewood ready for delivery
@@ -90,33 +91,51 @@ export function Home() {
         </div>
       </section>
 
-      {/* STATS BAR - Clean, organized */}
+      {/* STATS BAR - Animated Counters */}
       <section className="bg-white border-b border-stone-200 py-8 md:py-14">
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
             {/* Years in Business */}
-            <div className="flex flex-col items-center justify-center px-2 md:px-4">
-              <div className="text-3xl md:text-5xl font-extrabold text-charcoal leading-none">40<span className="text-primary">+</span></div>
+            <FadeInOnScroll className="flex flex-col items-center justify-center px-2 md:px-4" delay={0}>
+              <div className="text-3xl md:text-5xl font-extrabold text-charcoal leading-none">
+                <AnimatedCounter end={40} duration={2000} /><span className="text-primary">+</span>
+              </div>
               <div className="text-stone-500 text-xs md:text-sm font-bold uppercase tracking-tight mt-2">Years in<br className="md:hidden" /> Business</div>
-            </div>
+            </FadeInOnScroll>
             
             {/* Pallets in Stock */}
-            <div className="flex flex-col items-center justify-center px-2 md:px-4">
-              <div className="text-3xl md:text-5xl font-extrabold text-primary leading-none">1000<span className="text-charcoal">s</span></div>
+            <FadeInOnScroll className="flex flex-col items-center justify-center px-2 md:px-4" delay={150}>
+              <div className="text-3xl md:text-5xl font-extrabold text-primary leading-none">
+                <AnimatedCounter end={1000} duration={2200} /><span className="text-charcoal">s</span>
+              </div>
               <div className="text-stone-500 text-xs md:text-sm font-bold uppercase tracking-tight mt-2">Pallets in<br className="md:hidden" /> Stock</div>
-            </div>
+            </FadeInOnScroll>
             
-            {/* Free Log Pickup */}
-            <div className="flex flex-col items-center justify-center px-2 md:px-4">
-              <div className="text-2xl md:text-5xl font-extrabold text-white bg-primary rounded-lg px-3 md:px-4 py-1 md:py-2 leading-none">FREE</div>
+            {/* Free Log Pickup — shimmer effect */}
+            <FadeInOnScroll className="flex flex-col items-center justify-center px-2 md:px-4" delay={300}>
+              <div
+                className="text-2xl md:text-5xl font-extrabold text-white bg-primary rounded-lg px-3 md:px-4 py-1 md:py-2 leading-none animate-glow-pulse relative overflow-hidden"
+              >
+                <span className="relative z-10">FREE</span>
+                {/* White shimmer sweep */}
+                <div
+                  className="absolute inset-0 animate-shimmer"
+                  style={{
+                    background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%)',
+                    backgroundSize: '200% 100%',
+                  }}
+                />
+              </div>
               <div className="text-stone-500 text-xs md:text-sm font-bold uppercase tracking-tight mt-2">Log Pickup<br className="md:hidden" /> Service</div>
-            </div>
+            </FadeInOnScroll>
             
             {/* Quote Response */}
-            <div className="flex flex-col items-center justify-center px-2 md:px-4">
-              <div className="text-3xl md:text-5xl font-extrabold text-charcoal leading-none">24<span className="text-primary">hr</span></div>
+            <FadeInOnScroll className="flex flex-col items-center justify-center px-2 md:px-4" delay={450}>
+              <div className="text-3xl md:text-5xl font-extrabold text-charcoal leading-none">
+                <AnimatedCounter end={24} duration={1800} /><span className="text-primary">hr</span>
+              </div>
               <div className="text-stone-500 text-xs md:text-sm font-bold uppercase tracking-tight mt-2">Quote<br className="md:hidden" /> Response</div>
-            </div>
+            </FadeInOnScroll>
           </div>
         </div>
       </section>

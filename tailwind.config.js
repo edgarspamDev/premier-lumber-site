@@ -61,12 +61,27 @@ export default {
       animation: {
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'bounce-subtle': 'bounce-subtle 2s ease-in-out infinite',
+        'shimmer': 'shimmer 3s ease-in-out infinite',
+        'fade-in-up': 'fade-in-up 0.7s ease-out forwards',
+        'glow-pulse': 'glow-pulse 2.5s ease-in-out infinite',
       },
       keyframes: {
         'bounce-subtle': {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-5px)' },
-        }
+        },
+        'shimmer': {
+          '0%': { backgroundPosition: '-200% center' },
+          '100%': { backgroundPosition: '200% center' },
+        },
+        'fade-in-up': {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'glow-pulse': {
+          '0%, 100%': { boxShadow: '0 0 15px rgba(234, 88, 12, 0.2)' },
+          '50%': { boxShadow: '0 0 30px rgba(234, 88, 12, 0.5)' },
+        },
       }
     },
   },
