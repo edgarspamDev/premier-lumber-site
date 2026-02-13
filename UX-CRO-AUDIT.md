@@ -1228,5 +1228,35 @@ Implementing these changes should significantly improve conversion rates for cal
 
 ---
 
+## 10. IMPLEMENTED CHANGES (February 2026)
+
+The following fixes were applied to the React SPA codebase, mapped to the audit recommendations above:
+
+### Contrast Fixes (Audit: Accessibility Checklist - 4.5:1 ratio)
+- **PageHeader.tsx** - subtitle `text-stone-300` → `text-stone-200` (affects ALL service pages)
+- **Home.tsx** - Log pickup section paragraph + criteria card subtexts brightened
+- **TreeServicePartners.tsx** - CTA section heading given explicit `text-white` to override base styles; paragraph `text-stone-300` → `text-stone-100`
+
+### Form Friction Reduction (Audit: Problem 4 - "too many required fields")
+- **RFQForm.tsx** - Email changed from required → optional
+- **RFQForm.tsx** - Message changed from required → optional with shorter placeholder
+- **RFQForm.tsx** - Helper text now says "Just name & phone — we'll call you back fast"
+- **validation.ts** - Only name + phone validated as required now
+
+### CTA Copy Specificity (Audit: CRO Tactics - "Get Pallet Pricing" not "Get Quote")
+- Form submit button: "Get Free Quote" → "Get Same-Day Pricing"
+- Log Pickup: "Schedule Pickup" → "Schedule FREE Pickup"
+- Firewood: "Get Firewood Quote" → "Order Firewood Today" + phone CTA
+
+### Missing Bottom CTAs (Audit: every section needs a conversion push)
+- **Pallets.tsx** - Added bottom CTA with "Get Pallet Pricing" + phone
+- **Firewood.tsx** - Added dual CTA (order + call)
+
+### Footer Bug
+- **Footer.tsx** - "Get Directions" now links to Google Maps instead of `/contact`
+
+---
+
 *Generated: January 2026*
+*Updated: February 2026*
 *For: Premier Lumber Co., Gary, Indiana*
