@@ -114,6 +114,17 @@ export function Pallets() {
               ))}
             </div>
           </div>
+
+          {/* Bottom CTA */}
+          <div className="mt-10 text-center">
+            <p className="text-stone-600 mb-4">Need a custom size or bulk order?</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/contact" className="btn btn-primary">Get Pallet Pricing</Link>
+              <a href="tel:+12199386275" className="btn btn-secondary">
+                <Icon name="phone" size={18} className="mr-2" /> (219) 938-6275
+              </a>
+            </div>
+          </div>
         </div>
       </section>
     </div>

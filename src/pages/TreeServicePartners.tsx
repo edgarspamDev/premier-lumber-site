@@ -28,11 +28,11 @@ export function TreeServicePartners() {
     },
   ];
 
-  const tips: { icon: IconName; text: string }[] = [
-    { icon: 'quote', text: 'Confirm city permits or HOA requirements if applicable' },
-    { icon: 'shield', text: 'Ask the tree service for license and insurance proof' },
-    { icon: 'lumber', text: 'Keep logs separated by species when possible' },
-    { icon: 'truck', text: 'Keep a clear path for safe truck access' },
+  const tips: { icon: IconName; title: string; text: string }[] = [
+    { icon: 'quote', title: 'Check if you need a permit', text: 'Some cities and neighborhoods require approval before removing trees. Call your local city hall to check.' },
+    { icon: 'shield', title: 'Make sure they are licensed', text: 'Ask the tree company for proof of their license and insurance before they start any work.' },
+    { icon: 'lumber', title: 'Separate the logs by type', text: 'If you can, keep oak with oak and walnut with walnut. This helps us figure out what we can use.' },
+    { icon: 'truck', title: 'Leave room for our truck', text: 'We need a clear path from the street to the logs so our log truck can get in and out safely.' },
   ];
 
   return (
@@ -128,7 +128,10 @@ export function TreeServicePartners() {
                     <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center shrink-0">
                       <Icon name={tip.icon} size={20} className="text-primary" />
                     </div>
-                    <p className="text-sm md:text-base text-stone-700 leading-relaxed">{tip.text}</p>
+                    <div>
+                      <p className="font-bold text-charcoal text-sm md:text-base mb-1">{tip.title}</p>
+                      <p className="text-sm text-stone-500 leading-relaxed">{tip.text}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -141,8 +144,8 @@ export function TreeServicePartners() {
               <div className="w-14 h-14 bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-5">
                 <Icon name="phone" size={28} className="text-primary" />
               </div>
-              <h3 className="font-extrabold text-2xl md:text-3xl mb-3">Need a Referral?</h3>
-              <p className="text-stone-300 mb-8 max-w-md mx-auto leading-relaxed">
+              <h3 className="font-extrabold text-2xl md:text-3xl mb-3 text-white">Need a Referral?</h3>
+              <p className="text-stone-100 mb-8 max-w-md mx-auto leading-relaxed">
                 Call us for current partner options in Gary and Northwest Indiana. We'll point you in the right direction.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

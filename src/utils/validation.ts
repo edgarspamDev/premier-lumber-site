@@ -50,7 +50,8 @@ export interface FormErrors {
 }
 
 /**
- * Mobile-optimized validation: Name, Phone, Email, and Message required
+ * Low-friction validation: Only Name + Phone required.
+ * Email and message are optional to reduce form abandonment.
  */
 export function validateRFQForm(data: Record<string, string>): FormErrors {
   const errors: FormErrors = {};
@@ -67,13 +68,8 @@ export function validateRFQForm(data: Record<string, string>): FormErrors {
     errors.phone = 'Enter a valid phone number';
   }
 
-  if (!isNotEmpty(data.message || data.productNeeds || '')) {
-    errors.message = 'Tell us what you need';
-  }
-
-  if (!isNotEmpty(data.email || '')) {
-    errors.email = 'Email is required';
-  } else if (!isValidEmail(data.email)) {
+  // Email: only validate format if provided
+  if (isNotEmpty(data.email || '') && !isValidEmail(data.email)) {
     errors.email = 'Enter a valid email address';
   }
 

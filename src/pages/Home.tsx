@@ -289,7 +289,7 @@ export function Home() {
                 Got Logs?<br />
                 <span className="text-primary">We Pick Them Up Free.</span>
               </h2>
-              <p className="text-xl text-stone-300 mb-8 leading-relaxed">
+              <p className="text-xl text-stone-200 mb-8 leading-relaxed">
                 Stop paying to haul away hardwood logs. If they qualify, we'll send our truck —
                 <strong className="text-white"> you pay nothing.</strong>
               </p>
@@ -300,7 +300,7 @@ export function Home() {
                   </div>
                   <div>
                     <div className="font-bold text-white">Hardwood Only</div>
-                    <div className="text-stone-400 text-sm">Oak, Walnut, Cherry, Maple</div>
+                    <div className="text-stone-300 text-sm">Oak, Walnut, Cherry, Maple</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 bg-dark-muted/50 rounded-xl p-4 border border-dark-muted">
@@ -309,7 +309,7 @@ export function Home() {
                   </div>
                   <div>
                     <div className="font-bold text-white">14"+ Diameter, 8'+ Length</div>
-                    <div className="text-stone-400 text-sm">Big logs only — we need mill-worthy timber</div>
+                    <div className="text-stone-300 text-sm">Big logs only — we need mill-worthy timber</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 bg-dark-muted/50 rounded-xl p-4 border border-dark-muted">
@@ -318,7 +318,7 @@ export function Home() {
                   </div>
                   <div>
                     <div className="font-bold text-white">Truck Accessible</div>
-                    <div className="text-stone-400 text-sm">Our log truck needs to reach the site</div>
+                    <div className="text-stone-300 text-sm">Our log truck needs to reach the site</div>
                   </div>
                 </div>
               </div>

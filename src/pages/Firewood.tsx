@@ -87,7 +87,12 @@ export function Firewood() {
                 </div>
               </div>
 
-              <Link to="/contact" className="btn btn-primary">Get Firewood Quote</Link>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link to="/contact" className="btn btn-primary">Order Firewood Today</Link>
+                <a href="tel:+12199386275" className="btn btn-secondary">
+                  <Icon name="phone" size={18} className="mr-2" /> Call for Pricing
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -16,7 +16,7 @@ export function PageHeader({ title, subtitle, bgImage }: PageHeaderProps) {
 
       <div className="container-custom relative z-10 text-center">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 animate-fade-in-up">{title}</h1>
-        <p className="text-lg md:text-xl text-stone-300 max-w-2xl mx-auto">{subtitle}</p>
+        <p className="text-lg md:text-xl text-stone-200 max-w-2xl mx-auto">{subtitle}</p>
       </div>
     </div>
   );

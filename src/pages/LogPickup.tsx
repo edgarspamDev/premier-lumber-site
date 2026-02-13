@@ -115,7 +115,7 @@ export function LogPickup() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/contact" className="btn btn-primary flex-1">
-                    Schedule Pickup
+                    Schedule FREE Pickup
                 </Link>
                 <a href="tel:+12199386275" className="btn btn-secondary flex-1">
                   <Icon name="phone" size={18} className="mr-2" /> Call to Confirm

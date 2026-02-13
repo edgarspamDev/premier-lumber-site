@@ -69,9 +69,9 @@ export function Footer() {
               </div>
             </div>
             <div className="mt-6">
-              <Link to="/contact" className="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-2 rounded-lg font-bold text-sm hover:bg-primary/30 transition-colors border border-primary/30">
+              <a href="https://www.google.com/maps/dir//6717+Atcheson+Dr,+Gary,+IN+46403" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-2 rounded-lg font-bold text-sm hover:bg-primary/30 transition-colors border border-primary/30">
                 Get Directions →
-              </Link>
+              </a>
             </div>
           </div>
         </div>

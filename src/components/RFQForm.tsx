@@ -113,7 +113,7 @@ export function RFQForm() {
       action="/mail.php"
     >
       {/* Helper text */}
-      <p className="text-sm text-stone-500 text-center font-medium">Get a quote in 2 minutes</p>
+      <p className="text-sm text-stone-500 text-center font-medium">Just name & phone — we'll call you back fast</p>
 
       {/* Error Banner */}
       {submitStatus === 'error' && (
@@ -185,10 +185,10 @@ export function RFQForm() {
         )}
       </div>
 
-      {/* Email (Required) */}
+      {/* Email (Optional - reduces friction per CRO audit) */}
       <div>
         <label htmlFor="email" className="block text-sm font-bold text-stone-700 mb-1.5">
-          Email <span className="text-red-500">*</span>
+          Email <span className="text-stone-400 font-normal">(optional)</span>
         </label>
         <input
           id="email"
@@ -203,7 +203,6 @@ export function RFQForm() {
           onChange={handleChange}
           placeholder="john@example.com"
           maxLength={254}
-          required
           className={`w-full px-4 py-3.5 border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition text-base min-h-[48px] ${
             errors.email ? 'border-red-400 bg-red-50' : 'border-stone-300'
           }`}
@@ -238,23 +237,22 @@ export function RFQForm() {
         </select>
       </div>
 
-      {/* Message (Required) */}
+      {/* Message (Optional - reduces friction) */}
       <div>
         <label htmlFor="message" className="block text-sm font-bold text-stone-700 mb-1.5">
-          What do you need? <span className="text-red-500">*</span>
+          Details <span className="text-stone-400 font-normal">(optional)</span>
         </label>
         <textarea
           id="message"
           name="message"
           value={formData.message}
           onChange={handleChange}
-          placeholder="Tell us what you're looking for (quantity, dimensions, service, etc.)"
+          placeholder="Quantity, dimensions, timeline, etc."
           maxLength={500}
-          rows={4}
+          rows={3}
           autoCapitalize="sentences"
           autoCorrect="on"
           spellCheck={true}
-          required
           className={`w-full px-4 py-3.5 border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition text-base ${
             errors.message ? 'border-red-400 bg-red-50' : 'border-stone-300'
           }`}
@@ -286,7 +284,7 @@ export function RFQForm() {
             Sending...
           </span>
         ) : (
-          'Get Free Quote'
+          'Get Same-Day Pricing'
         )}
       </button>
 
