@@ -24,12 +24,12 @@ export function TreeServicePartners() {
     {
       num: 4,
       title: 'We Pick Up Logs',
-      desc: 'After the tree is down, we evaluate log pickup eligibility — for free.',
+      desc: 'After the tree is down, we check if the logs qualify for our free pickup service.',
     },
   ];
 
   const tips: { icon: IconName; title: string; text: string }[] = [
-    { icon: 'quote', title: 'Check if you need a permit', text: 'Some cities and neighborhoods require approval before removing trees. Call your local city hall to check.' },
+    { icon: 'quote', title: 'Check for rules first', text: 'Your city or neighborhood association might need to approve the tree removal. Check with them before you start.' },
     { icon: 'shield', title: 'Make sure they are licensed', text: 'Ask the tree company for proof of their license and insurance before they start any work.' },
     { icon: 'lumber', title: 'Separate the logs by type', text: 'If you can, keep oak with oak and walnut with walnut. This helps us figure out what we can use.' },
     { icon: 'truck', title: 'Leave room for our truck', text: 'We need a clear path from the street to the logs so our log truck can get in and out safely.' },
