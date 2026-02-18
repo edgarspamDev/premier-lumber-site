@@ -62,6 +62,23 @@
   ::selection {
     @apply bg-primary text-white;
   }
+
+  /* Custom Scrollbar - The "Vibe" Touch */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-stone-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-stone-300 rounded-full border-2 border-stone-100;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary;
+  }
 }
 
 @layer components {
@@ -173,6 +190,30 @@
     .tap-to-call:hover {
       @apply bg-primary-dark;
     }
+  }
+
+  /* Nav Link Hover Effect */
+  .hover-underline-animation {
+    display: inline-block;
+    position: relative;
+  }
+
+  .hover-underline-animation::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: theme('colors.primary.DEFAULT');
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+
+  .hover-underline-animation:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
   }
 }
 

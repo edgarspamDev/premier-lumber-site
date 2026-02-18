@@ -76,7 +76,7 @@ export function Header() {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`px-3 py-2 rounded-lg font-bold text-sm whitespace-nowrap transition-all ${
+                  className={`px-3 py-2 rounded-lg font-bold text-sm whitespace-nowrap transition-all hover-underline-animation ${
                     isActive(link.path)
                       ? 'text-primary bg-primary/10'
                       : 'text-stone-600 hover:text-charcoal hover:bg-stone-100'
