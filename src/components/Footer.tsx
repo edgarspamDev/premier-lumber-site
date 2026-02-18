@@ -11,7 +11,7 @@ export function Footer() {
 
           {/* Brand Column */}
           <div className="col-span-2 lg:col-span-1">
-            <Link to="/" className="inline-flex items-center gap-3 mb-6">
+            <Link to="/" className="inline-flex items-center gap-3 mb-6" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <img
                 src="/logo.svg"
                 alt="Premier Lumber Co"

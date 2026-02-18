@@ -160,7 +160,10 @@ export function Header() {
               {/* Other Links */}
               <Link
                 to="/"
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
                 className={`flex items-center justify-between px-4 py-4 rounded-xl font-bold text-lg mb-1 min-h-[48px] ${
                   isActive('/') ? 'text-primary bg-orange-50' : 'text-stone-700 active:bg-stone-50'
                 }`}
