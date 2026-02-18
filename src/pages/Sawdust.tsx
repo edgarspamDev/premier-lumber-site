@@ -4,7 +4,7 @@ import { PageHeader } from '../components/PageHeader';
 import { Icon } from '../components/Icons';
 import { SEO } from '../components/SEO';
 import { categorizedPhotos } from '../data/categorized-photos';
-import sawdustHeroImage from '../assets/images/lumbrr/20260119_103929.jpg';
+import sawdustHeroImage from '../assets/images/lumbrr/20260119_103929.opt.webp';
 
 export function Sawdust() {
   const [pieces, setPieces] = useState<string>('1');
@@ -23,12 +23,12 @@ export function Sawdust() {
     <div>
       <SEO 
         title="Bulk Sawdust & Shavings"
-        description="Buy bulk sawdust and shavings for animal bedding, landscaping, and industrial use. Available by truckload. Premier Lumber Co, Gary, IN. Call (219) 938-6275."
+        description="Buy bulk sawdust and shavings for animal bedding, landscaping, and industrial use. Available by truckload. Premier Lumber Co, Gary, IN. Call (219) 398-2010."
         path="/sawdust"
       />
       <PageHeader 
         title="Sawdust & Custom Lumber" 
-        subtitle="Bulk materials for farms, landscaping, and construction."
+        subtitle="Clean bulk sawdust and custom lumber. Loaded fast, priced right."
         bgImage={sawdustHeroImage}
       />
 
@@ -36,12 +36,12 @@ export function Sawdust() {
         <div className="container-custom">
 
           {/* Tap to Call - Mobile */}
-          <a href="tel:+12199386275" className="tap-to-call mb-8">
+          <a href="tel:+12193982010" className="tap-to-call mb-8">
             <div className="flex items-center gap-3">
               <Icon name="phone" size={22} />
               <div>
                 <p className="font-bold text-base">Call For Pricing</p>
-                <p className="text-sm text-white/80">(219) 938-6275</p>
+                <p className="text-sm text-white/80">(219) 398-2010</p>
               </div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
@@ -50,9 +50,9 @@ export function Sawdust() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
             {/* Content */}
             <div>
-              <h2 className="font-extrabold mb-6">Bulk Sawdust & Shavings</h2>
+              <h2 className="font-extrabold mb-6">Get Bulk Sawdust Without the Wait</h2>
               <p className="text-stone-600 text-base md:text-lg mb-6">
-                We produce high volumes of clean sawdust and shavings from our milling operations. Ideal for:
+                Clean sawdust and shavings from our milling operations, available by the truckload. Ideal for:
               </p>
 
               {/* Feature bullets */}

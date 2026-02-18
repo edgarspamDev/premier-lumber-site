@@ -34,17 +34,22 @@ export function Header() {
 
   return (
     <>
-      <header className="bg-white/95 backdrop-blur-md sticky top-0 z-50 border-b border-stone-200/80 shadow-sm transition-all duration-300">
+      <header className="bg-white sticky top-0 z-50 border-b-2 border-stone-200">
         {/* Top Bar - Desktop only (dark, bold) */}
         <div className="hidden md:block bg-dark text-white text-sm py-2.5">
           <div className="container-custom flex justify-between items-center">
-            <div className="flex items-center gap-2 text-stone-300">
-              <Icon name="location" size={16} className="text-primary" />
-              <span>6717 Atcheson Dr, Gary, IN 46403</span>
-            </div>
-            <a href="tel:+12199386275" className="flex items-center gap-2 font-bold text-white hover:text-primary transition-colors">
+              <a 
+                href="https://www.google.com/maps/search/?api=1&query=724+Chicago+Ave,+East+Chicago,+IN+46312" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center gap-2 text-stone-300 hover:text-white transition-colors"
+              >
+                <Icon name="location" size={16} className="text-primary" />
+                <span>724 Chicago Ave, East Chicago, IN 46312</span>
+              </a>
+            <a href="tel:+12193982010" className="flex items-center gap-2 font-bold text-white hover:text-primary transition-colors">
               <Icon name="phone" size={16} className="text-primary" />
-              (219) 938-6275
+              (219) 398-2010
             </a>
           </div>
         </div>
@@ -52,26 +57,26 @@ export function Header() {
         {/* Main Header Bar */}
         <div className="container-custom py-3 md:py-4">
           <div className="flex justify-between items-center">
-            {/* Logo - Always shows name */}
-            <Link to="/" className="flex items-center gap-3 group">
+            {/* Logo - Beaver mascot with text */}
+            <Link to="/" className="flex items-center gap-3 group" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <img
-                src="/logo.png"
-                alt="Premier Lumber Co - Beaver mascot with log truck"
-                className="h-14 md:h-16 lg:h-[4.5rem] w-auto object-contain group-hover:scale-105 transition-transform"
+                src="/logo.svg"
+                alt="Premier Lumber Co - Beaver Mascot"
+                className="h-12 md:h-14 lg:h-16 w-auto object-contain group-hover:scale-105 transition-transform"
               />
               <div className="flex flex-col">
-                <span className="font-extrabold text-lg md:text-xl lg:text-2xl leading-none tracking-tight"><span className="text-charcoal">Premier </span><span className="text-primary">Lumber</span></span>
-                <span className="text-[11px] md:text-xs lg:text-sm text-stone-500 font-semibold tracking-wide uppercase mt-0.5">Quality Wood Products</span>
+                <span className="font-heading font-extrabold text-base sm:text-lg md:text-xl leading-none tracking-tight"><span className="text-charcoal">Premier </span><span className="text-primary">Lumber</span></span>
+                <span className="text-[10px] sm:text-xs md:text-sm text-primary/80 font-bold tracking-wide">Quality Wood Products</span>
               </div>
             </Link>
 
             {/* Desktop Nav - Cleaner */}
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav className="hidden lg:flex items-center gap-2">
               {mainLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
+                  className={`px-3 py-2 rounded-lg font-bold text-sm whitespace-nowrap transition-all ${
                     isActive(link.path)
                       ? 'text-primary bg-primary/10'
                       : 'text-stone-600 hover:text-charcoal hover:bg-stone-100'
@@ -80,7 +85,7 @@ export function Header() {
                   {link.name}
                 </Link>
               ))}
-              <Link to="/contact" className="ml-4 px-6 py-3 rounded-lg font-bold text-sm text-white bg-gradient-to-r from-primary to-orange-600 shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-300 flex items-center gap-2">
+              <Link to="/contact" className="ml-4 btn btn-primary flex items-center gap-2 text-sm py-3">
                 Get Free Quote →
               </Link>
             </nav>
@@ -88,7 +93,7 @@ export function Header() {
             {/* Mobile Right Side: Phone + Hamburger */}
             <div className="flex items-center gap-2 lg:hidden">
               <a
-                href="tel:+12199386275"
+                href="tel:+12193982010"
                 className="w-11 h-11 flex items-center justify-center rounded-xl bg-primary text-white active:bg-primary-dark transition-colors"
                 aria-label="Call Premier Lumber"
               >
@@ -184,7 +189,7 @@ export function Header() {
             {/* Drawer Footer CTAs */}
             <div className="p-4 border-t border-stone-100 bg-stone-50">
               <div className="grid grid-cols-2 gap-3">
-                <a href="tel:+12199386275" className="btn btn-secondary justify-center text-sm min-h-[48px]">
+                <a href="tel:+12193982010" className="btn btn-secondary justify-center text-sm min-h-[48px]">
                   <Icon name="phone" size={18} className="mr-2" /> Call Now
                 </a>
                 <Link to="/contact" className="btn btn-primary justify-center text-sm min-h-[48px]" onClick={() => setIsOpen(false)}>

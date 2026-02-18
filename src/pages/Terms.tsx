@@ -20,23 +20,28 @@ export function Terms() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-bold text-charcoal mb-4">4. Limitation of Liability</h2>
-        <p>In no event shall Premier Lumber Co, nor any of its officers, directors and employees, be liable to you for anything arising out of or in any way connected with your use of this website, whether such liability is under contract, tort or otherwise.</p>
+        <h2 className="text-2xl font-bold text-charcoal mb-4">4. Waiver of Liability</h2>
+        <p>Premier Lumber Co is not responsible for any damages, injuries, or losses arising from the use of our products or services, including but not limited to damage during delivery, loading, unloading, or log pickup operations. All products are sold "as-is" and customers assume full responsibility upon receipt. By purchasing products or using our services, you agree to hold Premier Lumber Co harmless from any claims, damages, or liabilities.</p>
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-bold text-charcoal mb-4">5. Governing Law</h2>
+        <h2 className="text-2xl font-bold text-charcoal mb-4">5. Limitation of Liability</h2>
+        <p>In no event shall Premier Lumber Co, nor any of its officers, directors and employees, be liable to you for anything arising out of or in any way connected with your use of this website or our products and services, whether such liability is under contract, tort or otherwise. Premier Lumber Co shall not be held liable for any indirect, consequential, or incidental damages.</p>
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-2xl font-bold text-charcoal mb-4">6. Governing Law</h2>
         <p>These Terms shall be governed and construed in accordance with the laws of the State of Indiana, United States, without regard to its conflict of law provisions.</p>
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-bold text-charcoal mb-4">6. Contact Information</h2>
+        <h2 className="text-2xl font-bold text-charcoal mb-4">7. Contact Information</h2>
         <p>Questions about the Terms of Service should be sent to us at:</p>
          <div className="mt-4 bg-stone-100 p-6 rounded-lg">
           <p className="font-bold">Premier Lumber Co</p>
-          <p>6717 Atcheson Dr</p>
-          <p>Gary, IN 46403</p>
-          <p>Phone: (219) 938-6275</p>
+          <p>724 Chicago Ave</p>
+          <p>East Chicago, IN 46312</p>
+          <p>Phone: (219) 398-2010</p>
         </div>
       </section>
     </div>

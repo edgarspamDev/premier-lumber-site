@@ -8,24 +8,24 @@ export function Contact() {
     <div>
       <SEO 
         title="Contact Us"
-        description="Get a free quote from Premier Lumber Co. Call (219) 938-6275 or fill out our form. Located at 6717 Atcheson Dr, Gary, IN 46403. Mon-Fri 7AM-3PM."
+        description="Get a free quote from Premier Lumber Co. Call (219) 398-2010 or fill out our form. Office: 724 Chicago Ave, East Chicago, IN 46312. Mon-Thu 6AM-3PM, Fri-Sat 6AM-2PM."
         path="/contact"
       />
       <PageHeader 
         title="Contact Us" 
-        subtitle="Get a quote or ask a question. We respond quickly."
+        subtitle="Tell us what you need. We'll get back to you today."
       />
       
       <section className="section bg-white">
         <div className="container-custom">
 
           {/* Tap to Call - Mobile */}
-          <a href="tel:+12199386275" className="tap-to-call mb-8">
+          <a href="tel:+12193982010" className="tap-to-call mb-8">
             <div className="flex items-center gap-3">
               <Icon name="phone" size={22} />
               <div>
                 <p className="font-bold text-base">Tap to Call</p>
-                <p className="text-sm text-white/80">(219) 938-6275</p>
+                <p className="text-sm text-white/80">(219) 398-2010</p>
               </div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
@@ -44,8 +44,17 @@ export function Contact() {
                   </div>
                   <div>
                     <h3 className="font-bold">Visit Us</h3>
-                    <p className="text-stone-600 text-sm">6717 Atcheson Dr<br/>Gary, IN 46403</p>
-                    <a href="https://maps.google.com/?q=6717+Atcheson+Dr+Gary+IN+46403" target="_blank" rel="noopener noreferrer" className="text-primary font-bold text-sm mt-1 inline-block hover:underline">Get Directions &rarr;</a>
+                    <p className="text-stone-600 text-sm">
+                      <a 
+                        href="https://www.google.com/maps/search/?api=1&query=724+Chicago+Ave,+East+Chicago,+IN+46312" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="hover:text-primary transition-colors"
+                      >
+                        724 Chicago Ave<br/>East Chicago, IN 46312
+                      </a>
+                    </p>
+                    <a href="https://maps.google.com/?q=724+Chicago+Ave+East+Chicago+IN+46312" target="_blank" rel="noopener noreferrer" className="text-primary font-bold text-sm mt-1 inline-block hover:underline">Get Directions &rarr;</a>
                   </div>
                 </div>
 
@@ -55,8 +64,11 @@ export function Contact() {
                   </div>
                   <div>
                     <h3 className="font-bold">Call Us</h3>
-                    <p className="text-stone-500 text-sm mb-1">Mon-Fri: 7:00 AM - 3:00 PM</p>
-                    <a href="tel:+12199386275" className="text-lg font-bold text-charcoal hover:text-primary transition-colors">(219) 938-6275</a>
+                    <p className="text-stone-500 text-sm mb-1">
+                      <strong>Lumber Yard:</strong> Mon-Thu 6AM-3PM | Fri-Sat 6AM-2PM<br/>
+                      <strong>Office:</strong> Mon-Fri 8AM-4PM
+                    </p>
+                    <a href="tel:+12193982010" className="text-lg font-bold text-charcoal hover:text-primary transition-colors">(219) 398-2010</a>
                   </div>
                 </div>
 
@@ -76,7 +88,7 @@ export function Contact() {
                 <iframe 
                   title="Premier Lumber Location"
                   className="w-full h-full border-0"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2974.767784307524!2d-87.2764846845617!3d41.6027589792451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8811e7e40348700d%3A0xb30e4f3a9689456!2s6717%20Atcheson%20Dr%2C%20Gary%2C%20IN%2046403!5e0!3m2!1sen!2sus!4v1674068593414!5m2!1sen!2sus" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2973.5!2d-87.4546!3d41.6393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s724+Chicago+Ave%2C+East+Chicago%2C+IN+46312!5e0!3m2!1sen!2sus" 
                   allowFullScreen={true}
                   loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
@@ -86,7 +98,7 @@ export function Contact() {
 
             {/* Form - appears first on mobile */}
             <div className="order-1 lg:order-2 bg-white rounded-2xl md:rounded-3xl shadow-xl shadow-stone-200/50 border border-stone-100 p-6 md:p-8">
-              <h3 className="font-bold mb-1">Request A Quote</h3>
+              <h3 className="font-bold mb-1">Get Your Price in Minutes</h3>
               <RFQForm />
             </div>
 

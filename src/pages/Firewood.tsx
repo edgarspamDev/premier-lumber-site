@@ -2,19 +2,19 @@ import { PageHeader } from '../components/PageHeader';
 import { Link } from 'react-router-dom';
 import { Icon } from '../components/Icons';
 import { SEO } from '../components/SEO';
-import firewoodImage from '../assets/images/lumbrr/IMG-20260210-WA0002.jpg'; // Seasoned firewood ready for delivery
+import firewoodImage from '../assets/images/lumbrr/IMG-20260202-WA0004.jpg'; // Bin of firewood blocks
 
 export function Firewood() {
   return (
     <div>
       <SEO 
         title="Seasoned Firewood"
-        description="Buy seasoned hardwood firewood in Gary & NW Indiana. Oak, cherry, ash, elm mix. Bulk discounts and delivery available. Call (219) 938-6275."
+        description="Buy seasoned hardwood firewood in Gary & NW Indiana. Oak, cherry, ash, elm mix. Bulk discounts and delivery available. Call (219) 398-2010."
         path="/firewood"
       />
       <PageHeader 
         title="Firewood" 
-        subtitle="Seasoned hardwood. Clean burning. Locally sourced."
+        subtitle="Dry, ready-to-burn hardwood. No guessing, no green wood, no wasted trips."
         bgImage={firewoodImage}
       />
 
@@ -22,12 +22,12 @@ export function Firewood() {
         <div className="container-custom">
 
           {/* Tap to Call - Mobile */}
-          <a href="tel:+12199386275" className="tap-to-call mb-8">
+          <a href="tel:+12193982010" className="tap-to-call mb-8">
             <div className="flex items-center gap-3">
               <Icon name="phone" size={22} />
               <div>
                 <p className="font-bold text-base">Call For Pricing</p>
-                <p className="text-sm text-white/80">(219) 938-6275</p>
+                <p className="text-sm text-white/80">(219) 398-2010</p>
               </div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
@@ -50,7 +50,7 @@ export function Firewood() {
 
             {/* Content */}
             <div>
-              <h2 className="font-extrabold mb-6">Seasoned Hardwood Firewood</h2>
+              <h2 className="font-extrabold mb-6">Light It Tonight. Seasoned and Ready.</h2>
               <p className="text-stone-600 text-base md:text-lg mb-6">
                 Our firewood is air-dried for optimal burn. Hardwood mix burns longer and cleaner than softwood.
               </p>
@@ -89,7 +89,7 @@ export function Firewood() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/contact" className="btn btn-primary">Order Firewood Today</Link>
-                <a href="tel:+12199386275" className="btn btn-secondary">
+                <a href="tel:+12193982010" className="btn btn-secondary">
                   <Icon name="phone" size={18} className="mr-2" /> Call for Pricing
                 </a>
               </div>

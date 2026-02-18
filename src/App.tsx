@@ -12,7 +12,8 @@ import {
   TreeServicePartners,
   Contact,
   Privacy,
-  Terms
+  Terms,
+  NotFound
 } from './pages';
 import PhotoReview from './pages/PhotoReview';
 
@@ -35,7 +36,7 @@ function App() {
           <Route path="privacy" element={<Privacy />} />
           <Route path="terms" element={<Terms />} />
           <Route path="photo-review" element={<PhotoReview />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -8,19 +8,19 @@ export function About() {
     <div>
       <SEO 
         title="About Us"
-        description="Premier Lumber Co has served Gary and Northwest Indiana for over 30 years. Family-owned, locally focused. Quality pallets, firewood, sawdust, and lumber."
+        description="Premier Lumber Co has served Northwest Indiana for over 26 years. Family-owned, locally focused. Quality pallets, firewood, sawdust, and lumber."
         path="/about"
       />
       <PageHeader 
         title="About Premier Lumber" 
-        subtitle="Family-owned and serving Northwest Indiana for over 30 years."
+        subtitle="Family-owned and serving Northwest Indiana since 2000."
       />
 
       <section className="section bg-white">
         <div className="container-custom max-w-3xl">
           <div className="prose prose-lg mx-auto text-stone-600">
             <p>
-              Since 1994, Premier Lumber Co. has been the trusted local source for high-quality wood products in Gary, Indiana and the surrounding region.
+              Since 2000, Premier Lumber Co. has been the trusted local source for high-quality wood products in Northwest Indiana and the surrounding region.
               We are a family-owned and operated business dedicated to providing personalized service that big box stores simply can't match.
             </p>
             <h3>Our Mission</h3>

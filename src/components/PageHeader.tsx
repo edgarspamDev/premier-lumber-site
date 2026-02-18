@@ -8,9 +8,17 @@ export function PageHeader({ title, subtitle, bgImage }: PageHeaderProps) {
   return (
     <div className="relative bg-brand-text pt-16 pb-16 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24 overflow-hidden">
       {/* Background with overlay */}
-      <div className="absolute inset-0 z-0 opacity-40">
-        <div className={`w-full h-full bg-cover bg-center ${bgImage ? '' : 'bg-brand-brown'}`}
-             style={bgImage ? { backgroundImage: `url(${bgImage})` } : {}} />
+      <div className="absolute inset-0 z-0">
+        {bgImage ? (
+          <img 
+            src={bgImage} 
+            alt="Header Background" 
+            className="w-full h-full object-cover opacity-40"
+            fetchPriority="high"
+          />
+        ) : (
+          <div className="w-full h-full bg-brand-brown opacity-40" />
+        )}
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-brand-text via-brand-text/80 to-transparent z-0" />
 

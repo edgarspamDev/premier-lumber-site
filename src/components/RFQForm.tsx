@@ -97,7 +97,7 @@ export function RFQForm() {
         <h3 className="text-xl font-bold text-green-800 mb-2">Quote Request Sent!</h3>
         <p className="text-stone-600 mb-4">{submitMessage}</p>
         <p className="text-sm text-stone-500">
-          Need faster help? Call <a href="tel:+12199386275" className="font-bold text-primary">(219) 938-6275</a>
+          Need faster help? Call <a href="tel:+12193982010" className="font-bold text-primary">(219) 398-2010</a>
         </p>
       </div>
     );
@@ -113,14 +113,14 @@ export function RFQForm() {
       action="/mail.php"
     >
       {/* Helper text */}
-      <p className="text-sm text-stone-500 text-center font-medium">Just name & phone — we'll call you back fast</p>
+      <p className="text-sm text-stone-500 text-center font-medium">Takes 30 seconds. We'll call you back today.</p>
 
       {/* Error Banner */}
       {submitStatus === 'error' && (
         <div className="p-4 bg-red-50 border border-red-200 rounded-xl">
           <p className="text-red-800 font-medium text-sm">{submitMessage}</p>
           <p className="text-red-700 text-xs mt-1">
-            Or call us at <a href="tel:+12199386275" className="font-bold">(219) 938-6275</a>
+            Or call us at <a href="tel:+12193982010" className="font-bold">(219) 398-2010</a>
           </p>
         </div>
       )}
@@ -284,12 +284,13 @@ export function RFQForm() {
             Sending...
           </span>
         ) : (
-          'Get Same-Day Pricing'
+          'Get My Price Now'
         )}
       </button>
 
       <p className="text-xs text-stone-400 text-center">
-        We respect your privacy. Info is only used to respond to your request.
+        No spam. No mailing lists. Just your quote.
+        By submitting, you agree to our <a href="/terms" className="underline hover:text-stone-600">Terms of Service</a>.
       </p>
     </form>
   );

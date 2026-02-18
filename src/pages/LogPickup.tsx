@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Icon } from '../components/Icons';
 import { SEO } from '../components/SEO';
 import { categorizedPhotos } from '../data/categorized-photos';
-import logHeroImage from '../assets/images/lumbrr/IMG-20260209-WA0014.jpg';
+import logHeroImage from '../assets/images/lumbrr/logpick.webp';
 
 export function LogPickup() {
   // Use the first approved log image as the main visual
@@ -12,13 +12,13 @@ export function LogPickup() {
   return (
     <div>
       <SEO 
-        title="Free Log Pickup"
-        description="We pick up qualifying hardwood logs at no cost in Gary & NW Indiana. Walnut, oak, cherry, ash, maple, hickory. 14&quot;+ diameter, 8'+ length. Call (219) 938-6275."
+        title="Free Log Pickup | Tree Log Recycling Indiana"
+        description="We pick up qualifying hardwood logs at no cost in Gary, East Chicago & NW Indiana. Walnut, oak, cherry, ash, maple. 14&quot;+ diameter. Call (219) 398-2010. Sustainable wood recycling."
         path="/log-pickup"
       />
       <PageHeader 
         title="Free Log Pickup" 
-        subtitle="We pick up qualifying hardwood logs at no cost."
+        subtitle="Your logs, our truck. Zero cost if they qualify."
         bgImage={logHeroImage}
       />
 
@@ -26,12 +26,12 @@ export function LogPickup() {
         <div className="container-custom">
 
           {/* Tap to Call - Mobile */}
-          <a href="tel:+12199386275" className="tap-to-call mb-8">
+          <a href="tel:+12193982010" className="tap-to-call mb-8">
             <div className="flex items-center gap-3">
               <Icon name="phone" size={22} />
               <div>
                 <p className="font-bold text-base">Check Eligibility</p>
-                <p className="text-sm text-white/80">(219) 938-6275</p>
+                <p className="text-sm text-white/80">(219) 398-2010</p>
               </div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
@@ -50,9 +50,9 @@ export function LogPickup() {
             </div>
 
             <div>
-              <h2 className="font-extrabold mb-4">Don't Pay to Remove Your Logs</h2>
+              <h2 className="font-extrabold mb-4">Stop Paying to Get Rid of Good Wood</h2>
               <p className="text-stone-600 text-base md:text-lg mb-8 leading-relaxed">
-                If your hardwood logs meet our requirements, we'll send our truck to pick them up — at no cost to you. We repurpose these logs into lumber, keeping them out of landfills and providing value back to the community.
+                If your hardwood logs meet our requirements, we'll send our truck to pick them up at no cost to you. We repurpose these logs into lumber, keeping them out of landfills and providing value back to the community.
               </p>
 
               {/* What We Accept */}
@@ -103,6 +103,10 @@ export function LogPickup() {
 
               <div className="bg-stone-50 rounded-xl p-4 border border-stone-200 mb-8">
                 <p className="text-sm text-stone-700 mb-2">
+                  <strong>Liability Waiver:</strong> Premier Lumber is not responsible for any property damage (lawns, driveways, etc.) during log retrieval operations. Homeowner assumes all risks associated with heavy truck access.
+                </p>
+                <div className="h-px bg-stone-200 my-3"></div>
+                <p className="text-sm text-stone-700 mb-2">
                   Need a tree cut down first?
                 </p>
                 <p className="text-xs text-stone-500 mb-3">
@@ -117,36 +121,19 @@ export function LogPickup() {
                 <Link to="/contact" className="btn btn-primary flex-1">
                     Schedule FREE Pickup
                 </Link>
-                <a href="tel:+12199386275" className="btn btn-secondary flex-1">
+                <a href="tel:+12193982010" className="btn btn-secondary flex-1">
                   <Icon name="phone" size={18} className="mr-2" /> Call to Confirm
                 </a>
               </div>
             </div>
           </div>
 
-          {/* Gallery Section */}
+{/* Gallery Section - Hidden per user request (no photos yet) */}
+          {/* 
           {categorizedPhotos.logPickup.length > 1 && (
-            <div className="mt-12 md:mt-16 border-t border-stone-200 pt-10 md:pt-12">
-                 <div className="text-center mb-8">
-                    <h2 className="font-bold">Recent Pickups</h2>
-                    <p className="mt-3 text-lg text-stone-600">Examples of logs we collect and process.</p>
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
-                    {categorizedPhotos.logPickup.slice(1).map((photo, index) => (
-                        <div key={photo.src || index} className="group relative aspect-[4/3] overflow-hidden rounded-xl shadow-lg bg-stone-100">
-                            <img 
-                                src={photo.src} 
-                                alt={photo.alt} 
-                                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                                <p className="text-white text-sm font-medium">{photo.alt}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-          )}
+             ...
+          )} 
+          */}
         </div>
       </section>
     </div>

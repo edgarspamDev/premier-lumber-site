@@ -149,8 +149,8 @@ export function TreeServicePartners() {
                 Call us for current partner options in Gary and Northwest Indiana. We'll point you in the right direction.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="tel:+12199386275" className="btn btn-primary text-lg">
-                  <Icon name="phone" size={20} className="mr-2" /> (219) 938-6275
+                <a href="tel:+12193982010" className="btn btn-primary text-lg">
+                  <Icon name="phone" size={20} className="mr-2" /> (219) 398-2010
                 </a>
                 <Link to="/log-pickup" className="btn bg-white/10 text-white border border-white/20 hover:bg-white/20 text-lg">
                   ← Back to Log Pickup

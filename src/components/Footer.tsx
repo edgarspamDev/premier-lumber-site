@@ -13,7 +13,7 @@ export function Footer() {
           <div className="col-span-2 lg:col-span-1">
             <Link to="/" className="inline-flex items-center gap-3 mb-6">
               <img
-                src="/logo.png"
+                src="/logo.svg"
                 alt="Premier Lumber Co"
                 className="h-14 w-auto object-contain"
               />
@@ -23,12 +23,12 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-stone-400 mb-6 text-sm leading-relaxed">
-              Serving Gary & Northwest Indiana since 1985. Pallets, firewood, custom lumber.
+              Serving Gary & Northwest Indiana Since 2000. Pallets, firewood, custom lumber.
               <span className="text-white font-medium"> Family-owned.</span>
             </p>
-            <a href="tel:+12199386275" className="inline-flex items-center gap-2 text-primary font-bold hover:text-primary-light transition-colors">
+            <a href="tel:+12193982010" className="inline-flex items-center gap-2 text-primary font-bold hover:text-primary-light transition-colors">
               <Icon name="phone" size={16} />
-              (219) 938-6275
+              (219) 398-2010
             </a>
           </div>
 
@@ -59,17 +59,22 @@ export function Footer() {
           <div>
             <h3 className="font-bold text-base mb-4 text-white uppercase tracking-wide">Visit Us</h3>
             <div className="space-y-3 text-stone-400">
-              <div className="flex items-start gap-3">
-                <Icon name="location" className="text-primary mt-0.5 shrink-0" size={18} />
-                <span>6717 Atcheson Dr<br />Gary, IN 46403</span>
-              </div>
+              <a 
+                href="https://www.google.com/maps/search/?api=1&query=724+Chicago+Ave,+East+Chicago,+IN+46312" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-start gap-3 hover:text-white transition-colors group"
+              >
+                <Icon name="location" className="text-primary mt-0.5 shrink-0 group-hover:text-primary-light" size={18} />
+                <span>724 Chicago Ave<br />East Chicago, IN 46312</span>
+              </a>
               <div className="flex items-center gap-3">
                 <Icon name="clock" className="text-primary shrink-0" size={18} />
-                <span>Mon-Fri: 7AM - 3PM</span>
+                <span>Mon-Thu: 6AM-3PM<br />Fri & Sat: 6AM-2PM<br />Sun: Closed</span>
               </div>
             </div>
             <div className="mt-6">
-              <a href="https://www.google.com/maps/dir//6717+Atcheson+Dr,+Gary,+IN+46403" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-2 rounded-lg font-bold text-sm hover:bg-primary/30 transition-colors border border-primary/30">
+              <a href="https://www.google.com/maps/dir//724+Chicago+Ave,+East+Chicago,+IN+46312" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-2 rounded-lg font-bold text-sm hover:bg-primary/30 transition-colors border border-primary/30">
                 Get Directions →
               </a>
             </div>

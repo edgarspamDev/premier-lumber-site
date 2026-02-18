@@ -1,5 +1,5 @@
-@import '@fontsource-variable/manrope';
-@import '@fontsource-variable/space-grotesk';
+@import "@fontsource-variable/manrope";
+@import "@fontsource-variable/space-grotesk";
 
 @tailwind base;
 @tailwind components;
@@ -12,7 +12,9 @@
     -webkit-text-size-adjust: 100%;
   }
 
-  a, button, [role="button"] {
+  a,
+  button,
+  [role="button"] {
     touch-action: manipulation;
   }
 
@@ -23,7 +25,12 @@
   }
 
   /* HORMOZI-STYLE TYPOGRAPHY: Bold, high contrast, clear hierarchy */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading tracking-tight text-brand-text;
     line-height: 1.1;
   }
@@ -45,7 +52,9 @@
   }
 
   /* Prevent iOS zoom on form focus */
-  input, select, textarea {
+  input,
+  select,
+  textarea {
     font-size: 16px !important;
   }
 
@@ -140,6 +149,19 @@
     @apply py-10 sm:py-12 lg:py-16;
   }
 
+  .btn-ghost {
+    @apply bg-transparent text-white border-2 border-white backdrop-blur-sm;
+    box-shadow: 0 4px 14px -3px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (hover: hover) {
+    .btn-ghost:hover {
+      @apply bg-white text-primary border-white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.2);
+    }
+  }
+
   /* Tap to Call - Mobile CTA */
   .tap-to-call {
     @apply hidden md:flex lg:hidden bg-primary text-white rounded-xl p-4 items-center justify-between gap-3;
@@ -160,8 +182,12 @@
 
 /* Drawer slide in */
 @keyframes slideIn {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 .animate-slide-in {
@@ -186,8 +212,13 @@
 
 /* Subtle bounce for scroll indicator */
 @keyframes bounce-subtle {
-  0%, 100% { transform: translateY(0) translateX(-50%); }
-  50% { transform: translateY(-8px) translateX(-50%); }
+  0%,
+  100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  50% {
+    transform: translateY(-8px) translateX(-50%);
+  }
 }
 
 .animate-bounce-subtle {
@@ -200,11 +231,21 @@
   animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
-.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
-.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
-.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
-.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-children > *:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.stagger-children > *:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.stagger-children > *:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.stagger-children > *:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.stagger-children > *:nth-child(5) {
+  animation-delay: 0.5s;
+}
 
 /* Smooth image zoom on hover */
 .img-zoom {
@@ -219,4 +260,38 @@
 .btn:focus-visible,
 a:focus-visible {
   @apply outline-none ring-2 ring-primary ring-offset-2;
+}
+
+/* PRINT STYLES - Often Overlooked but Vital for Directions/Quotes */
+@media print {
+  @page { margin: 1cm; size: auto; }
+  body { 
+    background-color: white !important; 
+    color: black !important; 
+    -webkit-print-color-adjust: exact !important; 
+    print-color-adjust: exact !important;
+  }
+  
+  /* Hide non-essential elements */
+  header, footer, .sticky-cta, nav, .btn, button, iframe, .animate-bounce-subtle { 
+    display: none !important; 
+  }
+
+  /* Ensure text is readable */
+  h1, h2, h3, p, li { 
+    color: black !important; 
+    text-shadow: none !important;
+  }
+
+  /* Show full URLs for links */
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    font-weight: normal;
+  }
+
+  /* Don't show URL for local links or # */
+  a[href^="#"]:after, a[href^="/"]:after, a[href^="tel"]:after {
+    content: "";
+  }
 }

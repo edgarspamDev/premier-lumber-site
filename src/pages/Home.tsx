@@ -2,19 +2,19 @@ import { Link } from 'react-router-dom';
 import { Icon } from '../components/Icons';
 import { SEO } from '../components/SEO';
 import { AnimatedCounter, FadeInOnScroll } from '../components/Animations';
-import heroImage from '../assets/images/lumbrr/20260119_102704.jpg'; // Sawmill with log on machine
-import palletImage from '../assets/images/lumbrr/IMG-20260209-WA0016.jpg'; // Stack of Pallets
-import firewoodImage from '../assets/images/lumbrr/IMG-20260210-WA0002.jpg'; // Seasoned firewood ready for delivery
-import sawdustImage from '../assets/images/lumbrr/20260119_103650.jpg'; // Scrap bin - recognizable at card size
+import heroImage from '../assets/images/lumbrr/20260119_102704.opt.webp'; // Optimized Sawmill Hero
+import palletsImage from '../assets/images/lumbrr/Pallets.opt.webp'; // Optimized Pallet Stacks
+import firewoodImage from '../assets/images/lumbrr/IMG-20260202-WA0004.jpg'; // Bin of firewood blocks
+import sawdustImage from '../assets/images/lumbrr/sawdust-shovel.webp'; // Optimized Sawdust
 import customLumberImage from '../assets/images/lumbrr/20260119_103036.jpg'; // Large Log on Saw (reused for better quality)
-import logImage from '../assets/images/lumbrr/20260119_103036.jpg'; // Large Log on Saw
+import logImage from '../assets/images/lumbrr/logpick.webp'; // Correct Log Pickup WebP
 
 export function Home() {
   return (
     <>
       <SEO
         title="Premier Lumber Co | Pallets, Firewood & Custom Lumber | Gary, IN"
-        description="Need wood pallets, firewood, or custom lumber in NW Indiana? Premier Lumber delivers same-week. We also pick up your hardwood logs FREE. Call (219) 938-6275."
+        description="Need wood pallets, firewood, or custom lumber in NW Indiana? Premier Lumber delivers same-week. We also pick up your hardwood logs FREE. Call (219) 398-2010."
         path="/"
       />
 
@@ -40,19 +40,18 @@ export function Home() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 py-2 rounded-full text-sm font-semibold mb-5 sm:mb-8">
               <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-              Serving NW Indiana Since 1985
+              Serving NW Indiana Since 2000
             </div>
 
-            {/* H1 - Clean, powerful */}
+            {/* H1 - Hormozi Value Equation: Dream Outcome + Low Effort */}
             <h1 className="text-white text-[2.35rem] sm:text-5xl md:text-6xl lg:text-display-sm xl:text-display mb-4 sm:mb-6 leading-[1.05]">
-              Get Wood Products<br />
-              <span className="text-primary">Delivered This Week.</span>
+              Get Quality Wood Products<br />
+              <span className="text-primary">Without the Runaround.</span>
             </h1>
 
-            {/* Subtitle */}
-            <p className="text-base sm:text-lg md:text-xl text-white/85 mb-7 sm:mb-10 max-w-xl leading-relaxed">
-              Pallets. Firewood. Custom lumber.<br className="hidden sm:block" />
-              Straight from our sawmill to your site.
+            {/* Subtitle — outcome-first, friction-free */}
+            <p className="text-base sm:text-lg md:text-xl text-white mb-7 sm:mb-10 max-w-2xl leading-relaxed font-medium">
+              Pallets, firewood, sawdust, and custom lumber, <strong className="text-white">in stock year-round</strong>. Tell us what you need and we handle the rest. No middlemen, no back-and-forth.
             </p>
 
             {/* CTAs */}
@@ -60,24 +59,24 @@ export function Home() {
               <Link to="/contact" className="btn btn-primary w-full sm:w-auto text-base sm:text-lg">
                 Get Your Free Quote →
               </Link>
-              <a href="tel:+12199386275" className="btn btn-white w-full sm:w-auto text-base sm:text-lg">
-                <Icon name="phone" size={20} className="mr-2" /> (219) 938-6275
+              <a href="tel:+12193982010" className="btn btn-white w-full sm:w-auto text-base sm:text-lg">
+                <Icon name="phone" size={20} className="mr-2" /> (219) 398-2010
               </a>
             </div>
 
-            {/* Trust points - stacked on phone, horizontal on larger screens */}
+            {/* Trust points — Hormozi: Certainty + Speed + Low Effort */}
             <div className="grid grid-cols-1 sm:flex sm:flex-wrap gap-2 sm:gap-x-8 sm:gap-y-3 text-sm text-white/80">
               <div className="flex items-center gap-2 rounded-lg bg-black/30 px-3 py-2 sm:bg-transparent sm:px-0 sm:py-0">
                 <Icon name="check" className="text-primary" size={18} />
-                <span><strong className="text-white">Same-week</strong> delivery</span>
+                <span><strong className="text-white">Same-day</strong> pricing</span>
               </div>
               <div className="flex items-center gap-2 rounded-lg bg-black/30 px-3 py-2 sm:bg-transparent sm:px-0 sm:py-0">
                 <Icon name="check" className="text-primary" size={18} />
-                <span><strong className="text-white">FREE</strong> log pickup</span>
+                <span><strong className="text-white">In stock</strong> year-round</span>
               </div>
               <div className="flex items-center gap-2 rounded-lg bg-black/30 px-3 py-2 sm:bg-transparent sm:px-0 sm:py-0">
                 <Icon name="check" className="text-primary" size={18} />
-                <span><strong className="text-white">40+ years</strong> experience</span>
+                <span><strong className="text-white">26 years,</strong> one location</span>
               </div>
             </div>
           </div>
@@ -98,7 +97,7 @@ export function Home() {
             {/* Years in Business */}
             <FadeInOnScroll className="flex flex-col items-center justify-center px-2 md:px-4" delay={0}>
               <div className="text-3xl md:text-5xl font-extrabold text-charcoal leading-none">
-                <AnimatedCounter end={40} duration={2000} /><span className="text-primary">+</span>
+                <AnimatedCounter end={26} duration={2000} /><span className="text-primary">+</span>
               </div>
               <div className="text-stone-500 text-xs md:text-sm font-bold uppercase tracking-tight mt-2">Years in<br className="md:hidden" /> Business</div>
             </FadeInOnScroll>
@@ -108,7 +107,7 @@ export function Home() {
               <div className="text-3xl md:text-5xl font-extrabold text-primary leading-none">
                 <AnimatedCounter end={1000} duration={2200} /><span className="text-charcoal">s</span>
               </div>
-              <div className="text-stone-500 text-xs md:text-sm font-bold uppercase tracking-tight mt-2">Pallets in<br className="md:hidden" /> Stock</div>
+              <div className="text-stone-500 text-xs md:text-sm font-bold uppercase tracking-tight mt-2">Always<br className="md:hidden" /> In Stock</div>
             </FadeInOnScroll>
             
             {/* Free Log Pickup — shimmer effect */}
@@ -134,7 +133,7 @@ export function Home() {
               <div className="text-3xl md:text-5xl font-extrabold text-charcoal leading-none">
                 <AnimatedCounter end={24} duration={1800} /><span className="text-primary">hr</span>
               </div>
-              <div className="text-stone-500 text-xs md:text-sm font-bold uppercase tracking-tight mt-2">Quote<br className="md:hidden" /> Response</div>
+              <div className="text-stone-500 text-xs md:text-sm font-bold uppercase tracking-tight mt-2">Same-Day<br className="md:hidden" /> Pricing</div>
             </FadeInOnScroll>
           </div>
         </div>
@@ -152,12 +151,12 @@ export function Home() {
           </div>
 
           {/* Mobile CTA */}
-          <a href="tel:+12199386275" className="tap-to-call mb-8">
+          <a href="tel:+12193982010" className="tap-to-call mb-8">
             <div className="flex items-center gap-3">
               <Icon name="phone" size={22} />
               <div>
                 <p className="font-bold text-base">Talk to a Human</p>
-                <p className="text-sm text-white/80">(219) 938-6275</p>
+                <p className="text-sm text-white/80">(219) 398-2010</p>
               </div>
             </div>
             <span className="text-sm font-bold">Call →</span>
@@ -168,21 +167,21 @@ export function Home() {
             <div className="card group">
               <div className="h-48 md:h-56 overflow-hidden bg-stone-100 relative">
                 <img
-                  src={palletImage}
+                  src={palletsImage}
                   alt="Stack of wooden pallets"
                   className="w-full h-full object-cover transition duration-300 group-hover:scale-105"
                   width={800} height={600}
                   loading="lazy"
                 />
                 <div className="absolute top-4 right-4 bg-success text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide">
-                  In Stock
+                  In Stock Year-Round
                 </div>
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
                   <Icon name="pallets" className="text-primary" size={22} /> Pallets
                 </h3>
-                <p className="text-stone-600 mb-4">New, used & heat-treated. GMA standard. <strong>We buy cores too.</strong></p>
+                <p className="text-stone-600 mb-4">Stop scrambling for pallets. New, used & heat-treated, always in stock. <strong>We buy your cores too.</strong></p>
                 <Link to="/pallets" className="inline-flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all">
                   See Options <span>→</span>
                 </Link>
@@ -207,7 +206,7 @@ export function Home() {
                 <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
                   <Icon name="firewood" className="text-primary" size={22} /> Firewood
                 </h3>
-                <p className="text-stone-600 mb-4">Hardwood mix. <strong>Dry, ready to burn.</strong> Pickup or delivery.</p>
+                <p className="text-stone-600 mb-4">Burn clean all season. Seasoned hardwood, ready to light. <strong>Pickup or delivered to your door.</strong></p>
                 <Link to="/firewood" className="inline-flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all">
                   Get Pricing <span>→</span>
                 </Link>
@@ -229,7 +228,7 @@ export function Home() {
                 <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
                   <Icon name="sawdust" className="text-primary" size={22} /> Sawdust
                 </h3>
-                <p className="text-stone-600 mb-4">Bulk sawdust & shavings. <strong>Great for bedding & composting.</strong></p>
+                <p className="text-stone-600 mb-4">Bulk sawdust on demand. Bedding, landscaping, spill cleanup. <strong>Loaded while you wait.</strong></p>
                 <Link to="/sawdust" className="inline-flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all">
                   Bulk Pricing <span>→</span>
                 </Link>
@@ -254,7 +253,7 @@ export function Home() {
                 <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
                   <Icon name="saw" className="text-primary" size={22} /> Custom Lumber
                 </h3>
-                <p className="text-stone-600 mb-4">Cut to your specs. <strong>Hardwood slabs, beams & boards.</strong></p>
+                <p className="text-stone-600 mb-4">Can't find the right size? Tell us what you need. <strong>We'll cut it from local hardwood.</strong></p>
                 <Link to="/custom-lumber" className="inline-flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all">
                   Get Details <span>→</span>
                 </Link>
@@ -286,12 +285,12 @@ export function Home() {
                 Free Service
               </div>
               <h2 className="text-white mb-6">
-                Got Logs?<br />
-                <span className="text-primary">We Pick Them Up Free.</span>
+                Got Logs Sitting Around?<br />
+                <span className="text-primary">We'll Come Get Them. For Free.</span>
               </h2>
               <p className="text-xl text-stone-200 mb-8 leading-relaxed">
-                Stop paying to haul away hardwood logs. If they qualify, we'll send our truck —
-                <strong className="text-white"> you pay nothing.</strong>
+                No hauling, no dump fees, no hassle. If your hardwood logs qualify, our truck shows up and takes them.
+                <strong className="text-white"> You don't lift a finger or spend a dime.</strong>
               </p>
               <div className="space-y-4 mb-8">
                 <div className="flex items-center gap-4 bg-dark-muted/50 rounded-xl p-4 border border-dark-muted">
@@ -309,7 +308,7 @@ export function Home() {
                   </div>
                   <div>
                     <div className="font-bold text-white">14"+ Diameter, 8'+ Length</div>
-                    <div className="text-stone-300 text-sm">Big logs only — we need mill-worthy timber</div>
+                    <div className="text-stone-300 text-sm">Big logs only. We need mill-worthy timber</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 bg-dark-muted/50 rounded-xl p-4 border border-dark-muted">
@@ -348,17 +347,17 @@ export function Home() {
       <section className="section bg-primary">
         <div className="container-custom text-center">
           <h2 className="text-white mb-4">
-            Ready to Talk Wood?
+            Get Your Price in 24 Hours
           </h2>
           <p className="text-xl md:text-2xl text-white/80 mb-10 max-w-2xl mx-auto">
-            Get a quote in 24 hours. No pushy sales, just straight answers.
+            Call or fill out the form. No sales pitch, no obligation. Just a straight answer on what it costs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact" className="btn btn-white text-lg">
               Get Your Free Quote →
             </Link>
-            <a href="tel:+12199386275" className="btn bg-primary-darker text-white border-2 border-primary-dark text-lg" style={{ boxShadow: '0 4px 0 0 #9a3412' }}>
-              <Icon name="phone" size={20} className="mr-2" /> (219) 938-6275
+            <a href="tel:+12193982010" className="btn bg-primary-darker text-white border-2 border-primary-dark text-lg" style={{ boxShadow: '0 4px 0 0 #9a3412' }}>
+              <Icon name="phone" size={20} className="mr-2" /> (219) 398-2010
             </a>
           </div>
         </div>

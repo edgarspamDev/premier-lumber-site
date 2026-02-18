@@ -8,7 +8,9 @@
       "Bash(ls -la \"C:\\\\Users\\\\Hunti\\\\Downloads\\\\premier-lumber-site\\\\public\\\\images\"\" 2>/dev/null || dir \"C:UsersHuntiDownloadspremier-lumber-sitepublicimages\"\")",
       "Bash(git commit:*)",
       "Bash(git add:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(powershell -File - <<'PSEOF'\n$root = \"C:\\\\Users\\\\Hunti\\\\Downloads\\\\premier-lumber-site\"\n$files = Get-ChildItem -Path $root\\\\src,$root\\\\index.html -Recurse -Include *.tsx,*.ts,*.html\nforeach \\($f in $files\\) {\n  $content = Get-Content $f.FullName -Raw\n  if \\($content -match '938-6275|Atcheson|Gary, IN 46403|Since 1985|40\\\\+ years|since 1985'\\) {\n    $content = $content -replace '\\\\\\(219\\\\\\) 938-6275','\\(219\\) 398-2010'\n    $content = $content -replace 'tel:\\\\+12199386275','tel:+12193982010'\n    $content = $content -replace '6717 Atcheson Dr','724 Chicago Ave'\n    $content = $content -replace '6717\\\\+Atcheson\\\\+Dr','724+Chicago+Ave'\n    $content = $content -replace '6717%20Atcheson%20Dr','724+Chicago+Ave'\n    $content = $content -replace 'Gary, IN 46403','East Chicago, IN 46312'\n    $content = $content -replace 'Gary,\\\\+IN\\\\+46403','East+Chicago,+IN+46312'\n    $content = $content -replace 'Since 1985','Since 2000'\n    $content = $content -replace 'since 1985','since 2000'\n    $content = $content -replace '40\\\\+ years','26+'\n    Set-Content $f.FullName -Value $content -NoNewline\n    Write-Output \"Updated: $\\($f.Name\\)\"\n  }\n}\nPSEOF)"
     ]
   }
 }

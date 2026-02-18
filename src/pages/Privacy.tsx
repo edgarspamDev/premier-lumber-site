@@ -40,9 +40,9 @@ export function Privacy() {
         <p>If you have any questions about this privacy policy or our privacy practices, please contact us at:</p>
         <div className="mt-4 bg-stone-100 p-6 rounded-lg">
           <p className="font-bold">Premier Lumber Co</p>
-          <p>6717 Atcheson Dr</p>
-          <p>Gary, IN 46403</p>
-          <p>Phone: (219) 938-6275</p>
+          <p>724 Chicago Ave</p>
+          <p>East Chicago, IN 46312</p>
+          <p>Phone: (219) 398-2010</p>
         </div>
       </section>
     </div>

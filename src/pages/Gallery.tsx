@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 import { PageHeader } from '../components/PageHeader';
 import { Icon } from '../components/Icons';
 import { SEO } from '../components/SEO';
-import heroImage from '../assets/images/lumbrr/IMG-20260209-WA0008.jpg';
-import palletImage from '../assets/images/lumbrr/IMG-20260209-WA0016.jpg';
-import firewoodImage from '../assets/images/lumbrr/IMG-20260210-WA0002.jpg';
-import sawdustImage from '../assets/images/lumbrr/IMG-20260209-WA0012.jpg';
-import logImage from '../assets/images/lumbrr/IMG-20260209-WA0014.jpg';
-import customLumberImage from '../assets/images/lumbrr/IMG-20260209-WA0010.jpg';
+import heroImage from '../assets/images/lumbrr/20260119_102704.opt.webp';
+import palletImage from '../assets/images/lumbrr/Pallets.opt.webp';
+import firewoodImage from '../assets/images/lumbrr/IMG-20260202-WA0004.jpg';
+import sawdustImage from '../assets/images/lumbrr/sawdust-shovel.webp';
+import logImage from '../assets/images/lumbrr/IMG-20260204-WA0001.jpg';
+import customLumberImage from '../assets/images/lumbrr/20260119_103036.opt.webp';
 
 const images = [
   { src: heroImage, alt: 'Premier Lumber yard operations', title: 'Yard Overview' },
@@ -23,7 +23,7 @@ export function Gallery() {
     <div>
       <SEO 
         title="Photo Gallery"
-        description="See real photos from Premier Lumber Co — our yard, deliveries, firewood, pallets, and sawmill operations in Gary, Indiana."
+        description="See real photos from Premier Lumber Co. Our yard, deliveries, firewood, pallets, and sawmill operations in East Chicago, Indiana."
         path="/gallery"
       />
       <PageHeader 
@@ -65,8 +65,8 @@ export function Gallery() {
             <Link to="/contact" className="btn btn-white text-lg">
               Get A Quote →
             </Link>
-            <a href="tel:+12199386275" className="btn bg-primary-darker text-white border-2 border-primary-dark text-lg" style={{ boxShadow: '0 4px 0 0 #9a3412' }}>
-              <Icon name="phone" size={20} className="mr-2" /> (219) 938-6275
+            <a href="tel:+12193982010" className="btn bg-primary-darker text-white border-2 border-primary-dark text-lg" style={{ boxShadow: '0 4px 0 0 #9a3412' }}>
+              <Icon name="phone" size={20} className="mr-2" /> (219) 398-2010
             </a>
           </div>
         </div>

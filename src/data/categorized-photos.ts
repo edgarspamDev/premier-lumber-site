@@ -1,49 +1,51 @@
 // Import specific images to ensure they are bundled by Vite
-// SAWDUST: Safe close-ups
-import sawdust_grain from '../assets/images/lumbrr/20260119_102704.jpg';
-// Sawmill operation - likely machinery but relevant context
-import sawmill1 from '../assets/images/lumbrr/20260119_103040.jpg';
 
-// FIREWOOD: Piles and stacks, checking for vehicles
-// IMG-20260210-WA0002.jpg was used previously, verified as safe stack
-import firewood_main from '../assets/images/lumbrr/IMG-20260210-WA0002.jpg';
-import firewood1 from '../assets/images/lumbrr/IMG-20260202-WA0004.jpg';
-import firewood2 from '../assets/images/lumbrr/20260119_103745.jpg'; // Pile
-import firewood3 from '../assets/images/lumbrr/IMG-20260202-WA0008.jpg'; // Pile
+// SAWDUST: Sawmill operation shots (sawdust is a byproduct of milling)
+import sawmill_log from '../assets/images/lumbrr/20260119_102704.opt.webp'; // Log on sawmill
+import sawmill_operation from '../assets/images/lumbrr/20260119_103040.opt.webp'; // Multiple logs on sawmill, bark
+import sawdust_pile from '../assets/images/lumbrr/sawdust-shovel.webp'; // Shovel in sawdust (Optimized)
 
-// LOG PICKUP: Log-specific photos only (no pallet-only yard shots)
-import log_road from '../assets/images/lumbrr/IMG-20260209-WA0016.jpg'; // Logs stacked by road
-import log_sawmill_close from '../assets/images/lumbrr/IMG-20260209-WA0014.jpg'; // Logs on sawmill
-import log_sawmill_wide from '../assets/images/lumbrr/IMG-20260209-WA0010.jpg'; // Logs on sawmill
-import log_processing from '../assets/images/lumbrr/20260119_103647.jpg'; // Log processing and milling
+// FIREWOOD: Actual firewood blocks and stacks
+import firewood_blocks from '../assets/images/lumbrr/IMG-20260202-WA0004.jpg'; // Bin of firewood blocks (Small enough)
+import firewood_crates from '../assets/images/lumbrr/IMG-20260210-WA0002.jpg'; // Stacked crates (firewood storage)
 
-// LUMBER: Pallets and milling
-import pallet1 from '../assets/images/lumbrr/IMG-20260209-WA0012.jpg';
+// LOG PICKUP: Actual logs - roadside and being processed
+import logs_roadside from '../assets/images/lumbrr/logpick.webp'; // Hardwood logs stacked by road
+import log_on_saw from '../assets/images/lumbrr/20260119_103036.opt.webp'; // Large log on saw with cut lumber
+import logs_sawmill from '../assets/images/lumbrr/20260119_103040.opt.webp'; // Multiple logs on sawmill
 
-import scrap_bin from '../assets/images/lumbrr/20260119_103650.jpg'; // Bin of wood scraps/sawdust
+// LUMBER: Milling and sawn boards
+import lumber_slabs from '../assets/images/lumbrr/20260119_103745.opt.webp'; // Stacked lumber slabs in mill
+import lumber_and_log from '../assets/images/lumbrr/20260119_103916(1).opt.webp'; // Log with sawn boards
+
+// PALLETS
+import pallet_yard from '../assets/images/lumbrr/Pallets.opt.webp'; // Pallet Stacks (Corrected)
+import pallet_stacks from '../assets/images/lumbrr/Pallets.opt.webp'; // Pallet stacks outdoor
+import pallet_warehouse from '../assets/images/lumbrr/IMG-20260209-WA0016.jpg'; // Pallet warehouse interior
 
 export const categorizedPhotos = {
   sawdust: [
-    { src: sawdust_grain, alt: 'Close up of wood grain and sawdust' },
-    { src: scrap_bin, alt: 'Wood scraps and sawdust bin' },
-    { src: sawmill1, alt: 'Sawmill operation producing sawdust' } 
+    { src: sawdust_pile, alt: 'Shovel in sawdust pile' },
+    { src: sawmill_operation, alt: 'Logs being processed at the sawmill' },
+    { src: sawmill_log, alt: 'Log on sawmill ready for cutting' },
   ],
   firewood: [
-    { src: firewood_main, alt: 'Seasoned firewood ready for delivery' },
-    { src: firewood3, alt: 'Firewood logs' },
-    { src: firewood2, alt: 'Stacked firewood' },
-    { src: scrap_bin, alt: 'Wood scraps for kindling' },
-    { src: firewood1, alt: 'Bin of wood blocks for firewood' } // IMG-20260202-WA0004.jpg (portrait)
+    { src: firewood_blocks, alt: 'Bin of seasoned firewood blocks' },
+    { src: firewood_crates, alt: 'Firewood storage crates' },
   ],
   logPickup: [
-    { src: log_road, alt: 'Hardwood logs stacked by the road' },
-    { src: log_sawmill_close, alt: 'Hardwood logs being milled' },
-    { src: log_sawmill_wide, alt: 'Large logs on the sawmill line' },
-    { src: log_processing, alt: 'Log processing at the mill' }
+    { src: logs_roadside, alt: 'Hardwood logs stacked by the road for pickup' },
+    { src: log_on_saw, alt: 'Large hardwood log being milled' },
+    { src: logs_sawmill, alt: 'Logs on the sawmill line' },
   ],
   lumber: [
-    { src: firewood2, alt: 'Stacked lumber and timber' }, // Using 20260119_103745 as primary
-    { src: pallet1, alt: 'Stacked pallets and lumber' },
-    { src: sawmill1, alt: 'Custom milling operation' }
-  ]
+    { src: log_on_saw, alt: 'Hardwood log being cut into custom lumber' },
+    { src: lumber_slabs, alt: 'Stacked lumber slabs in the mill' },
+    { src: lumber_and_log, alt: 'Fresh-sawn boards next to log' },
+  ],
+  pallets: [
+    { src: pallet_yard, alt: 'Outdoor pallet yard with stacked pallets' },
+    { src: pallet_stacks, alt: 'Rows of stacked pallets' },
+    { src: pallet_warehouse, alt: 'Pallet warehouse with forklift' },
+  ],
 };
