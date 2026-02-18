@@ -3,7 +3,19 @@
 // POST-only, JSON-only, Honeypot-protected
 
 // 1. Security Headers
-header("Access-Control-Allow-Origin: *"); 
+$allowed_origins = [
+    'https://premierlumber.com',
+    'https://www.premierlumber.com'
+];
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+
+if (in_array($origin, $allowed_origins)) {
+    header("Access-Control-Allow-Origin: $origin");
+} else {
+    // Default to strict (no allow) or specific domain if origin not sent
+    header("Access-Control-Allow-Origin: https://premierlumber.com");
+}
+
 header("Content-Type: application/json; charset=UTF-8");
 header("X-Content-Type-Options: nosniff");
 header("X-Frame-Options: DENY");
@@ -35,6 +47,12 @@ if (!empty($data['website_url'])) {
 }
 
 // 4b. Timestamp Anti-Bot Check (human fills form in >3 seconds)
+if (!isset($data['_ts'])) {
+    // Missing timestamp = Bot
+    echo json_encode(["success" => true, "message" => "Message sent successfully."]);
+    exit;
+}
+
 if (isset($data['_ts'])) {
     $elapsed = time() - intval($data['_ts']);
     if ($elapsed < 3) {

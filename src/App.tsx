@@ -15,7 +15,7 @@ import {
   Terms,
   NotFound
 } from './pages';
-import PhotoReview from './pages/PhotoReview';
+// import PhotoReview from './pages/PhotoReview';
 
 function App() {
   return (
@@ -35,7 +35,7 @@ function App() {
           <Route path="tree-service-partners" element={<TreeServicePartners />} />
           <Route path="privacy" element={<Privacy />} />
           <Route path="terms" element={<Terms />} />
-          <Route path="photo-review" element={<PhotoReview />} />
+          {/* <Route path="photo-review" element={<PhotoReview />} /> */}
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
