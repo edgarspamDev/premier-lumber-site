@@ -21,7 +21,9 @@
       "Bash(cmd /c \"node_modules\\\\.bin\\\\vite build 2>&1\")",
       "Bash(cmd /c \"npm run build 2>&1\")",
       "WebFetch(domain:maps.app.goo.gl)",
-      "WebFetch(domain:www.google.com)"
+      "WebFetch(domain:www.google.com)",
+      "Bash(git reset:*)",
+      "Bash(powershell -ExecutionPolicy Bypass -Command \"cd ''C:\\\\Users\\\\Hunti\\\\Downloads\\\\premier-lumber-site''; npm run build 2>&1 | tail -3; & ''.\\\\hostinger-deploy.ps1''\")"
     ]
   }
 }
