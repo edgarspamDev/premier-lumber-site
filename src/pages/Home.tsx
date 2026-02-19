@@ -457,6 +457,49 @@ export function Home() {
         </div>
       </section>
 
+      {/* FIND OUR YARD — address + one-tap directions */}
+      <section className="bg-charcoal border-t border-dark-muted">
+        <div className="container-custom py-6 md:py-8">
+          <div className="flex flex-col md:flex-row md:items-center gap-5 md:gap-10">
+            {/* Address block */}
+            <div className="flex items-start gap-4 flex-1">
+              <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center shrink-0">
+                <Icon name="location" size={24} className="text-primary" />
+              </div>
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-widest text-primary mb-1">Our Yard</p>
+                <a
+                  href="https://www.google.com/maps/place/Premier+Lumber+Co/@41.6006386,-87.2592886,17z/data=!4m16!1m9!3m8!1s0x8811c05177fe3f73:0x3e514e35aa3d585!2sPremier+Lumber+Co!8m2!3d41.6006346!4d-87.2567137!9m1!1b1!16s%2Fg%2F1tfbnyf5!3m5!1s0x8811c05177fe3f73:0x3e514e35aa3d585!8m2!3d41.6006346!4d-87.2567137!16s%2Fg%2F1tfbnyf5?hl=en-US&entry=ttu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-extrabold text-white text-lg leading-tight hover:text-primary transition-colors"
+                >
+                  6717 Atcheson Dr, Gary, IN 46403
+                </a>
+                <p className="text-stone-400 text-sm mt-1">Mon–Thu 6AM–3PM · Fri–Sat 6AM–2PM</p>
+              </div>
+            </div>
+            {/* Action buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+              <a
+                href="https://www.google.com/maps/place/Premier+Lumber+Co/@41.6006386,-87.2592886,17z/data=!4m16!1m9!3m8!1s0x8811c05177fe3f73:0x3e514e35aa3d585!2sPremier+Lumber+Co!8m2!3d41.6006346!4d-87.2567137!9m1!1b1!16s%2Fg%2F1tfbnyf5!3m5!1s0x8811c05177fe3f73:0x3e514e35aa3d585!8m2!3d41.6006346!4d-87.2567137!16s%2Fg%2F1tfbnyf5?hl=en-US&entry=ttu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 bg-primary text-white font-bold px-6 py-3.5 rounded-xl text-sm hover:bg-primary-dark transition-colors min-h-[52px]"
+              >
+                <Icon name="location" size={18} /> Get Directions
+              </a>
+              <a
+                href="tel:+12193540720"
+                className="flex items-center justify-center gap-2 bg-white/10 text-white font-bold px-6 py-3.5 rounded-xl text-sm hover:bg-white/20 transition-colors min-h-[52px] border border-white/20"
+              >
+                <Icon name="phone" size={18} /> (219) 354-0720
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FINAL CTA - Strong close */}
       <section className="section bg-primary">
         <div className="container-custom text-center">

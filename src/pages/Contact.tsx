@@ -16,6 +16,31 @@ export function Contact() {
         subtitle="Tell us what you need. We'll get back to you today."
       />
       
+      {/* FIND OUR YARD — top of page, mobile-first */}
+      <div className="bg-amber-50 border-b border-amber-200">
+        <div className="container-custom py-4">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+            <div className="flex items-center gap-3 flex-1 min-w-0">
+              <div className="w-11 h-11 bg-primary rounded-xl flex items-center justify-center shrink-0">
+                <Icon name="location" size={22} className="text-white" />
+              </div>
+              <div className="min-w-0">
+                <p className="font-extrabold text-charcoal text-base leading-tight">6717 Atcheson Dr, Gary, IN 46403</p>
+                <p className="text-stone-500 text-sm">Mon–Thu 6AM–3PM · Fri–Sat 6AM–2PM</p>
+              </div>
+            </div>
+            <a
+              href="https://www.google.com/maps/place/Premier+Lumber+Co/@41.6006386,-87.2592886,17z/data=!4m16!1m9!3m8!1s0x8811c05177fe3f73:0x3e514e35aa3d585!2sPremier+Lumber+Co!8m2!3d41.6006346!4d-87.2567137!9m1!1b1!16s%2Fg%2F1tfbnyf5!3m5!1s0x8811c05177fe3f73:0x3e514e35aa3d585!8m2!3d41.6006346!4d-87.2567137!16s%2Fg%2F1tfbnyf5?hl=en-US&entry=ttu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 bg-primary text-white font-bold px-5 py-3 rounded-xl text-sm hover:bg-primary-dark transition-colors shrink-0 min-h-[48px]"
+            >
+              <Icon name="location" size={18} /> Get Directions
+            </a>
+          </div>
+        </div>
+      </div>
+
       <section className="section bg-white">
         <div className="container-custom">
 

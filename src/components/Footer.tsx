@@ -71,14 +71,10 @@ export function Footer() {
               <div className="flex items-start gap-3">
                 <Icon name="clock" className="text-primary shrink-0 mt-1" size={18} />
                 <div className="text-sm">
-                  <span className="font-bold text-stone-300">Lumber Yard:</span><br/>
-                  Mon-Thu: 6AM-3PM<br />
-                  Fri & Sat: 6AM-2PM
-                  <div className="mt-2">
-                    <span className="font-bold text-stone-300">Office:</span> (724 Chicago Ave, East Chicago)<br/>
-                    Mon-Fri: 8AM-3PM<br/>
-                    Sat-Sun: Closed
-                  </div>
+                  <span className="font-bold text-stone-300">Hours:</span><br/>
+                  Mon–Thu: 6AM–3PM<br />
+                  Fri & Sat: 6AM–2PM<br/>
+                  Sun: Closed
                 </div>
               </div>
             </div>
