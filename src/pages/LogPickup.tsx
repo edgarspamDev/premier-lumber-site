@@ -13,8 +13,18 @@ export function LogPickup() {
     <div>
       <SEO 
         title="Free Log Pickup | Tree Log Recycling Indiana"
-        description="We pick up qualifying hardwood logs at no cost in Gary, East Chicago & NW Indiana. Walnut, oak, cherry, ash, maple. 14&quot;+ diameter. Call (219) 398-2010. Sustainable wood recycling."
+        description="We pick up qualifying hardwood logs at no cost in Gary, East Chicago & NW Indiana. Walnut, oak, cherry, ash, maple. 14&quot;+ diameter. Call (219) 354-0720. Sustainable wood recycling."
         path="/log-pickup"
+        service={{
+          name: "Free Hardwood Log Pickup",
+          description: "We pick up qualifying hardwood logs (Walnut, Oak, Cherry, Ash) at no cost. Sustainable wood recycling in NW Indiana.",
+          image: logHeroImage,
+          areaServed: ["Gary", "East Chicago", "Hammond", "Merrillville", "Hobart", "Lake Station"]
+        }}
+        breadcrumb={[
+          { name: "Home", item: "/" },
+          { name: "Log Pickup", item: "/log-pickup" }
+        ]}
       />
       <PageHeader 
         title="Free Log Pickup" 
@@ -26,12 +36,12 @@ export function LogPickup() {
         <div className="container-custom">
 
           {/* Tap to Call - Mobile */}
-          <a href="tel:+12193982010" className="tap-to-call mb-8">
+          <a href="tel:+12193540720" className="tap-to-call mb-8">
             <div className="flex items-center gap-3">
               <Icon name="phone" size={22} />
               <div>
                 <p className="font-bold text-base">Check Eligibility</p>
-                <p className="text-sm text-white/80">(219) 398-2010</p>
+                <p className="text-sm text-white/80">(219) 354-0720</p>
               </div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
@@ -121,7 +131,7 @@ export function LogPickup() {
                 <Link to="/contact" className="btn btn-primary flex-1">
                     Schedule FREE Pickup
                 </Link>
-                <a href="tel:+12193982010" className="btn btn-secondary flex-1">
+                <a href="tel:+12193540720" className="btn btn-secondary flex-1">
                   <Icon name="phone" size={18} className="mr-2" /> Call to Confirm
                 </a>
               </div>

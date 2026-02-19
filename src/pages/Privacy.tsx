@@ -42,7 +42,7 @@ export function Privacy() {
           <p className="font-bold">Premier Lumber Co</p>
           <p>724 Chicago Ave</p>
           <p>East Chicago, IN 46312</p>
-          <p>Phone: (219) 398-2010</p>
+          <p>Phone: (219) 354-0720</p>
         </div>
       </section>
     </div>

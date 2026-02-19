@@ -23,8 +23,25 @@ export function Sawdust() {
     <div>
       <SEO 
         title="Bulk Sawdust & Shavings"
-        description="Buy bulk sawdust and shavings for animal bedding, landscaping, and industrial use. Available by truckload. Premier Lumber Co, Gary, IN. Call (219) 398-2010."
+        description="Buy bulk sawdust and shavings for animal bedding, landscaping, and industrial use. Available by truckload. Premier Lumber Co, Gary, IN. Call (219) 354-0720."
         path="/sawdust"
+        product={{
+          name: "Bulk Sawdust & Shavings",
+          description: "Clean hardwood sawdust and shavings for animal bedding, landscaping, and industrial use. Available by truckload in Gary, IN.",
+          image: sawdustHeroImage,
+          price: "0.00",
+          availability: "InStock"
+        }}
+        faq={[
+          {
+            question: "Do you sell sawdust in bulk?",
+            answer: "Yes, we sell hardwood sawdust and shavings by the truckload for industrial and agricultural use."
+          },
+          {
+            question: "Is your sawdust safe for animal bedding?",
+            answer: "Yes, our sawdust is clean, natural wood byproduct suitable for various bedding applications."
+          }
+        ]}
       />
       <PageHeader 
         title="Sawdust & Custom Lumber" 
@@ -36,12 +53,12 @@ export function Sawdust() {
         <div className="container-custom">
 
           {/* Tap to Call - Mobile */}
-          <a href="tel:+12193982010" className="tap-to-call mb-8">
+          <a href="tel:+12193540720" className="tap-to-call mb-8">
             <div className="flex items-center gap-3">
               <Icon name="phone" size={22} />
               <div>
                 <p className="font-bold text-base">Call For Pricing</p>
-                <p className="text-sm text-white/80">(219) 398-2010</p>
+                <p className="text-sm text-white/80">(219) 354-0720</p>
               </div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>

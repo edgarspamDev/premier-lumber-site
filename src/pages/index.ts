@@ -6,4 +6,5 @@ export { LogPickup } from './LogPickup';
 export { TreeServicePartners } from './TreeServicePartners';
 export { Contact } from './Contact';
 export { Privacy, Terms } from './Legal';
+export { About } from './About';
 export { NotFound } from './NotFound';

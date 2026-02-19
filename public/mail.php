@@ -96,7 +96,7 @@ function clean_body($text) {
 }
 
 // Required fields
-$required = ['name', 'phone', 'email'];
+$required = ['name', 'phone'];
 foreach ($required as $field) {
     if (empty($data[$field])) {
         http_response_code(400);
@@ -109,13 +109,17 @@ foreach ($required as $field) {
 $name = clean_header($data['name']);
 $company = clean_header($data['company'] ?? 'N/A');
 $phone = clean_header($data['phone']);
-// Validate email strictly
-$email = filter_var($data['email'], FILTER_VALIDATE_EMAIL);
-
-if (!$email) {
-    http_response_code(400);
-    echo json_encode(["success" => false, "message" => "Invalid email address"]);
-    exit;
+// Validate email if provided
+$raw_email = $data['email'] ?? '';
+if (!empty($raw_email)) {
+    $email = filter_var($raw_email, FILTER_VALIDATE_EMAIL);
+    if (!$email) {
+        http_response_code(400);
+        echo json_encode(["success" => false, "message" => "Invalid email address"]);
+        exit;
+    }
+} else {
+    $email = 'N/A';
 }
 
 $location = clean_body($data['location'] ?? 'N/A');
@@ -141,7 +145,9 @@ $subject = "New Website Quote Request: $name";
 
 // Strict Header Construction
 $headers = "From: no-reply@premierlumber.com\r\n";
-$headers .= "Reply-To: $email\r\n";
+if ($email !== 'N/A') {
+    $headers .= "Reply-To: $email\r\n";
+}
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 

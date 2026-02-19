@@ -13,7 +13,7 @@ interface RFQFormData {
 
 export function RFQForm() {
   // Anti-bot: track when form loaded (bots fill in <3s)
-  const loadTime = useRef(Math.floor(Date.now() / 1000));
+  const loadTime = useRef(0);
   useEffect(() => {
     loadTime.current = Math.floor(Date.now() / 1000);
   }, []);
@@ -97,7 +97,7 @@ export function RFQForm() {
         <h3 className="text-xl font-bold text-green-800 mb-2">Quote Request Sent!</h3>
         <p className="text-stone-600 mb-4">{submitMessage}</p>
         <p className="text-sm text-stone-500">
-          Need faster help? Call <a href="tel:+12193982010" className="font-bold text-primary">(219) 398-2010</a>
+          Need faster help? Call <a href="tel:+12193540720" className="font-bold text-primary">(219) 354-0720</a>
         </p>
       </div>
     );
@@ -120,7 +120,7 @@ export function RFQForm() {
         <div className="p-4 bg-red-50 border border-red-200 rounded-xl">
           <p className="text-red-800 font-medium text-sm">{submitMessage}</p>
           <p className="text-red-700 text-xs mt-1">
-            Or call us at <a href="tel:+12193982010" className="font-bold">(219) 398-2010</a>
+            Or call us at <a href="tel:+12193540720" className="font-bold">(219) 354-0720</a>
           </p>
         </div>
       )}

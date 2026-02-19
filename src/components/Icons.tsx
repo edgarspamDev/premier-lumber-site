@@ -21,7 +21,9 @@ export type IconName =
   | 'instagram'
   | 'facebook'
   | 'mail'
-  | 'search';
+  | 'search'
+  | 'star'
+  | 'google';
 
 interface IconProps extends React.SVGProps<SVGSVGElement> {
   name: IconName;
@@ -163,6 +165,12 @@ export function Icon({ name, size = 24, className = '', ...props }: IconProps) {
     ),
     search: (
       <circle cx="11" cy="11" r="8"></circle>
+    ),
+    star: (
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+    ),
+    google: (
+      <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .533 5.333.533 12S5.867 24 12.48 24c3.44 0 6.013-1.133 8.12-3.293 2.14-2.16 2.813-5.213 2.813-7.667 0-.76-.067-1.467-.173-2.12H12.48z" />
     ),
   };
 

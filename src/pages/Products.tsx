@@ -1,12 +1,18 @@
 import { PageHeader } from '../components/PageHeader';
 import { Link } from 'react-router-dom';
 import { Icon } from '../components/Icons';
+import { SEO } from '../components/SEO';
 import sawdustImage from '../assets/images/lumbrr/sawdust-shovel.webp';
 import customLumberImage from '../assets/images/lumbrr/20260119_103036.opt.webp';
 
 export function Sawdust() {
   return (
     <div>
+      <SEO 
+        title="Bulk Sawdust & Wood Shavings | Premier Lumber Co"
+        description="Fresh, clean sawdust and wood shavings available in bulk. Perfect for animal bedding, spill cleanup, and landscaping. Loaded while you wait in Gary, IN."
+        path="/sawdust"
+      />
       <PageHeader 
         title="Sawdust & Shavings" 
         subtitle="Clean bulk sawdust. Loaded fast, priced right."
@@ -17,12 +23,12 @@ export function Sawdust() {
         <div className="container-custom">
 
           {/* Tap to Call - Mobile */}
-          <a href="tel:+12193982010" className="tap-to-call mb-8">
+          <a href="tel:+12193540720" className="tap-to-call mb-8">
             <div className="flex items-center gap-3">
               <Icon name="phone" size={22} />
               <div>
                 <p className="font-bold text-base">Call For Bulk Pricing</p>
-                <p className="text-sm text-white/80">(219) 398-2010</p>
+                <p className="text-sm text-white/80">(219) 354-0720</p>
               </div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
@@ -77,6 +83,11 @@ export function Sawdust() {
 export function CustomLumber() {
   return (
     <div>
+      <SEO 
+        title="Custom Lumber & Milling | Premier Lumber Co"
+        description="Need specific wood dimensions? We cut custom lumber from local hardwood. Rough-sawn, trailer decking, and live edge slabs available. Gary, IN."
+        path="/custom-lumber"
+      />
       <PageHeader 
         title="Custom Lumber" 
         subtitle="Tell us the size. We cut it from local hardwood."
@@ -87,12 +98,12 @@ export function CustomLumber() {
         <div className="container-custom">
 
           {/* Tap to Call - Mobile */}
-          <a href="tel:+12193982010" className="tap-to-call mb-8">
+          <a href="tel:+12193540720" className="tap-to-call mb-8">
             <div className="flex items-center gap-3">
               <Icon name="phone" size={22} />
               <div>
                 <p className="font-bold text-base">Discuss Your Project</p>
-                <p className="text-sm text-white/80">(219) 398-2010</p>
+                <p className="text-sm text-white/80">(219) 354-0720</p>
               </div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>

@@ -26,9 +26,9 @@ export function Footer() {
               Serving Gary & Northwest Indiana Since 2000. Pallets, firewood, custom lumber.
               <span className="text-white font-medium"> Family-owned.</span>
             </p>
-            <a href="tel:+12193982010" className="inline-flex items-center gap-2 text-primary font-bold hover:text-primary-light transition-colors">
+            <a href="tel:+12193540720" className="inline-flex items-center gap-2 text-primary font-bold hover:text-primary-light transition-colors">
               <Icon name="phone" size={16} />
-              (219) 398-2010
+              (219) 354-0720
             </a>
           </div>
 
@@ -60,21 +60,30 @@ export function Footer() {
             <h3 className="font-bold text-base mb-4 text-white uppercase tracking-wide">Visit Us</h3>
             <div className="space-y-3 text-stone-400">
               <a 
-                href="https://www.google.com/maps/search/?api=1&query=724+Chicago+Ave,+East+Chicago,+IN+46312" 
+                href="https://www.google.com/maps/place/Premier+Lumber+Co/@41.6006386,-87.2592886,17z/data=!4m16!1m9!3m8!1s0x8811c05177fe3f73:0x3e514e35aa3d585!2sPremier+Lumber+Co!8m2!3d41.6006346!4d-87.2567137!9m1!1b1!16s%2Fg%2F1tfbnyf5!3m5!1s0x8811c05177fe3f73:0x3e514e35aa3d585!8m2!3d41.6006346!4d-87.2567137!16s%2Fg%2F1tfbnyf5?hl=en-US&entry=ttu" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="flex items-start gap-3 hover:text-white transition-colors group"
               >
                 <Icon name="location" className="text-primary mt-0.5 shrink-0 group-hover:text-primary-light" size={18} />
-                <span>724 Chicago Ave<br />East Chicago, IN 46312</span>
+                <span>6717 Atcheson Dr<br />Gary, IN 46403</span>
               </a>
-              <div className="flex items-center gap-3">
-                <Icon name="clock" className="text-primary shrink-0" size={18} />
-                <span>Mon-Thu: 6AM-3PM<br />Fri & Sat: 6AM-2PM<br />Sun: Closed</span>
+              <div className="flex items-start gap-3">
+                <Icon name="clock" className="text-primary shrink-0 mt-1" size={18} />
+                <div className="text-sm">
+                  <span className="font-bold text-stone-300">Lumber Yard:</span><br/>
+                  Mon-Thu: 6AM-3PM<br />
+                  Fri & Sat: 6AM-2PM
+                  <div className="mt-2">
+                    <span className="font-bold text-stone-300">Office:</span> (724 Chicago Ave, East Chicago)<br/>
+                    Mon-Fri: 8AM-3PM<br/>
+                    Sat-Sun: Closed
+                  </div>
+                </div>
               </div>
             </div>
             <div className="mt-6">
-              <a href="https://www.google.com/maps/dir//724+Chicago+Ave,+East+Chicago,+IN+46312" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-2 rounded-lg font-bold text-sm hover:bg-primary/30 transition-colors border border-primary/30">
+              <a href="https://www.google.com/maps/place/Premier+Lumber+Co/@41.6006386,-87.2592886,17z/data=!4m16!1m9!3m8!1s0x8811c05177fe3f73:0x3e514e35aa3d585!2sPremier+Lumber+Co!8m2!3d41.6006346!4d-87.2567137!9m1!1b1!16s%2Fg%2F1tfbnyf5!3m5!1s0x8811c05177fe3f73:0x3e514e35aa3d585!8m2!3d41.6006346!4d-87.2567137!16s%2Fg%2F1tfbnyf5?hl=en-US&entry=ttu" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-2 rounded-lg font-bold text-sm hover:bg-primary/30 transition-colors border border-primary/30">
                 Get Directions →
               </a>
             </div>

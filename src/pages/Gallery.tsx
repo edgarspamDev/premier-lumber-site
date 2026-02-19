@@ -65,8 +65,8 @@ export function Gallery() {
             <Link to="/contact" className="btn btn-white text-lg">
               Get A Quote →
             </Link>
-            <a href="tel:+12193982010" className="btn bg-primary-darker text-white border-2 border-primary-dark text-lg" style={{ boxShadow: '0 4px 0 0 #9a3412' }}>
-              <Icon name="phone" size={20} className="mr-2" /> (219) 398-2010
+            <a href="tel:+12193540720" className="btn bg-primary-darker text-white border-2 border-primary-dark text-lg" style={{ boxShadow: '0 4px 0 0 #9a3412' }}>
+              <Icon name="phone" size={20} className="mr-2" /> (219) 354-0720
             </a>
           </div>
         </div>

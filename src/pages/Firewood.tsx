@@ -9,8 +9,33 @@ export function Firewood() {
     <div>
       <SEO 
         title="Seasoned Firewood"
-        description="Buy seasoned hardwood firewood in Gary & NW Indiana. Oak, cherry, ash, elm mix. Bulk discounts and delivery available. Call (219) 398-2010."
+        description="Buy seasoned hardwood firewood in Gary & NW Indiana. Oak, cherry, ash, elm mix. Bulk discounts and delivery available. Call (219) 354-0720."
         path="/firewood"
+        product={{
+          name: "Seasoned Hardwood Firewood",
+          description: "Air-dried mixed hardwood firewood (Oak, Cherry, Ash, Elm). Ready to burn. Available for delivery or pickup in Gary, IN.",
+          image: firewoodImage,
+          price: "0.00",
+          availability: "InStock"
+        }}
+        breadcrumb={[
+          { name: "Home", item: "/" },
+          { name: "Firewood", item: "/firewood" }
+        ]}
+        faq={[
+          {
+            question: "What kind of firewood do you sell?",
+            answer: "We sell a seasoned hardwood mix that typically includes Oak, Cherry, Ash, and Elm. It burns longer and cleaner than softwoods."
+          },
+          {
+            question: "Do you offer firewood delivery?",
+            answer: "Yes, we deliver firewood throughout Gary and the Northwest Indiana area. Bulk discounts are available."
+          },
+          {
+            question: "Is your firewood ready to burn?",
+            answer: "Yes, our firewood is air-dried and seasoned, making it ready to light immediately."
+          }
+        ]}
       />
       <PageHeader 
         title="Firewood" 
@@ -22,12 +47,12 @@ export function Firewood() {
         <div className="container-custom">
 
           {/* Tap to Call - Mobile */}
-          <a href="tel:+12193982010" className="tap-to-call mb-8">
+          <a href="tel:+12193540720" className="tap-to-call mb-8">
             <div className="flex items-center gap-3">
               <Icon name="phone" size={22} />
               <div>
                 <p className="font-bold text-base">Call For Pricing</p>
-                <p className="text-sm text-white/80">(219) 398-2010</p>
+                <p className="text-sm text-white/80">(219) 354-0720</p>
               </div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
@@ -50,6 +75,10 @@ export function Firewood() {
 
             {/* Content */}
             <div>
+              <div className="inline-flex items-center gap-2 bg-success/10 text-success px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide mb-4 border border-success/20">
+                <span className="w-2 h-2 bg-success rounded-full animate-pulse"></span>
+                Available Year-Round
+              </div>
               <h2 className="font-extrabold mb-6">Light It Tonight. Seasoned and Ready.</h2>
               <p className="text-stone-600 text-base md:text-lg mb-6">
                 Our firewood is air-dried for optimal burn. Hardwood mix burns longer and cleaner than softwood.
@@ -89,7 +118,7 @@ export function Firewood() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/contact" className="btn btn-primary">Order Firewood Today</Link>
-                <a href="tel:+12193982010" className="btn btn-secondary">
+                <a href="tel:+12193540720" className="btn btn-secondary">
                   <Icon name="phone" size={18} className="mr-2" /> Call for Pricing
                 </a>
               </div>

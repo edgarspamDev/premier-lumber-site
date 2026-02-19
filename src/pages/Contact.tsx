@@ -6,9 +6,9 @@ import { SEO } from "../components/SEO";
 export function Contact() {
   return (
     <div>
-      <SEO 
+      <SEO
         title="Contact Us"
-        description="Get a free quote from Premier Lumber Co. Call (219) 398-2010 or fill out our form. Office: 724 Chicago Ave, East Chicago, IN 46312. Mon-Thu 6AM-3PM, Fri-Sat 6AM-2PM."
+        description="Get a free quote from Premier Lumber Co. Call (219) 354-0720. 6717 Atcheson Dr, Gary, IN. Open Mon-Sat."
         path="/contact"
       />
       <PageHeader 
@@ -20,12 +20,12 @@ export function Contact() {
         <div className="container-custom">
 
           {/* Tap to Call - Mobile */}
-          <a href="tel:+12193982010" className="tap-to-call mb-8">
+          <a href="tel:+12193540720" className="tap-to-call mb-8">
             <div className="flex items-center gap-3">
               <Icon name="phone" size={22} />
               <div>
                 <p className="font-bold text-base">Tap to Call</p>
-                <p className="text-sm text-white/80">(219) 398-2010</p>
+                <p className="text-sm text-white/80">(219) 354-0720</p>
               </div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
@@ -46,15 +46,15 @@ export function Contact() {
                     <h3 className="font-bold">Visit Us</h3>
                     <p className="text-stone-600 text-sm">
                       <a 
-                        href="https://www.google.com/maps/search/?api=1&query=724+Chicago+Ave,+East+Chicago,+IN+46312" 
+                        href="https://www.google.com/maps/place/Premier+Lumber+Co/@41.6006386,-87.2592886,17z/data=!4m16!1m9!3m8!1s0x8811c05177fe3f73:0x3e514e35aa3d585!2sPremier+Lumber+Co!8m2!3d41.6006346!4d-87.2567137!9m1!1b1!16s%2Fg%2F1tfbnyf5!3m5!1s0x8811c05177fe3f73:0x3e514e35aa3d585!8m2!3d41.6006346!4d-87.2567137!16s%2Fg%2F1tfbnyf5?hl=en-US&entry=ttu" 
                         target="_blank" 
                         rel="noopener noreferrer" 
                         className="hover:text-primary transition-colors"
                       >
-                        724 Chicago Ave<br/>East Chicago, IN 46312
+                        6717 Atcheson Dr<br/>Gary, IN 46403
                       </a>
                     </p>
-                    <a href="https://maps.google.com/?q=724+Chicago+Ave+East+Chicago+IN+46312" target="_blank" rel="noopener noreferrer" className="text-primary font-bold text-sm mt-1 inline-block hover:underline">Get Directions &rarr;</a>
+                    <a href="https://www.google.com/maps/place/Premier+Lumber+Co/@41.6006386,-87.2592886,17z/data=!4m16!1m9!3m8!1s0x8811c05177fe3f73:0x3e514e35aa3d585!2sPremier+Lumber+Co!8m2!3d41.6006346!4d-87.2567137!9m1!1b1!16s%2Fg%2F1tfbnyf5!3m5!1s0x8811c05177fe3f73:0x3e514e35aa3d585!8m2!3d41.6006346!4d-87.2567137!16s%2Fg%2F1tfbnyf5?hl=en-US&entry=ttu" target="_blank" rel="noopener noreferrer" className="text-primary font-bold text-sm mt-1 inline-block hover:underline">Get Directions &rarr;</a>
                   </div>
                 </div>
 
@@ -64,11 +64,13 @@ export function Contact() {
                   </div>
                   <div>
                     <h3 className="font-bold">Call Us</h3>
-                    <p className="text-stone-500 text-sm mb-1">
-                      <strong>Lumber Yard:</strong> Mon-Thu 6AM-3PM | Fri-Sat 6AM-2PM<br/>
-                      <strong>Office:</strong> Mon-Fri 8AM-4PM
-                    </p>
-                    <a href="tel:+12193982010" className="text-lg font-bold text-charcoal hover:text-primary transition-colors">(219) 398-2010</a>
+                    
+                    {/* Main Phone */}
+                    <div>
+                      <p className="text-stone-900 font-bold text-sm mb-0.5">Premier Lumber Co</p>
+                      <a href="tel:+12193540720" className="text-lg font-bold text-primary hover:text-primary-dark transition-colors block mb-1">(219) 354-0720</a>
+                      <p className="text-stone-500 text-sm">Mon-Fri: 7AM - 4PM<br/>Sat: 7AM - 12PM</p>
+                    </div>
                   </div>
                 </div>
 
@@ -88,7 +90,7 @@ export function Contact() {
                 <iframe 
                   title="Premier Lumber Location"
                   className="w-full h-full border-0"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2973.5!2d-87.4546!3d41.6393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s724+Chicago+Ave%2C+East+Chicago%2C+IN+46312!5e0!3m2!1sen!2sus" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2974.2!2d-87.2592886!3d41.6006386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8811c05177fe3f73%3A0x3e514e35aa3d585!2sPremier%20Lumber%20Co!5e0!3m2!1sen!2sus" 
                   allowFullScreen={true}
                   loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"

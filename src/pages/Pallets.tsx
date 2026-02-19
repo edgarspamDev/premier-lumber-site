@@ -9,8 +9,33 @@ export function Pallets() {
     <div>
       <SEO 
         title="Wood Pallets: Buy, Sell & Recycle"
-        description="Buy new & used GMA standard pallets or sell your pallet cores. Heat-treated (ISPM-15). Custom sizes available. Volume discounts. Gary, IN. Call (219) 398-2010."
+        description="Buy new & used GMA standard pallets or sell your pallet cores. Heat-treated (ISPM-15). Custom sizes available. Volume discounts. Gary, IN. Call (219) 354-0720."
         path="/pallets"
+        product={{
+          name: "48x40 GMA Recycled Pallets",
+          description: "Grade A & B recycled pallets, heat-treated (ISPM-15 compliant). Custom sizes available. We also buy pallet cores.",
+          image: palletHeroImage,
+          price: "0.00",
+          availability: "InStock"
+        }}
+        breadcrumb={[
+          { name: "Home", item: "/" },
+          { name: "Pallets", item: "/pallets" }
+        ]}
+        faq={[
+          {
+            question: "Do you buy used pallets?",
+            answer: "Yes, we buy repairable 48x40 pallet cores. We offer fair, consistent pricing and can arrange pickup for large lots."
+          },
+          {
+            question: "Do you deliver pallets in Northwest Indiana?",
+            answer: "Yes, we offer delivery for volume orders across Gary, East Chicago, and the NW Indiana region."
+          },
+          {
+            question: "Are your pallets heat-treated?",
+            answer: "Yes, we supply ISPM-15 compliant heat-treated pallets suitable for international shipping."
+          }
+        ]}
       />
       <PageHeader 
         title="Pallets" 
@@ -22,12 +47,12 @@ export function Pallets() {
         <div className="container-custom">
 
           {/* Tap to Call - Mobile */}
-          <a href="tel:+12193982010" className="tap-to-call mb-8">
+          <a href="tel:+12193540720" className="tap-to-call mb-8">
             <div className="flex items-center gap-3">
               <Icon name="phone" size={22} />
               <div>
                 <p className="font-bold text-base">Call For Pricing</p>
-                <p className="text-sm text-white/80">(219) 398-2010</p>
+                <p className="text-sm text-white/80">(219) 354-0720</p>
               </div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
@@ -75,7 +100,7 @@ export function Pallets() {
                   <Icon name="check" size={18} className="text-green-600 shrink-0" /> Fair, consistent pricing
                 </li>
               </ul>
-              <a href="tel:+12193982010" className="btn btn-secondary w-full sm:w-auto">
+              <a href="tel:+12193540720" className="btn btn-secondary w-full sm:w-auto">
                 <Icon name="phone" size={18} className="mr-2" /> Call About Selling
               </a>
             </div>
@@ -120,8 +145,8 @@ export function Pallets() {
             <p className="text-stone-600 mb-4">Need a custom size or bulk order?</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact" className="btn btn-primary">Get Pallet Pricing</Link>
-              <a href="tel:+12193982010" className="btn btn-secondary">
-                <Icon name="phone" size={18} className="mr-2" /> (219) 398-2010
+              <a href="tel:+12193540720" className="btn btn-secondary">
+                <Icon name="phone" size={18} className="mr-2" /> (219) 354-0720
               </a>
             </div>
           </div>

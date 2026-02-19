@@ -13,7 +13,7 @@ export function Privacy() {
           <p className="mb-6">We use your data to communicate with you about your orders, quotes, or scheduled pickups. We do not sell your data to third parties.</p>
           
           <h2 className="text-2xl font-bold mb-4">3. Contact Us</h2>
-          <p>If you have questions about your data, please contact us at (219) 398-2010.</p>
+          <p>If you have questions about your data, please contact us at (219) 354-0720.</p>
         </div>
       </section>
     </div>

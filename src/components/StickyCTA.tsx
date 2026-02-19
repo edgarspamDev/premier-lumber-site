@@ -27,7 +27,7 @@ export function StickyCTA() {
         <div className="flex gap-3">
           {/* Call Now */}
           <a
-            href="tel:+12193982010"
+            href="tel:+12193540720"
             className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-charcoal text-white font-bold text-lg rounded-xl active:scale-95 transition-all duration-200 shadow-sm"
           >
             <Icon name="phone" size={20} />
