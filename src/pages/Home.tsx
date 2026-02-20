@@ -22,7 +22,7 @@ function useCountUp(end: number, duration: number, decimals: number, trigger: bo
 }
 import heroImage from '../assets/images/lumbrr/20260119_102704.opt.webp'; // Optimized Sawmill Hero
 import palletsImage from '../assets/images/lumbrr/Pallets.opt.webp'; // Optimized Pallet Stacks
-import firewoodImage from '../assets/images/lumbrr/IMG-20260202-WA0004.jpg'; // Bin of firewood blocks
+import firewoodImage from '../assets/images/lumbrr/firewood-stack-new.jpg'; // New Firewood Stack
 import sawdustImage from '../assets/images/lumbrr/sawdust-shovel.webp'; // Optimized Sawdust
 import customLumberImage from '../assets/images/lumbrr/20260119_103036.jpg'; // Large Log on Saw (reused for better quality)
 import logImage from '../assets/images/lumbrr/logpick.webp'; // Correct Log Pickup WebP
@@ -173,9 +173,9 @@ export function Home() {
               className="flex flex-col items-center text-center py-7 px-4 border-r border-white/10 hover:bg-white/5 transition-colors"
               style={{ opacity: statsVisible ? 1 : 0, transform: statsVisible ? 'translateY(0)' : 'translateY(16px)', transition: 'opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s' }}
             >
-              <span className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1.5">We Deliver</span>
-              <span className="text-5xl md:text-6xl font-extrabold text-white leading-none tabular-nums">{pct}<span className="text-2xl md:text-3xl font-bold"> Miles</span></span>
-              <span className="text-[11px] text-white/50 font-semibold mt-2 uppercase tracking-widest">From Gary (Ask Us)</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1.5">We Deliver Up To</span>
+              <span className="text-5xl md:text-6xl font-extrabold text-white leading-none tabular-nums">{pct}</span>
+              <span className="text-[11px] text-white/50 font-semibold mt-2 uppercase tracking-widest">Miles (Call For Details)</span>
             </div>
 
             {/* Stat 4 — Coverage */}
@@ -204,7 +204,7 @@ export function Home() {
           </div>
 
           {/* Mobile CTA */}
-          <a href="tel:+12193540720" className="tap-to-call mb-8">
+          <a href="tel:+12193540720" className="tap-to-call mb-8 active:scale-95 transition-transform">
             <div className="flex items-center gap-3">
               <Icon name="phone" size={22} />
               <div>
@@ -212,12 +212,12 @@ export function Home() {
                 <p className="text-sm text-white/80">(219) 354-0720</p>
               </div>
             </div>
-            <span className="text-sm font-bold">Call →</span>
+            <span className="text-sm font-bold bg-white/20 px-3 py-1 rounded-lg">Call →</span>
           </a>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8">
             {/* Pallets */}
-            <div className="card group">
+            <div className="card group flex flex-col h-full">
               <div className="h-48 md:h-56 overflow-hidden bg-stone-100 relative">
                 <img
                   src={palletsImage}
@@ -226,21 +226,20 @@ export function Home() {
                   width={800} height={600}
                   loading="lazy"
                 />
-
               </div>
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
                   <Icon name="pallets" className="text-primary" size={22} /> Pallets
                 </h3>
-                <p className="text-stone-600 mb-4">Stop scrambling for pallets. New, used & heat-treated, always in stock. <strong>We buy your cores too.</strong></p>
-                <Link to="/pallets" className="inline-flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all">
-                  See Options <span>→</span>
+                <p className="text-stone-600 mb-6 flex-grow">Stop scrambling for pallets. New, used & heat-treated, always in stock. <strong>We buy your cores too.</strong></p>
+                <Link to="/pallets" className="btn btn-secondary w-full justify-between group-hover:border-primary group-hover:text-primary transition-colors">
+                  See Options <span className="opacity-50 group-hover:opacity-100 transition-opacity">→</span>
                 </Link>
               </div>
             </div>
 
             {/* Firewood */}
-            <div className="card group">
+            <div className="card group flex flex-col h-full">
               <div className="h-48 md:h-56 overflow-hidden bg-stone-100 relative">
                 <img
                   src={firewoodImage}
@@ -249,24 +248,24 @@ export function Home() {
                   width={800} height={600}
                   loading="lazy"
                 />
-                <div className="absolute top-4 right-4 bg-success text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide">
-                  In Stock Year-Round
+                <div className="absolute top-4 right-4 bg-success text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide shadow-sm">
+                  In Stock
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
                   <Icon name="firewood" className="text-primary" size={22} /> Firewood
                 </h3>
-                <p className="text-stone-600 mb-4">Burn clean all season. Seasoned hardwood, ready to light. <strong>Pickup or delivered to your door.</strong></p>
-                <Link to="/firewood" className="inline-flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all">
-                  Get Pricing <span>→</span>
+                <p className="text-stone-600 mb-6 flex-grow">Burn clean all season. Seasoned hardwood, ready to light. <strong>Pickup or delivered to your door.</strong></p>
+                <Link to="/firewood" className="btn btn-secondary w-full justify-between group-hover:border-primary group-hover:text-primary transition-colors">
+                  Get Pricing <span className="opacity-50 group-hover:opacity-100 transition-opacity">→</span>
                 </Link>
               </div>
             </div>
 
             {/* Sawdust */}
-            <div className="card group">
-              <div className="h-48 md:h-56 overflow-hidden bg-stone-100">
+            <div className="card group flex flex-col h-full">
+              <div className="h-48 md:h-56 overflow-hidden bg-stone-100 relative">
                 <img
                   src={sawdustImage}
                   alt="Bulk sawdust"
@@ -275,19 +274,19 @@ export function Home() {
                   loading="lazy"
                 />
               </div>
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
                   <Icon name="sawdust" className="text-primary" size={22} /> Sawdust
                 </h3>
-                <p className="text-stone-600 mb-4">Bulk sawdust on demand. Bedding, landscaping, spill cleanup. <strong>Loaded while you wait.</strong></p>
-                <Link to="/sawdust" className="inline-flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all">
-                  Bulk Pricing <span>→</span>
+                <p className="text-stone-600 mb-6 flex-grow">Bulk sawdust on demand. Bedding, landscaping, spill cleanup. <strong>Loaded while you wait.</strong></p>
+                <Link to="/sawdust" className="btn btn-secondary w-full justify-between group-hover:border-primary group-hover:text-primary transition-colors">
+                  Bulk Pricing <span className="opacity-50 group-hover:opacity-100 transition-opacity">→</span>
                 </Link>
               </div>
             </div>
 
             {/* Custom Lumber */}
-            <div className="card group">
+            <div className="card group flex flex-col h-full">
               <div className="h-48 md:h-56 overflow-hidden bg-stone-100 relative">
                 <img
                   src={customLumberImage}
@@ -296,17 +295,17 @@ export function Home() {
                   width={800} height={600}
                   loading="lazy"
                 />
-                <div className="absolute top-4 right-4 bg-accent text-charcoal px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide">
+                <div className="absolute top-4 right-4 bg-accent text-charcoal px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide shadow-sm">
                   Custom
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
                   <Icon name="saw" className="text-primary" size={22} /> Custom Lumber
                 </h3>
-                <p className="text-stone-600 mb-4">Can't find the right size? Tell us what you need. <strong>We'll cut it from local hardwood.</strong></p>
-                <Link to="/custom-lumber" className="inline-flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all">
-                  Get Details <span>→</span>
+                <p className="text-stone-600 mb-6 flex-grow">Can't find the right size? Tell us what you need. <strong>We'll cut it from local hardwood.</strong></p>
+                <Link to="/custom-lumber" className="btn btn-secondary w-full justify-between group-hover:border-primary group-hover:text-primary transition-colors">
+                  Get Details <span className="opacity-50 group-hover:opacity-100 transition-opacity">→</span>
                 </Link>
               </div>
             </div>
@@ -408,7 +407,7 @@ export function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-10">
-            {/* Real review — anonymous */}
+            {/* Real review 1 — Roman Gutierrez (Anonymized) */}
             <div className="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm transition-shadow hover:shadow-md">
               <div className="flex gap-1 text-[#FBBF24] mb-3">
                 {[...Array(5)].map((_, i) => <Icon key={i} name="star" size={16} fill="currentColor" />)}
@@ -417,15 +416,15 @@ export function Home() {
                 "Good prices for your pallets. Great people work there."
               </p>
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary text-sm">★</div>
+                <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary text-sm">R</div>
                 <div>
-                  <p className="font-bold text-charcoal text-sm">Verified Google Review</p>
+                  <p className="font-bold text-charcoal text-sm">Verified Customer</p>
                   <p className="text-xs text-stone-400">Local Guide · Gary, IN</p>
                 </div>
               </div>
             </div>
 
-            {/* Real reviewer — anonymous */}
+            {/* Real review 2 — Michael J. Watts (Anonymized) */}
             <div className="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm transition-shadow hover:shadow-md">
               <div className="flex gap-1 text-[#FBBF24] mb-3">
                 {[...Array(5)].map((_, i) => <Icon key={i} name="star" size={16} fill="currentColor" />)}
@@ -434,9 +433,9 @@ export function Home() {
                 "Verified 5-star review."
               </p>
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary text-sm">★</div>
+                <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary text-sm">M</div>
                 <div>
-                  <p className="font-bold text-charcoal text-sm">Verified Google Review</p>
+                  <p className="font-bold text-charcoal text-sm">Verified Customer</p>
                   <p className="text-xs text-stone-400">Local Guide · 6 months ago</p>
                 </div>
               </div>
@@ -469,7 +468,7 @@ export function Home() {
               <div>
                 <p className="text-[11px] font-bold uppercase tracking-widest text-primary mb-1">Our Yard</p>
                 <a
-                  href="https://www.google.com/maps/place/Premier+Lumber+Co/@41.6006386,-87.2592886,17z/data=!4m16!1m9!3m8!1s0x8811c05177fe3f73:0x3e514e35aa3d585!2sPremier+Lumber+Co!8m2!3d41.6006346!4d-87.2567137!9m1!1b1!16s%2Fg%2F1tfbnyf5!3m5!1s0x8811c05177fe3f73:0x3e514e35aa3d585!8m2!3d41.6006346!4d-87.2567137!16s%2Fg%2F1tfbnyf5?hl=en-US&entry=ttu"
+                  href="https://maps.apple.com/?q=Premier+Lumber+Co&address=6717+Atcheson+Dr,Gary,IN+46403"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-extrabold text-white text-lg leading-tight hover:text-primary transition-colors"
@@ -482,7 +481,7 @@ export function Home() {
             {/* Action buttons */}
             <div className="flex flex-col sm:flex-row gap-3 shrink-0">
               <a
-                href="https://www.google.com/maps/place/Premier+Lumber+Co/@41.6006386,-87.2592886,17z/data=!4m16!1m9!3m8!1s0x8811c05177fe3f73:0x3e514e35aa3d585!2sPremier+Lumber+Co!8m2!3d41.6006346!4d-87.2567137!9m1!1b1!16s%2Fg%2F1tfbnyf5!3m5!1s0x8811c05177fe3f73:0x3e514e35aa3d585!8m2!3d41.6006346!4d-87.2567137!16s%2Fg%2F1tfbnyf5?hl=en-US&entry=ttu"
+                href="https://maps.apple.com/?q=Premier+Lumber+Co&address=6717+Atcheson+Dr,Gary,IN+46403"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 bg-primary text-white font-bold px-6 py-3.5 rounded-xl text-sm hover:bg-primary-dark transition-colors min-h-[52px]"

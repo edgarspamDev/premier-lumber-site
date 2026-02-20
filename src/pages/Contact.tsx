@@ -2,6 +2,9 @@ import { PageHeader } from "../components/PageHeader";
 import { RFQForm } from "../components/RFQForm";
 import { Icon } from "../components/Icons";
 import { SEO } from "../components/SEO";
+import { NoTranslate } from "../components/NoTranslate";
+
+import contactBg from '../assets/images/lumbrr/IMG-20260209-WA0016.jpg';
 
 export function Contact() {
   return (
@@ -14,6 +17,7 @@ export function Contact() {
       <PageHeader 
         title="Contact Us" 
         subtitle="Tell us what you need. We'll get back to you today."
+        bgImage={contactBg}
       />
       
       {/* FIND OUR YARD — top of page, mobile-first */}
@@ -30,7 +34,7 @@ export function Contact() {
               </div>
             </div>
             <a
-              href="https://www.google.com/maps/place/Premier+Lumber+Co/@41.6006386,-87.2592886,17z/data=!4m16!1m9!3m8!1s0x8811c05177fe3f73:0x3e514e35aa3d585!2sPremier+Lumber+Co!8m2!3d41.6006346!4d-87.2567137!9m1!1b1!16s%2Fg%2F1tfbnyf5!3m5!1s0x8811c05177fe3f73:0x3e514e35aa3d585!8m2!3d41.6006346!4d-87.2567137!16s%2Fg%2F1tfbnyf5?hl=en-US&entry=ttu"
+              href="https://maps.apple.com/?q=Premier+Lumber+Co&address=6717+Atcheson+Dr,Gary,IN+46403"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 bg-primary text-white font-bold px-5 py-3 rounded-xl text-sm hover:bg-primary-dark transition-colors shrink-0 min-h-[48px]"
@@ -50,7 +54,10 @@ export function Contact() {
               <Icon name="phone" size={22} />
               <div>
                 <p className="font-bold text-base">Tap to Call</p>
-                <p className="text-sm text-white/80">(219) 354-0720</p>
+                <div className="flex items-baseline gap-2">
+                  <p className="text-sm text-white/80">(219) 354-0720</p>
+                  <span className="text-[10px] text-white/60 notranslate" translate="no">Hablamos Español</span>
+                </div>
               </div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
@@ -69,17 +76,27 @@ export function Contact() {
                   </div>
                   <div>
                     <h3 className="font-bold">Visit Us</h3>
-                    <p className="text-stone-600 text-sm">
-                      <a 
-                        href="https://www.google.com/maps/place/Premier+Lumber+Co/@41.6006386,-87.2592886,17z/data=!4m16!1m9!3m8!1s0x8811c05177fe3f73:0x3e514e35aa3d585!2sPremier+Lumber+Co!8m2!3d41.6006346!4d-87.2567137!9m1!1b1!16s%2Fg%2F1tfbnyf5!3m5!1s0x8811c05177fe3f73:0x3e514e35aa3d585!8m2!3d41.6006346!4d-87.2567137!16s%2Fg%2F1tfbnyf5?hl=en-US&entry=ttu" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="hover:text-primary transition-colors"
-                      >
-                        6717 Atcheson Dr<br/>Gary, IN 46403
-                      </a>
-                    </p>
-                    <a href="https://www.google.com/maps/place/Premier+Lumber+Co/@41.6006386,-87.2592886,17z/data=!4m16!1m9!3m8!1s0x8811c05177fe3f73:0x3e514e35aa3d585!2sPremier+Lumber+Co!8m2!3d41.6006346!4d-87.2567137!9m1!1b1!16s%2Fg%2F1tfbnyf5!3m5!1s0x8811c05177fe3f73:0x3e514e35aa3d585!8m2!3d41.6006346!4d-87.2567137!16s%2Fg%2F1tfbnyf5?hl=en-US&entry=ttu" target="_blank" rel="noopener noreferrer" className="text-primary font-bold text-sm mt-1 inline-block hover:underline">Get Directions &rarr;</a>
+                    <div className="space-y-4 mt-2">
+                      <div>
+                        <p className="font-bold text-charcoal text-sm">Lumber Yard (Main)</p>
+                        <a 
+                          href="https://www.google.com/maps/place/Premier+Lumber+Co/@41.6006386,-87.2592886,17z/data=!4m16!1m9!3m8!1s0x8811c05177fe3f73:0x3e514e35aa3d585!2sPremier+Lumber+Co!8m2!3d41.6006346!4d-87.2567137!9m1!1b1!16s%2Fg%2F1tfbnyf5!3m5!1s0x8811c05177fe3f73:0x3e514e35aa3d585!8m2!3d41.6006346!4d-87.2567137!16s%2Fg%2F1tfbnyf5?hl=en-US&entry=ttu" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="text-stone-600 text-sm hover:text-primary transition-colors block"
+                        >
+                          6717 Atcheson Dr, Gary, IN 46403
+                        </a>
+                        <p className="text-xs text-stone-500 mt-0.5">M-Th 6am-3pm, F-Sat 6am-2pm</p>
+                      </div>
+                      
+                      <div>
+                        <p className="font-bold text-charcoal text-sm">Office</p>
+                        <p className="text-stone-600 text-sm">724 Chicago Ave, East Chicago, IN 46312</p>
+                        <p className="text-xs text-stone-500 mt-0.5">M-F 8am-4pm, Sat Closed</p>
+                      </div>
+                    </div>
+                    <a href="https://www.google.com/maps/place/Premier+Lumber+Co/@41.6006386,-87.2592886,17z/data=!4m16!1m9!3m8!1s0x8811c05177fe3f73:0x3e514e35aa3d585!2sPremier+Lumber+Co!8m2!3d41.6006346!4d-87.2567137!9m1!1b1!16s%2Fg%2F1tfbnyf5!3m5!1s0x8811c05177fe3f73:0x3e514e35aa3d585!8m2!3d41.6006346!4d-87.2567137!16s%2Fg%2F1tfbnyf5?hl=en-US&entry=ttu" target="_blank" rel="noopener noreferrer" className="text-primary font-bold text-sm mt-3 inline-block hover:underline">Get Directions to Yard &rarr;</a>
                   </div>
                 </div>
 
@@ -94,7 +111,8 @@ export function Contact() {
                     <div>
                       <p className="text-stone-900 font-bold text-sm mb-0.5">Premier Lumber Co</p>
                       <a href="tel:+12193540720" className="text-lg font-bold text-primary hover:text-primary-dark transition-colors block mb-1">(219) 354-0720</a>
-                      <p className="text-stone-500 text-sm">Mon-Fri: 7AM - 4PM<br/>Sat: 7AM - 12PM</p>
+                      <NoTranslate as="p" className="text-[11px] text-primary font-semibold mb-1">También hablamos español</NoTranslate>
+                      <p className="text-stone-500 text-sm">Call M-F 8am-4pm</p>
                     </div>
                   </div>
                 </div>

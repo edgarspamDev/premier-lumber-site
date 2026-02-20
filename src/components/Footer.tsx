@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Icon } from './Icons';
+import { NoTranslate } from './NoTranslate';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -18,7 +19,7 @@ export function Footer() {
                 className="h-14 w-auto object-contain"
               />
               <div className="flex flex-col">
-                <span className="font-extrabold text-lg leading-none">Premier <span className="text-primary">Lumber</span></span>
+                <NoTranslate as="span" className="font-extrabold text-lg leading-none">Premier <span className="text-primary">Lumber</span></NoTranslate>
                 <span className="text-xs text-primary/70 font-semibold">Quality Wood Products</span>
               </div>
             </Link>
@@ -30,51 +31,81 @@ export function Footer() {
               <Icon name="phone" size={16} />
               (219) 354-0720
             </a>
+            <NoTranslate as="p" className="text-xs text-stone-500 mt-2">También hablamos español</NoTranslate>
+            <div className="mt-4">
+              <a 
+                href="https://www.google.com/search?q=Premier+Lumber+Co+Gary+IN&lrd=0x8811c05177fe3f73:0x3e514e35aa3d585,3,,,," 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-3 py-2 rounded-lg font-bold text-xs uppercase tracking-wide transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+              >
+                <Icon name="star" size={16} fill="currentColor" />
+                Rate Us on Google
+              </a>
+            </div>
           </div>
 
           {/* Products */}
           <div>
             <h3 className="font-bold text-base mb-4 text-white uppercase tracking-wide">Products</h3>
-            <ul className="space-y-2">
-              <li><Link to="/pallets" className="text-stone-400 hover:text-white transition-colors">Pallets (New & Used)</Link></li>
-              <li><Link to="/firewood" className="text-stone-400 hover:text-white transition-colors">Seasoned Firewood</Link></li>
-              <li><Link to="/sawdust" className="text-stone-400 hover:text-white transition-colors">Bulk Sawdust</Link></li>
-              <li><Link to="/custom-lumber" className="text-stone-400 hover:text-white transition-colors">Custom Lumber</Link></li>
+            <ul className="space-y-3">
+              <li><Link to="/pallets" className="text-stone-400 hover:text-white transition-colors block py-1">Pallets (New & Used)</Link></li>
+              <li><Link to="/firewood" className="text-stone-400 hover:text-white transition-colors block py-1">Seasoned Firewood</Link></li>
+              <li><Link to="/sawdust" className="text-stone-400 hover:text-white transition-colors block py-1">Bulk Sawdust</Link></li>
+              <li><Link to="/custom-lumber" className="text-stone-400 hover:text-white transition-colors block py-1">Custom Lumber</Link></li>
             </ul>
           </div>
 
           {/* Services */}
           <div>
             <h3 className="font-bold text-base mb-4 text-white uppercase tracking-wide">Services</h3>
-            <ul className="space-y-2">
-              <li><Link to="/log-pickup" className="text-stone-400 hover:text-white transition-colors">Free Log Pickup</Link></li>
-              <li><Link to="/tree-service-partners" className="text-stone-400 hover:text-white transition-colors">Tree Service Partners</Link></li>
-              <li><Link to="/contact" className="text-stone-400 hover:text-white transition-colors">Pallet Recycling</Link></li>
-              <li><Link to="/contact" className="text-stone-400 hover:text-white transition-colors">Local Delivery</Link></li>
-              <li><Link to="/contact" className="text-stone-400 hover:text-white transition-colors">Get a Quote</Link></li>
+            <ul className="space-y-3">
+              <li><Link to="/log-pickup" className="text-stone-400 hover:text-white transition-colors block py-1">Free Log Pickup</Link></li>
+              <li><Link to="/tree-service-partners" className="text-stone-400 hover:text-white transition-colors block py-1">Tree Service Partners</Link></li>
+              <li><Link to="/contact" className="text-stone-400 hover:text-white transition-colors block py-1">Pallet Recycling</Link></li>
+              <li><Link to="/contact" className="text-stone-400 hover:text-white transition-colors block py-1">Local Delivery</Link></li>
+              <li><Link to="/contact" className="text-stone-400 hover:text-white transition-colors block py-1">Get a Quote</Link></li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
             <h3 className="font-bold text-base mb-4 text-white uppercase tracking-wide">Visit Us</h3>
-            <div className="space-y-3 text-stone-400">
-              <a 
-                href="https://www.google.com/maps/place/Premier+Lumber+Co/@41.6006386,-87.2592886,17z/data=!4m16!1m9!3m8!1s0x8811c05177fe3f73:0x3e514e35aa3d585!2sPremier+Lumber+Co!8m2!3d41.6006346!4d-87.2567137!9m1!1b1!16s%2Fg%2F1tfbnyf5!3m5!1s0x8811c05177fe3f73:0x3e514e35aa3d585!8m2!3d41.6006346!4d-87.2567137!16s%2Fg%2F1tfbnyf5?hl=en-US&entry=ttu" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="flex items-start gap-3 hover:text-white transition-colors group"
-              >
-                <Icon name="location" className="text-primary mt-0.5 shrink-0 group-hover:text-primary-light" size={18} />
-                <span>6717 Atcheson Dr<br />Gary, IN 46403</span>
-              </a>
-              <div className="flex items-start gap-3">
-                <Icon name="clock" className="text-primary shrink-0 mt-1" size={18} />
-                <div className="text-sm">
-                  <span className="font-bold text-stone-300">Hours:</span><br/>
-                  Mon–Thu: 6AM–3PM<br />
-                  Fri & Sat: 6AM–2PM<br/>
-                  Sun: Closed
+            <div className="space-y-4 text-stone-400">
+              {/* Yard Info */}
+              <div>
+                <span className="font-bold text-white block text-sm mb-1">Premier Lumber Yard</span>
+                <a 
+                  href="https://www.google.com/maps/place/Premier+Lumber+Co/@41.6006386,-87.2592886,17z/data=!4m16!1m9!3m8!1s0x8811c05177fe3f73:0x3e514e35aa3d585!2sPremier+Lumber+Co!8m2!3d41.6006346!4d-87.2567137!9m1!1b1!16s%2Fg%2F1tfbnyf5!3m5!1s0x8811c05177fe3f73:0x3e514e35aa3d585!8m2!3d41.6006346!4d-87.2567137!16s%2Fg%2F1tfbnyf5?hl=en-US&entry=ttu" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-start gap-2 hover:text-white transition-colors group mb-1 text-sm"
+                >
+                  <Icon name="location" className="text-primary mt-0.5 shrink-0 group-hover:text-primary-light" size={16} />
+                  <span>6717 Atcheson Dr<br />Gary, IN 46403</span>
+                </a>
+                <div className="flex items-start gap-2 text-xs ml-6">
+                  <Icon name="clock" className="text-stone-500 shrink-0 mt-0.5" size={14} />
+                  <div>
+                    M-Th: 6AM–3PM<br />
+                    F-Sat: 6AM–2PM
+                  </div>
+                </div>
+              </div>
+
+              {/* Office Info */}
+              <div>
+                <span className="font-bold text-white block text-sm mb-1">Premier LLC Office</span>
+                <div className="flex items-start gap-2 text-sm mb-1">
+                  <Icon name="location" className="text-stone-500 mt-0.5 shrink-0" size={16} />
+                  <span>724 Chicago Ave<br />East Chicago, IN 46312</span>
+                </div>
+                <div className="flex items-start gap-2 text-xs ml-6">
+                  <Icon name="clock" className="text-stone-500 shrink-0 mt-0.5" size={14} />
+                  <div>
+                    M-F: 8AM–4PM<br />
+                    Sat: Closed
+                  </div>
                 </div>
               </div>
             </div>

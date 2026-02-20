@@ -6,6 +6,13 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --sat: env(safe-area-inset-top);
+    --sab: env(safe-area-inset-bottom);
+    --sal: env(safe-area-inset-left);
+    --sar: env(safe-area-inset-right);
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
@@ -90,6 +97,15 @@
   .btn {
     @apply inline-flex items-center justify-center px-7 py-3.5 text-base font-bold rounded-lg transition-all duration-200 focus:outline-none;
     min-height: 50px;
+    /* iOS tap feel — scale down on press */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Scale feedback on touch (no-hover devices = mobile) */
+  @media (hover: none) {
+    .btn:active {
+      transform: scale(0.96);
+    }
   }
 
   .btn-primary {
@@ -199,14 +215,14 @@
   }
 
   .hover-underline-animation::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     transform: scaleX(0);
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: theme('colors.primary.DEFAULT');
+    background-color: theme("colors.primary.DEFAULT");
     transform-origin: bottom right;
     transition: transform 0.25s ease-out;
   }
@@ -305,22 +321,36 @@ a:focus-visible {
 
 /* PRINT STYLES - Often Overlooked but Vital for Directions/Quotes */
 @media print {
-  @page { margin: 1cm; size: auto; }
-  body { 
-    background-color: white !important; 
-    color: black !important; 
-    -webkit-print-color-adjust: exact !important; 
+  @page {
+    margin: 1cm;
+    size: auto;
+  }
+  body {
+    background-color: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
-  
+
   /* Hide non-essential elements */
-  header, footer, .sticky-cta, nav, .btn, button, iframe, .animate-bounce-subtle { 
-    display: none !important; 
+  header,
+  footer,
+  .sticky-cta,
+  nav,
+  .btn,
+  button,
+  iframe,
+  .animate-bounce-subtle {
+    display: none !important;
   }
 
   /* Ensure text is readable */
-  h1, h2, h3, p, li { 
-    color: black !important; 
+  h1,
+  h2,
+  h3,
+  p,
+  li {
+    color: black !important;
     text-shadow: none !important;
   }
 
@@ -332,7 +362,9 @@ a:focus-visible {
   }
 
   /* Don't show URL for local links or # */
-  a[href^="#"]:after, a[href^="/"]:after, a[href^="tel"]:after {
+  a[href^="#"]:after,
+  a[href^="/"]:after,
+  a[href^="tel"]:after {
     content: "";
   }
 }

@@ -2,7 +2,7 @@ import { PageHeader } from '../components/PageHeader';
 import { Link } from 'react-router-dom';
 import { Icon } from '../components/Icons';
 import { SEO } from '../components/SEO';
-import firewoodImage from '../assets/images/lumbrr/IMG-20260202-WA0004.jpg'; // Bin of firewood blocks
+import firewoodImage from '../assets/images/lumbrr/firewood-stack-new.jpg'; // New Firewood Stack
 
 export function Firewood() {
   return (

@@ -3,6 +3,7 @@ import { PageHeader } from '../components/PageHeader';
 import { SEO } from '../components/SEO';
 import { Icon, type IconName } from '../components/Icons';
 import { FadeInOnScroll } from '../components/Animations';
+import treeServiceBg from '../assets/images/lumbrr/tree_service_hero_ai.png';
 
 export function TreeServicePartners() {
   const steps = [
@@ -45,6 +46,7 @@ export function TreeServicePartners() {
       <PageHeader
         title="Tree Service Partners"
         subtitle="Need a tree removed first? We can connect you with independent licensed crews."
+        bgImage={treeServiceBg}
       />
 
       {/* Important Notice */}

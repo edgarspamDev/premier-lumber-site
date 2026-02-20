@@ -8,9 +8,19 @@
     <link rel="manifest" href="/site.webmanifest" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover"
     />
     <meta name="theme-color" content="#F97316" />
+    <!-- iOS Web App & Phone Detection -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Premier Lumber" />
+    <meta name="format-detection" content="telephone=yes" />
+    <!-- Geo Tags for Local Discovery -->
+    <meta name="geo.region" content="US-IN" />
+    <meta name="geo.placename" content="Gary" />
+    <meta name="geo.position" content="41.6006346;-87.2567137" />
+    <meta name="ICBM" content="41.6006346, -87.2567137" />
     <title>
       Premier Lumber Co | Pallets, Firewood, Sawdust & Log Pickup | Gary, IN
     </title>
@@ -43,8 +53,109 @@
     <meta name="twitter:image" content="https://premierlumber.com/images/logo.png" />
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root" style="opacity:0"></div>
+    <!-- Critical App Shell: Sibling to root so React doesn't wipe it immediately -->
+    <div id="initial-loader">
+      <style>
+        #initial-loader {
+          position: fixed;
+          inset: 0;
+          z-index: 9999;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          background-color: #fefcf8; /* brand-cream (official) */
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+          transition: opacity 0.4s ease-out, visibility 0.4s;
+        }
+        #initial-loader.fade-out {
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+        }
+        .app-logo-container {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: 2.5rem;
+        }
+        .app-logo {
+          width: 64px;
+          height: 64px;
+          margin-bottom: 1rem;
+          /* Subtle breathe animation */
+          animation: pulse-brand 2s infinite ease-in-out;
+        }
+        .brand-text {
+          font-weight: 800;
+          font-size: 1.5rem;
+          color: #1c1917; /* charcoal */
+          letter-spacing: -0.03em;
+          line-height: 1;
+        }
+        .brand-text span {
+          color: #ea580c; /* primary orange */
+        }
+        .app-spinner {
+          width: 48px;
+          height: 48px;
+          border: 3px solid #e7e5e4; /* stone-200 */
+          border-top-color: #ea580c; /* primary orange (official) */
+          border-radius: 50%;
+          animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes pulse-brand { 
+          0%, 100% { transform: scale(1); opacity: 1; } 
+          50% { transform: scale(0.97); opacity: 0.9; } 
+        }
+      </style>
+      <div class="app-logo-container">
+        <img src="/logo-mark.svg" alt="Premier Lumber" class="app-logo" width="64" height="64" />
+        <div class="brand-text">Premier <span>Lumber</span></div>
+      </div>
+      <div class="app-spinner"></div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- Auto-Translate: Detects Spanish browsers and translates automatically (no visible UI) -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        // ROBUST: Check for ?lang=es OR Spanish browser
+        var urlParams = new URLSearchParams(window.location.search);
+        var forceLang = urlParams.get('lang');
+        var userLang = navigator.language || navigator.userLanguage || '';
+        var isSpanish = userLang.startsWith('es') || forceLang === 'es';
+
+        // 1. If Spanish is detected/forced, SET THE COOKIE immediately
+        if (isSpanish) {
+          document.cookie = "googtrans=/en/es; path=/; domain=" + window.location.hostname;
+          document.cookie = "googtrans=/en/es; path=/"; // Fallback
+        } else {
+          // If NOT Spanish, clear the cookie to prevent "stuck in Spanish" state
+          document.cookie = "googtrans=; path=/; domain=" + window.location.hostname + "; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+          document.cookie = "googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        }
+
+        // 2. Initialize the widget
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'es,es-419', 
+          autoDisplay: false
+        }, 'google_translate_element');
+      }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+    <!-- Hidden container for Google Translate (no visible UI) -->
+    <div id="google_translate_element" style="display:none;"></div>
+    <style>
+      /* Hide all Google Translate UI completely */
+      .skiptranslate { display: none !important; }
+      body { top: 0px !important; }
+      .goog-te-banner-frame { display: none !important; }
+      #goog-gt-tt { display: none !important; }
+    </style>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -135,7 +246,8 @@
           ]
         },
         "sameAs": [
-          "https://www.google.com/maps/place/Premier+Lumber+Co/@41.6006386,-87.2592886,17z/data=!4m16!1m9!3m8!1s0x8811c05177fe3f73:0x3e514e35aa3d585!2sPremier+Lumber+Co!8m2!3d41.6006346!4d-87.2567137!9m1!1b1!16s%2Fg%2F1tfbnyf5!3m5!1s0x8811c05177fe3f73:0x3e514e35aa3d585!8m2!3d41.6006346!4d-87.2567137!16s%2Fg%2F1tfbnyf5?hl=en-US&entry=ttu"
+          "https://www.google.com/maps/place/Premier+Lumber+Co/@41.6006386,-87.2592886,17z/data=!4m16!1m9!3m8!1s0x8811c05177fe3f73:0x3e514e35aa3d585!2sPremier+Lumber+Co!8m2!3d41.6006346!4d-87.2567137!9m1!1b1!16s%2Fg%2F1tfbnyf5!3m5!1s0x8811c05177fe3f73:0x3e514e35aa3d585!8m2!3d41.6006346!4d-87.2567137!16s%2Fg%2F1tfbnyf5?hl=en-US&entry=ttu",
+          "https://maps.apple.com/?q=Premier+Lumber+Co&address=6717+Atcheson+Dr,Gary,IN+46403"
         ]
       }
     </script>

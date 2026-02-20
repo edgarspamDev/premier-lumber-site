@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Icon } from "./Icons";
+import { NoTranslate } from "./NoTranslate";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,6 +56,7 @@ export function Header() {
             >
               <Icon name="phone" size={16} className="text-primary" />
               (219) 354-0720
+              <NoTranslate className="ml-2 text-xs font-normal text-stone-400 border-l border-stone-600 pl-3">También hablamos español</NoTranslate>
             </a>
           </div>
         </div>
@@ -74,10 +76,10 @@ export function Header() {
                 className="h-12 md:h-14 lg:h-16 w-auto object-contain group-hover:scale-105 transition-transform"
               />
               <div className="flex flex-col">
-                <span className="font-heading font-extrabold text-base sm:text-lg md:text-xl leading-none tracking-tight">
+                <NoTranslate as="span" className="font-heading font-extrabold text-base sm:text-lg md:text-xl leading-none tracking-tight">
                   <span className="text-charcoal">Premier </span>
                   <span className="text-primary">Lumber</span>
-                </span>
+                </NoTranslate>
                 <span className="text-[10px] sm:text-xs md:text-sm text-primary/80 font-bold tracking-wide">
                   Quality Wood Products
                 </span>
@@ -228,6 +230,7 @@ export function Header() {
 
             {/* Drawer Footer CTAs */}
             <div className="p-4 border-t border-stone-100 bg-stone-50">
+              <p className="text-center text-xs text-stone-500 mb-3 font-medium notranslate" translate="no">También hablamos español</p>
               <div className="grid grid-cols-2 gap-3">
                 <a
                   href="tel:+12193540720"
