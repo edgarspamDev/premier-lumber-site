@@ -6,8 +6,8 @@ import sawmill_operation from '../assets/images/lumbrr/20260119_103040.opt.webp'
 import sawdust_pile from '../assets/images/lumbrr/sawdust-shovel.webp'; // Shovel in sawdust (Optimized)
 
 // FIREWOOD: Actual firewood blocks and stacks
-import firewood_blocks from '../assets/images/lumbrr/IMG-20260202-WA0004.jpg'; // Bin of firewood blocks (Small enough)
-import firewood_crates from '../assets/images/lumbrr/IMG-20260210-WA0002.jpg'; // Stacked crates (firewood storage)
+import firewood_blocks from '../assets/images/lumbrr/IMG-20260202-WA0004.webp'; // Bin of firewood blocks (Small enough)
+import firewood_crates from '../assets/images/lumbrr/IMG-20260210-WA0002.webp'; // Stacked crates (firewood storage)
 
 // LOG PICKUP: Actual logs - roadside and being processed
 import logs_roadside from '../assets/images/lumbrr/logpick.webp'; // Hardwood logs stacked by road
@@ -21,7 +21,7 @@ import lumber_and_log from '../assets/images/lumbrr/20260119_103916(1).opt.webp'
 // PALLETS
 import pallet_yard from '../assets/images/lumbrr/Pallets.opt.webp'; // Pallet Stacks (Corrected)
 import pallet_stacks from '../assets/images/lumbrr/Pallets.opt.webp'; // Pallet stacks outdoor
-import pallet_warehouse from '../assets/images/lumbrr/IMG-20260209-WA0016.jpg'; // Pallet warehouse interior
+import pallet_warehouse from '../assets/images/lumbrr/IMG-20260209-WA0016.webp'; // Pallet warehouse interior
 
 export const categorizedPhotos = {
   sawdust: [

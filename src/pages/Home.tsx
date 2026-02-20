@@ -22,9 +22,9 @@ function useCountUp(end: number, duration: number, decimals: number, trigger: bo
 }
 import heroImage from '../assets/images/lumbrr/20260119_102704.opt.webp'; // Optimized Sawmill Hero
 import palletsImage from '../assets/images/lumbrr/Pallets.opt.webp'; // Optimized Pallet Stacks
-import firewoodImage from '../assets/images/lumbrr/firewood-stack-new.jpg'; // New Firewood Stack
+import firewoodImage from '../assets/images/lumbrr/firewood-stack-new.webp'; // New Firewood Stack
 import sawdustImage from '../assets/images/lumbrr/sawdust-shovel.webp'; // Optimized Sawdust
-import customLumberImage from '../assets/images/lumbrr/20260119_103036.jpg'; // Large Log on Saw (reused for better quality)
+import customLumberImage from '../assets/images/lumbrr/20260119_103036.webp'; // Large Log on Saw (reused for better quality)
 import logImage from '../assets/images/lumbrr/logpick.webp'; // Correct Log Pickup WebP
 
 export function Home() {

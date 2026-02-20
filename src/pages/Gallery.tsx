@@ -4,9 +4,9 @@ import { Icon } from '../components/Icons';
 import { SEO } from '../components/SEO';
 import heroImage from '../assets/images/lumbrr/20260119_102704.opt.webp';
 import palletImage from '../assets/images/lumbrr/Pallets.opt.webp';
-import firewoodImage from '../assets/images/lumbrr/IMG-20260202-WA0004.jpg';
+import firewoodImage from '../assets/images/lumbrr/IMG-20260202-WA0004.webp';
 import sawdustImage from '../assets/images/lumbrr/sawdust-shovel.webp';
-import logImage from '../assets/images/lumbrr/IMG-20260204-WA0001.jpg';
+import logImage from '../assets/images/lumbrr/IMG-20260204-WA0001.webp';
 import customLumberImage from '../assets/images/lumbrr/20260119_103036.opt.webp';
 
 const images = [

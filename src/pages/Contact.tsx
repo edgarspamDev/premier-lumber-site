@@ -4,7 +4,7 @@ import { Icon } from "../components/Icons";
 import { SEO } from "../components/SEO";
 
 
-import contactBg from '../assets/images/lumbrr/IMG-20260209-WA0016.jpg';
+import contactBg from '../assets/images/lumbrr/IMG-20260209-WA0016.webp';
 
 export function Contact() {
   return (
