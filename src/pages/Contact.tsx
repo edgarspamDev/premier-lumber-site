@@ -2,7 +2,7 @@ import { PageHeader } from "../components/PageHeader";
 import { RFQForm } from "../components/RFQForm";
 import { Icon } from "../components/Icons";
 import { SEO } from "../components/SEO";
-import { NoTranslate } from "../components/NoTranslate";
+
 
 import contactBg from '../assets/images/lumbrr/IMG-20260209-WA0016.jpg';
 
