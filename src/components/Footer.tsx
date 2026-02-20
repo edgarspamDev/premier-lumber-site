@@ -31,7 +31,9 @@ export function Footer() {
               <Icon name="phone" size={16} />
               (219) 354-0720
             </a>
-            <NoTranslate as="p" className="text-xs text-stone-500 mt-2">También hablamos español</NoTranslate>
+            <a href="tel:+12195164867" className="inline-flex items-center gap-2 text-stone-400 font-bold hover:text-primary transition-colors mt-1 text-sm block">
+              <span className="text-xs uppercase font-normal text-stone-500 mr-1">Para Español:</span> (219) 516-4867
+            </a>
             <div className="mt-4">
               <a 
                 href="https://www.google.com/search?q=Premier+Lumber+Co+Gary+IN&lrd=0x8811c05177fe3f73:0x3e514e35aa3d585,3,,,," 

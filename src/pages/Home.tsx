@@ -226,6 +226,9 @@ export function Home() {
                   width={800} height={600}
                   loading="lazy"
                 />
+                <div className="absolute top-4 right-4 bg-success text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide shadow-sm">
+                  In Stock All Year
+                </div>
               </div>
               <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
@@ -249,7 +252,7 @@ export function Home() {
                   loading="lazy"
                 />
                 <div className="absolute top-4 right-4 bg-success text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide shadow-sm">
-                  In Stock
+                  In Stock All Year
                 </div>
               </div>
               <div className="p-6 flex flex-col flex-grow">
@@ -273,6 +276,9 @@ export function Home() {
                   width={800} height={600}
                   loading="lazy"
                 />
+                <div className="absolute top-4 right-4 bg-success text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide shadow-sm">
+                  In Stock All Year
+                </div>
               </div>
               <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-bold mb-2 flex items-center gap-2">

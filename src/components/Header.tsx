@@ -50,14 +50,22 @@ export function Header() {
               <Icon name="location" size={16} className="text-primary" />
               <span>6717 Atcheson Dr, Gary, IN 46403</span>
             </a>
-            <a
-              href="tel:+12193540720"
-              className="flex items-center gap-2 font-bold text-white hover:text-primary transition-colors"
-            >
-              <Icon name="phone" size={16} className="text-primary" />
-              (219) 354-0720
-              <NoTranslate className="ml-2 text-xs font-normal text-stone-400 border-l border-stone-600 pl-3">También hablamos español</NoTranslate>
-            </a>
+            <div className="flex items-center gap-4">
+              <a
+                href="tel:+12193540720"
+                className="flex items-center gap-2 font-bold text-white hover:text-primary transition-colors"
+              >
+                <Icon name="phone" size={16} className="text-primary" />
+                (219) 354-0720
+              </a>
+              <span className="h-4 w-px bg-white/20"></span>
+              <a
+                href="tel:+12195164867"
+                className="text-xs font-bold text-stone-300 hover:text-primary transition-colors"
+              >
+                Para Español: <span className="text-white group-hover:text-primary transition-colors">(219) 516-4867</span>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -236,7 +244,14 @@ export function Header() {
                   href="tel:+12193540720"
                   className="btn btn-secondary justify-center text-sm min-h-[48px]"
                 >
-                  <Icon name="phone" size={18} className="mr-2" /> Call Now
+                  <Icon name="phone" size={18} className="mr-2" /> (219) 354-0720
+                </a>
+                <a
+                  href="tel:+12195164867"
+                  className="btn btn-secondary justify-center text-sm min-h-[48px] flex-col gap-0"
+                >
+                  <span className="text-[10px] uppercase font-bold text-stone-400">Para Español</span>
+                  <span className="leading-none">(219) 516-4867</span>
                 </a>
                 <Link
                   to="/contact"
