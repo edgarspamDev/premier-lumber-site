@@ -111,7 +111,11 @@ export function Contact() {
                     <div>
                       <p className="text-stone-900 font-bold text-sm mb-0.5">Premier Lumber Co</p>
                       <a href="tel:+12193540720" className="text-lg font-bold text-primary hover:text-primary-dark transition-colors block mb-1">(219) 354-0720</a>
-                      <NoTranslate as="p" className="text-[11px] text-primary font-semibold mb-1">También hablamos español</NoTranslate>
+                      
+                      <a href="tel:+12195164867" className="inline-block mt-2 mb-1 group">
+                        <span className="text-[11px] font-bold uppercase tracking-wide text-stone-400 block mb-0.5">Para Español</span>
+                        <span className="text-base font-bold text-stone-600 group-hover:text-primary transition-colors">(219) 516-4867</span>
+                      </a>
                       <p className="text-stone-500 text-sm">Call M-F 8am-4pm</p>
                     </div>
                   </div>

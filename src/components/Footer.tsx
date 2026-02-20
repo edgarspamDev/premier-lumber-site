@@ -97,7 +97,7 @@ export function Footer() {
 
               {/* Office Info */}
               <div>
-                <span className="font-bold text-white block text-sm mb-1">Premier LLC Office</span>
+                <span className="font-bold text-white block text-sm mb-1">Premier Office</span>
                 <div className="flex items-start gap-2 text-sm mb-1">
                   <Icon name="location" className="text-stone-500 mt-0.5 shrink-0" size={16} />
                   <span>724 Chicago Ave<br />East Chicago, IN 46312</span>
