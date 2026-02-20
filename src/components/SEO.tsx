@@ -30,7 +30,7 @@ interface SEOProps {
 }
 
 const SITE_NAME = 'Premier Lumber Co';
-const BASE_URL = 'https://premierlumber.com';
+const BASE_URL = 'https://premierlumberco.com';
 const DEFAULT_OG_IMAGE = `${BASE_URL}/images/logo.png`;
 
 export function SEO({ title, description, path = '/', ogImage, product, service, breadcrumb, faq }: SEOProps) {

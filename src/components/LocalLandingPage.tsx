@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin, Truck } from 'lucide-react';
 
-const BASE_URL = 'https://premierlumber.com';
+const BASE_URL = 'https://premierlumberco.com';
 
 const OFFER_CATALOG = {
   "@type": "OfferCatalog",

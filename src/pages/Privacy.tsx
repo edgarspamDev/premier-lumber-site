@@ -6,7 +6,7 @@ export function Privacy() {
 
       <section className="mb-8">
         <h2 className="text-2xl font-bold text-charcoal mb-4">1. Introduction</h2>
-        <p>Premier Lumber Co ("we," "our," or "us") respects your privacy and is committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website (premierlumber.com) and tell you about your privacy rights and how the law protects you.</p>
+        <p>Premier Lumber Co ("we," "our," or "us") respects your privacy and is committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website (premierlumberco.com) and tell you about your privacy rights and how the law protects you.</p>
       </section>
 
       <section className="mb-8">
