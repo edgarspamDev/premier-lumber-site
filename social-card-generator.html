@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Social Card UI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+            heading: ['Space Grotesk', 'sans-serif'],
+          },
+          colors: {
+            brand: '#ea580c',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap');
+    .font-sans { font-family: 'Manrope', sans-serif; }
+    .font-heading { font-family: 'Space Grotesk', sans-serif; }
+    .text-charcoal { color: #0f0f0f; }
+    .text-primary { color: #ea580c; }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#ea580c',
+            charcoal: '#0f0f0f'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="w-[1200px] h-[630px] m-0 p-0 flex items-center justify-center bg-white antialiased font-sans">
+    
+    <!-- Centered Logo Group matching Website Header -->
+    <div class="flex items-center gap-12">
+        <!-- The pure SVG on a white background -->
+        <img src="./public/high-res-beaver-2.png" alt="Premier Lumber Co" class="h-64 w-auto object-contain" />
+        
+        <!-- The accompanying text in exact brand fonts -->
+        <div class="flex flex-col justify-center">
+            <span class="font-heading font-extrabold text-[110px] leading-[0.9] tracking-tight">
+                <span class="text-charcoal">Premier </span>
+                <span class="text-primary">Lumber</span>
+            </span>
+            <span class="text-[48px] text-primary/80 font-bold tracking-wide mt-2">
+                Quality Wood Products
+            </span>
+        </div>
+    </div>
+
+</body>
+</html>
