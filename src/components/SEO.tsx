@@ -31,7 +31,7 @@ interface SEOProps {
 
 const SITE_NAME = 'Premier Lumber Co';
 const BASE_URL = 'https://premierlumberco.com';
-const DEFAULT_OG_IMAGE = `${BASE_URL}/images/logo.png`;
+const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.png`;
 
 export function SEO({ title, description, path = '/', ogImage, product, service, breadcrumb, faq }: SEOProps) {
   const fullTitle = path === '/' ? title : `${title} | ${SITE_NAME}`;
@@ -62,15 +62,9 @@ export function SEO({ title, description, path = '/', ogImage, product, service,
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
-        "opens": "06:00",
-        "closes": "15:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Friday", "Saturday"],
-        "opens": "06:00",
-        "closes": "14:00"
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "16:00"
       }
     ],
     "sameAs": [

@@ -67,20 +67,20 @@ export function LogPickup() {
 
               {/* What We Accept */}
               <div className="mb-8">
-                <h3 className="font-bold mb-3 text-base text-charcoal">Accepted Species</h3>
+                <h3 className="font-bold mb-3 text-base text-charcoal">All Wood Types Accepted</h3>
+                <p className="text-stone-600 text-sm mb-3">
+                  We accept any type of wood — hardwood, softwood, it doesn't matter. Bring us what you've got.
+                </p>
                 <div className="flex flex-wrap gap-2">
-                  {['Walnut', 'Oak', 'Cherry', 'Ash', 'Maple', 'Hickory'].map((species) => (
+                  {['Walnut', 'Oak', 'Cherry', 'Ash', 'Maple', 'Hickory', 'Pine', 'Elm', 'Poplar', 'Cottonwood'].map((species) => (
                     <span key={species} className="bg-orange-50 text-charcoal px-3 py-1.5 rounded-lg text-sm font-bold border border-orange-100 shadow-sm">
                       {species}
                     </span>
                   ))}
-                  <span className="bg-stone-100 text-stone-700 px-3 py-1.5 rounded-lg text-sm font-bold border border-stone-200 shadow-sm">
-                    Other hardwood?*
+                  <span className="bg-primary text-white px-3 py-1.5 rounded-lg text-sm font-bold shadow-sm">
+                    + Any Other Species
                   </span>
                 </div>
-                <p className="mt-3 text-xs text-stone-500">
-                  *If your species is not listed, call us first and we will confirm before you cut or haul anything.
-                </p>
               </div>
 
               {/* Requirements */}

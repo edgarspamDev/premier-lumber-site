@@ -91,7 +91,7 @@ export const LocalLandingPage: React.FC<LocalLandingPageProps> = ({ city, servic
     "name": "Premier Lumber Co",
     "url": canonicalUrl,
     "telephone": "+12193540720",
-    "image": `${BASE_URL}/images/logo.png`,
+    "image": `${BASE_URL}/logo.png`,
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
@@ -109,15 +109,9 @@ export const LocalLandingPage: React.FC<LocalLandingPageProps> = ({ city, servic
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
-        "opens": "06:00",
-        "closes": "15:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Friday", "Saturday"],
-        "opens": "06:00",
-        "closes": "14:00"
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "16:00"
       }
     ],
     "aggregateRating": {
@@ -208,13 +202,13 @@ export const LocalLandingPage: React.FC<LocalLandingPageProps> = ({ city, servic
           </div>
           <div className="relative max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 font-serif">
-              Premium {service} in <span className="text-amber-500">{city}, IN</span>
+              Premium {service} in <span className="text-primary">{city}, IN</span>
             </h1>
             <p className="text-xl text-stone-300 mb-8 max-w-2xl mx-auto">
               {description}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/contact" className="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-full transition-colors flex items-center gap-2">
+              <Link to="/contact" className="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-full transition-colors flex items-center gap-2">
                 Get a Quote <ArrowRight size={20} />
               </Link>
               <a href="tel:+12193540720" className="bg-white text-stone-900 hover:bg-gray-100 font-bold py-3 px-8 rounded-full transition-colors">
@@ -228,21 +222,21 @@ export const LocalLandingPage: React.FC<LocalLandingPageProps> = ({ city, servic
         <div className="py-16 px-4 max-w-6xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="p-6 bg-stone-50 rounded-lg border border-stone-200">
-              <MapPin className="text-amber-600 mb-4" size={32} />
+              <MapPin className="text-primary mb-4" size={32} />
               <h3 className="text-xl font-bold mb-2 text-stone-900">Local to {city}</h3>
               <p className="text-stone-600">
                 We are your neighbors. Located just minutes away, we ensure fast and reliable service to {city} residents and businesses.
               </p>
             </div>
             <div className="p-6 bg-stone-50 rounded-lg border border-stone-200">
-              <Award className="text-amber-600 mb-4" size={32} />
+              <Award className="text-primary mb-4" size={32} />
               <h3 className="text-xl font-bold mb-2 text-stone-900">Top Rated Quality</h3>
               <p className="text-stone-600">
                 Rated 5.0 stars by locals. Our {service.toLowerCase()} is inspected for quality, ensuring you get the best value.
               </p>
             </div>
             <div className="p-6 bg-stone-50 rounded-lg border border-stone-200">
-              <Truck className="text-amber-600 mb-4" size={32} />
+              <Truck className="text-primary mb-4" size={32} />
               <h3 className="text-xl font-bold mb-2 text-stone-900">Delivery & Pickup</h3>
               <p className="text-stone-600">
                 Need it delivered to {city}? No problem. Prefer to pick up from our yard? We'll load you up.

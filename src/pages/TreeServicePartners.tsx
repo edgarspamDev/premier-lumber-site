@@ -53,7 +53,7 @@ export function TreeServicePartners() {
       <section className="section bg-white">
         <div className="container-custom max-w-4xl">
           <FadeInOnScroll>
-            <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl border border-orange-200/60 p-6 md:p-10 mb-12 shadow-sm">
+            <div className="bg-gradient-to-br from-orange-50 to-primary/5 rounded-2xl border border-orange-200/60 p-6 md:p-10 mb-12 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
                   <Icon name="shield" size={22} className="text-primary" />

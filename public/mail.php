@@ -135,7 +135,7 @@ $comments = clean_body($data['comments'] ?? '');
 // AT&T: number@txt.att.net
 // T-Mobile: number@tmomail.net
 $to_emails = [
-    'contact@premierlumber.com', // Primary Business Email (if exists)
+    'contact.premierlumber@gmail.com', // Primary Business Email
     // 'owner_personal@gmail.com', // Backup Personal Email
     // '2199386275@vtext.com'      // SMS Notification (Verizon Example)
 ];

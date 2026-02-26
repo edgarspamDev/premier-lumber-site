@@ -21,7 +21,7 @@ export function Contact() {
       />
       
       {/* FIND OUR YARD — top of page, mobile-first */}
-      <div className="bg-amber-50 border-b border-amber-200">
+      <div className="bg-primary/5 border-b border-primary/10">
         <div className="container-custom py-4">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
             <div className="flex items-center gap-3 flex-1 min-w-0">
@@ -87,7 +87,7 @@ export function Contact() {
                         >
                           6717 Atcheson Dr, Gary, IN 46403
                         </a>
-                        <p className="text-xs text-stone-500 mt-0.5">M-Th 6am-3pm, F-Sat 6am-2pm</p>
+                        <p className="text-xs text-stone-500 mt-0.5">M-F 8am-4pm, Sat Closed</p>
                       </div>
                       
                       <div>

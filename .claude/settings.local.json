@@ -23,7 +23,11 @@
       "WebFetch(domain:maps.app.goo.gl)",
       "WebFetch(domain:www.google.com)",
       "Bash(git reset:*)",
-      "Bash(powershell -ExecutionPolicy Bypass -Command \"cd ''C:\\\\Users\\\\Hunti\\\\Downloads\\\\premier-lumber-site''; npm run build 2>&1 | tail -3; & ''.\\\\hostinger-deploy.ps1''\")"
+      "Bash(powershell -ExecutionPolicy Bypass -Command \"cd ''C:\\\\Users\\\\Hunti\\\\Downloads\\\\premier-lumber-site''; npm run build 2>&1 | tail -3; & ''.\\\\hostinger-deploy.ps1''\")",
+      "Bash(dir:*)",
+      "Bash(cmd /c:*)",
+      "Bash(del \"C:\\\\Users\\\\Hunti\\\\Downloads\\\\premier-lumber-site\\\\create-og-image.cjs\")",
+      "Bash(node create-og-image.cjs:*)"
     ]
   }
 }

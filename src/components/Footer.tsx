@@ -31,7 +31,7 @@ export function Footer() {
               <Icon name="phone" size={16} />
               (219) 354-0720
             </a>
-            <a href="tel:+12195164867" className="inline-flex items-center gap-2 text-stone-400 font-bold hover:text-primary transition-colors mt-1 text-sm block">
+            <a href="tel:+12195164867" className="inline-flex items-center gap-2 text-stone-400 font-bold hover:text-primary transition-colors mt-1 text-sm">
               <span className="text-xs uppercase font-normal text-stone-500 mr-1">Para Español:</span> (219) 516-4867
             </a>
             <div className="mt-4">
@@ -39,7 +39,7 @@ export function Footer() {
                 href="https://www.google.com/search?q=Premier+Lumber+Co+Gary+IN&lrd=0x8811c05177fe3f73:0x3e514e35aa3d585,3,,,," 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-3 py-2 rounded-lg font-bold text-xs uppercase tracking-wide transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-3 py-2 rounded-lg font-bold text-xs uppercase tracking-wide transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
               >
                 <Icon name="star" size={16} fill="currentColor" />
                 Rate Us on Google

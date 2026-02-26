@@ -1,9 +1,28 @@
 Options -MultiViews
 RewriteEngine On
+
+# ============================================================
+# SECURITY: Bad Bot & Negative SEO Protection
+# ============================================================
+<IfModule mod_rewrite.c>
+  # Block aggressive scrapers and known bad bots from wasting bandwidth (Negative SEO Defense)
+  RewriteCond %{HTTP_USER_AGENT} ^.*(AhrefsBot|Baiduspider|YandexBot|MJ12bot|SemrushBot|DotBot|MegaIndex|BLEXBot|ZoominfoBot|Seznam|Xenu|Screaming|CognitiveSEO|python-requests|wget|curl|urllib|Go-http-client|libwww-perl|Bytespider).*$ [NC]
+  RewriteRule ^.*$ - [F,L]
+
+  # Hotlink Protection (Prevent others from embedding your images to drain SEO/Bandwidth)
+  RewriteCond %{REQUEST_URI} !^/og-image-v4\.png$ [NC]
+  RewriteCond %{HTTP_REFERER} !^$
+  RewriteCond %{HTTP_REFERER} !^https://(www\.)?premierlumberco\.com [NC]
+  RewriteCond %{HTTP_REFERER} !^http://localhost [NC]
+  RewriteCond %{HTTP_REFERER} !^http://127\.0\.0\.1 [NC]
+  # Allow common social bots to bypass hotlink block just in case
+  RewriteCond %{HTTP_USER_AGENT} !(facebookexternalhit|LinkedInBot|Twitterbot|Pinterest|SkypeUriPreview|slackbot) [NC]
+  RewriteRule \.(jpg|jpeg|png|gif|webp|svg)$ - [F,NC,L]
+</IfModule>
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.html [QSA,L]
-
 # ============================================================
 # PERFORMANCE: Browser Caching
 # ============================================================
@@ -53,14 +72,24 @@ RewriteRule ^ index.html [QSA,L]
 </IfModule>
 
 # ============================================================
-# SECURITY: Headers
+# SECURITY: OWASP Secure Headers
 # ============================================================
+# Prevent Server Information Leaks
+ServerSignature Off
+
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set X-XSS-Protection "1; mode=block"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(self)"
+  
+  # HTTP Strict Transport Security (HSTS) - Enforce HTTPS
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  
+  # Content Security Policy (CSP) - Baseline protection against XSS and Data Injection
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://translate.google.com https://translate.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://translate.googleapis.com; img-src 'self' data: https://www.google.com https://translate.googleapis.com https://translate.google.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://translate.googleapis.com;"
+
 
   # Long cache for versioned assets (Vite adds hashes to filenames)
   <FilesMatch "\.(js|css|woff|woff2|png|jpg|jpeg|webp|avif|svg|ico)$">
