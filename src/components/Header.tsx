@@ -78,11 +78,23 @@ export function Header() {
               className="flex items-center gap-3 group"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             >
-              <img
-                src="/logo.svg"
-                alt="Premier Lumber Co - Beaver Mascot"
-                className="h-12 md:h-14 lg:h-16 w-auto object-contain group-hover:scale-105 transition-transform"
-              />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcSet="/logo-beaver.webp 1x, /logo-beaver@2x.webp 2x"
+                />
+                <source
+                  type="image/png"
+                  srcSet="/logo-beaver.png 1x, /logo-beaver@2x.png 2x"
+                />
+                <img
+                  src="/logo-beaver.png"
+                  alt="Premier Lumber Co - Beaver Mascot"
+                  className="h-12 md:h-14 lg:h-16 w-auto object-contain group-hover:scale-105 transition-transform"
+                  decoding="async"
+                  loading="eager"
+                />
+              </picture>
               <div className="flex flex-col">
                 <NoTranslate as="span" className="font-heading font-extrabold text-base sm:text-lg md:text-xl leading-none tracking-tight">
                   <span className="text-charcoal">Premier </span>
