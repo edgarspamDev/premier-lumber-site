@@ -1,0 +1,1467 @@
+﻿diff --git a/.claude/settings.local.json b/.claude/settings.local.json
+index df6e756..a7f1da4 100644
+--- a/.claude/settings.local.json
++++ b/.claude/settings.local.json
+@@ -23,7 +23,11 @@
+       "WebFetch(domain:maps.app.goo.gl)",
+       "WebFetch(domain:www.google.com)",
+       "Bash(git reset:*)",
+-      "Bash(powershell -ExecutionPolicy Bypass -Command \"cd ''C:\\\\Users\\\\Hunti\\\\Downloads\\\\premier-lumber-site''; npm run build 2>&1 | tail -3; & ''.\\\\hostinger-deploy.ps1''\")"
++      "Bash(powershell -ExecutionPolicy Bypass -Command \"cd ''C:\\\\Users\\\\Hunti\\\\Downloads\\\\premier-lumber-site''; npm run build 2>&1 | tail -3; & ''.\\\\hostinger-deploy.ps1''\")",
++      "Bash(dir:*)",
++      "Bash(cmd /c:*)",
++      "Bash(del \"C:\\\\Users\\\\Hunti\\\\Downloads\\\\premier-lumber-site\\\\create-og-image.cjs\")",
++      "Bash(node create-og-image.cjs:*)"
+     ]
+   }
+ }
+diff --git a/.claude/worktrees/amazing-matsumoto b/.claude/worktrees/amazing-matsumoto
+--- a/.claude/worktrees/amazing-matsumoto
++++ b/.claude/worktrees/amazing-matsumoto
+@@ -1 +1 @@
+-Subproject commit c37adc15be297b2cd6d97d43645e909a026816cd
++Subproject commit c37adc15be297b2cd6d97d43645e909a026816cd-dirty
+diff --git a/PENTEST-PLAN.md b/PENTEST-PLAN.md
+deleted file mode 100644
+index 0d224e7..0000000
+--- a/PENTEST-PLAN.md
++++ /dev/null
+@@ -1,363 +0,0 @@
+-# Website Penetration Test Plan & Execution Guide
+-
+-**Target Application:** Premier Lumber Co. Website
+-**Target URL:** `https://premierlumber.com` (Target Placeholder: `<TARGET>`)
+-**Date:** 2026-02-17
+-**Tester:** Authorized Security Tester
+-
+----
+-
+-## 1. Pre-Engagement Checklist
+-
+-Before starting any active testing, ensure the following are confirmed:
+-
+-- [ ] **Authorization:** Written permission (this document + user request) to test the target.
+-- [ ] **Scope Defined:**
+-  - **In-Scope:** `https://premierlumber.com` and subdomains.
+-  - **Exclusions:** Hosting provider infrastructure (Hostinger panels), external services (Google Maps, Analytics APIs), DoS attacks.
+-- [ ] **Backup:** Recent backup of the website and database (if applicable) created.
+-- [ ] **Test Window:** Unlimited (Async/Offline testing allowed).
+-- [ ] **Rate Limits:** Max 2 requests/second to prevent IP blocking by Hostinger.
+-- [ ] **Emergency Contact:** User/Owner email available in case of outage.
+-- [ ] **Toolchain:** All required GitHub tools installed and updated.
+-- [ ] **Credentials:** N/A (Project is primarily public/anonymous).
+-- [ ] **Legal:** "Safe Harbor" clause - testing is conducted for defensive purposes.
+-- [ ] **Success Criteria:** Zero Critical/High vulnerabilities remaining; all findings documented with remediation.
+-
+----
+-
+-## 2. Threat Model Snapshot
+-
+-### Assets & Data
+-
+-1.  **Customer PII:** Names, emails, phone numbers, addresses (via Quote Form).
+-2.  **Reputation:** Brand trust, SEO ranking.
+-3.  **Server Resources:** Bandwidth, Compute (Hostinger shared hosting).
+-4.  **Source Code:** Intellectual property (Proprietary designs/logic).
+-5.  **Email Deliverability:** Domain reputation (preventing spam relays).
+-6.  **Internal Photos/Content:** Unreleased marketing assets.
+-7.  **Analytics Data:** User behavior patterns.
+-8.  **Configuration Secrets:** API keys (if any), `.env` files.
+-
+-### Trust Boundaries
+-
+-- **Public Internet** vs **Web Server (`public_html`)**
+-- **Web Server** vs **PHP Backend (`mail.php`)**
+-- **Client Browser** vs **External APIs (Google Maps)**
+-
+-### Top 8 Abuse Cases (Ranked)
+-
+-1.  **Form Spamming:** Attacker floods `mail.php` to exhaust email quotas or harass staff.
+-2.  **XSS on Admin/User:** Injecting scripts to steal sessions (if auth exists) or deface site.
+-3.  **Data Exfiltration:** Accessing sensitive files (`.env`, `.git`) left in public root.
+-4.  **Business Logic Bypass:** Submitting quotes without required fields or with fake data.
+-5.  **Malicious File Upload:** Uploading a web shell via a hidden upload endpoint (if exists).
+-6.  **Supply Chain Attack:** Compromising a 3rd party npm package to inject crypto miners.
+-7.  **Internal Info Leak:** Discovering `/photo-review` or other dev-only pages.
+-8.  **Header Injection:** Manipulating email headers in the contact form to spoof senders.
+-
+----
+-
+-## 3. Test Plan & Phases
+-
+-### Phase A: Passive Reconnaissance
+-
+-_Goal: Map the attack surface without triggering alarms._
+-
+-- **DNS & Subdomains:** Check for forgotten dev subdomains.
+-- **Certificate Transparency:** Look for historic domains.
+-- **Technology Fingerprinting:** Identify server version, headers.
+-- **Google Dorking:** Find exposed files.
+-
+-**Commands (Safe Mode):**
+-
+-```bash
+-# 1. HTTP Probing (Title/Tech stack)
+-httpx -u <TARGET> -title -tech-detect -status-code
+-
+-# 2. Certificate Recon
+-curl -s "https://crt.sh/?q=%25.premierlumber.com&output=json" | jq .
+-
+-# 3. Google Dorks (Manual)
+-# site:premierlumber.com filetype:php
+-# site:premierlumber.com "index of"
+-# site:premierlumber.com inurl:admin
+-```
+-
+-**Bad Signals:** `dev.premierlumber.com` resolves, "Index of /" exposed.
+-
+-### Phase B: Configuration, Headers & TLS
+-
+-_Goal: Verify transport security and browser protections._
+-
+-- **SSL/TLS:** Check for weak ciphers, old protocols (TLS 1.0/1.1).
+-- **Security Headers:** HSTS, CSP, X-Frame-Options.
+-- **Cookie Flags:** Secure, HttpOnly, SameSite.
+-- **CORS:** Wildcard policies.
+-
+-**Commands:**
+-
+-```bash
+-# 1. TLS/SSL Scan (Fast)
+-testssl.sh --fast --quiet <TARGET>
+-
+-# 2. Header Analysis
+-curl -I <TARGET>
+-
+-# 3. CORS Check (Manual)
+-curl -I -H "Origin: https://evil.com" <TARGET>/mail.php
+-```
+-
+-**Bad Signals:** `Access-Control-Allow-Origin: *`, Missing HSTS, TLS 1.0 enabled.
+-
+-### Phase C: Authentication & Session Management
+-
+-_Goal: Ensure identity mechanisms are robust (mostly N/A for this brochure site)._
+-
+-- **Cookie Inspection:** Check for sensitive data in cookies.
+-- **Session Fixation:** (If auth existed).
+-
+-**Commands:**
+-
+-```bash
+-# Check cookies
+-curl -v <TARGET> 2>&1 | grep "Set-Cookie"
+-```
+-
+-**Bad Signals:** `PHPSESSID` without `Secure` flag.
+-
+-### Phase D: Authorization & Access Control
+-
+-_Goal: Find hidden or unprotected routes._
+-
+-- **Forced Browsing:** Check for common files (`README.md`, `.git`).
+-- **Route Fuzzing:** Guess commonly unused routes.
+-- **IDOR:** (N/A unless user IDs exist).
+-
+-**Commands:**
+-
+-```bash
+-# 1. Check for sensitive files (Manual lists preferred over brute force)
+-curl -I <TARGET>/.env
+-curl -I <TARGET>/.git/HEAD
+-curl -I <TARGET>/composer.json
+-curl -I <TARGET>/package.json
+-curl -I <TARGET>/README.md
+-
+-# 2. Check for known internal route
+-curl -I <TARGET>/photo-review
+-```
+-
+-**Bad Signals:** `200 OK` on `.env` or `/photo-review`.
+-
+-### Phase E: Input Handling & Injection (Focus: `mail.php`)
+-
+-_Goal: Test the contact form and backend handling safely._
+-
+-- **XSS (Reflected):** Does the form echo input back?
+-- **Header Injection:** Can we add `Bcc:`?
+-- **Logic Bypass:** Skip the timestamp check.
+-- **JSON Injection:** Malformed JSON.
+-- **Null Byte Injection (2025 Trend):** Test for CVE-2025-1220 bypasses.
+-
+-**Commands:**
+-
+-```bash
+-# 1. Valid Request (Baseline)
+-curl -X POST <TARGET>/mail.php \
+-  -H "Content-Type: application/json" \
+-  -d '{"name":"Test","email":"test@example.com","phone":"123","message":"Hello","_ts":1710000000}'
+-
+-# 2. Logic Bypass: Omit Timestamp (Should fail or be blocked, but might pass)
+-curl -X POST <TARGET>/mail.php \
+-  -H "Content-Type: application/json" \
+-  -d '{"name":"Bot","email":"bot@example.com","phone":"000"}'
+-
+-# 3. XSS Probe (Safe Payload)
+-curl -X POST <TARGET>/mail.php \
+-  -H "Content-Type: application/json" \
+-  -d '{"name":"<img src=x onerror=alert(1)>","email":"test@example.com"}'
+-
+-# 4. Header Injection Probe
+-curl -X POST <TARGET>/mail.php \
+-  -H "Content-Type: application/json" \
+-  -d '{"email":"test@example.com\r\nBcc: evil@example.com", "name":"Inj"}'
+-
+-# 5. Null Byte Injection (CVE-2025-1220 Probe)
+-curl -X POST <TARGET>/mail.php \
+-  -H "Content-Type: application/json" \
+-  -d '{"email":"test@example.com%00.evil.com", "name":"NullByte"}'
+-```
+-
+-**Bad Signals:** Form returns success without `_ts`, XSS payload echoed in response JSON.
+-
+-### Phase F: File Uploads
+-
+-_Goal: Verify no unauthorized uploads._
+-
+-- **Scan:** Check if any `/upload` endpoints exist.
+-
+-**Evidence:** Review code or `dir` scan. Usage of `mail.php` suggests no file upload support.
+-
+-### Phase G: Dependency & Supply Chain
+-
+-_Goal: Identify vulnerable libraries._
+-
+-- **NPM Audit:** Check `package.json`.
+-- **Outdated JS:** jQuery/Bootstrap versions.
+-- **Vite/React Exposure:** Check for leaked `VITE_` env vars in production build.
+-
+-**Commands:**
+-
+-```bash
+-npm audit
+-# OR
+-trivy fs .
+-
+-# Check for leaked env vars in JS bundles
+-grep -r "VITE_" dist/
+-```
+-
+-**Bad Signals:** Critical CVEs in `react-router-dom` or `vite`.
+-
+-### Phase H: SAST & Secrets
+-
+-_Goal: Find bugs in source code._
+-
+-- **Secrets:** API keys, passwords in code.
+-- **Bad Patterns:** unsafe `innerHTML`, `eval()`.
+-
+-**Commands:**
+-
+-```bash
+-# 1. Secrets Scan
+-gitleaks detect --source . -v
+-
+-# 2. Static Analysis
+-semgrep scan --config=auto .
+-```
+-
+-**Bad Signals:** AWS keys found, `dangerouslySetInnerHTML` usage.
+-
+-### Phase I: Infrastructure
+-
+-_Goal: Host level checks._
+-
+-- **Server Version:** Apache/Nginx exposed?
+-- **Open Ports:** (Only 80/443 expected).
+-- **Shared Hosting Isolation:** Test for symlink attacks (if shell access exists).
+-
+-**Commands:**
+-
+-```bash
+-curl -I <TARGET>
+-# If SSH access available:
+-# ls -la ../
+-```
+-
+----
+-
+-## 4. Pre-Identified Findings (Bonus)
+-
+-_These findings were discovered during the initial source code review phase._
+-
+-### High Severity
+-
+-- **F01: Content Security Policy (CSP) Weakness**
+-  - **Description:** `.htaccess` defines `script-src 'unsafe-inline'`. This allows inline scripts to run, negating protection against XSS.
+-  - **Fix:** Use Nonces or Hashes for inline scripts.
+-- **F02: Wildcard CORS on Backend**
+-  - **Description:** `public/mail.php` sets `Access-Control-Allow-Origin: *`. Any malicious website can send POST requests to your email trigger.
+-  - **Fix:** Set specific domain: `header("Access-Control-Allow-Origin: https://premierlumber.com");`
+-
+-### Medium Severity
+-
+-- **F03: Anti-Bot Timestamp Bypass**
+-  - **Description:** `mail.php` only checks timestamp _if_ `_ts` is present in the payload. Bots can check by simply omitting the field.
+-  - **Fix:** Make `_ts` mandatory or default to 0 if missing.
+-- **F04: Exposed Internal Route**
+-  - **Description:** `/photo-review` is a public route in `App.tsx` and likely accessible to anyone who guesses the URL.
+-  - **Fix:** Remove the route or add Basic Auth protection.
+-- **F05: Missing Rate Limit on Client**
+-  - **Description:** No Captcha or client-side rate limit visual.
+-  - **Fix:** Add Turnstile or ReCaptcha.
+-
+-### Low Severity
+-
+-- **F06: Information Disclosure (Headers)**
+-  - **Description:** `X-Powered-By` or Server headers might be present (verify with scan).
+-- **F07: Email Spoofing Risk**
+-  - **Description:** `mail.php` uses user-supplied email in `Reply-To` without strict validation (though verify `filter_var` usage).
+-- **F08: Legacy Comments/Code**
+-  - **Description:** "TODO" comments in `mail.php` about SMS gateways.
+-- **F09: README.md Disclosure**
+-  - **Description:** `README.md` might be accessible at web root.
+-- **F10: Source Map Exposure**
+-  - **Description:** `.map` files might be generated in production build (verify `dist/` contents).
+-
+----
+-
+-## 5. GitHub Toolchain Install
+-
+-Quick install commands for a Windows (likely utilizing WSL) or Linux environment:
+-
+-```bash
+-# 1. OWASP ZAP (Docker)
+-docker pull softwaresecurityproject/zap-stable
+-
+-# 2. testssl.sh
+-git clone --depth 1 https://github.com/drwetter/testssl.sh.git
+-
+-# 3. ProjectDiscovery Tools (Go required)
+-go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
+-go install -v github.com/projectdiscovery/katana/cmd/katana@latest
+-
+-# 4. Semgrep
+-python3 -m pip install semgrep
+-
+-# 5. Gitleaks
+-# (Download binary from GitHub releases or:)
+-brew install gitleaks
+-
+-# 6. Trivy
+-browse install aquasecurity/trivy/trivy
+-```
+-
+----
+-
+-## 6. Pentest Report Template
+-
+-### Executive Summary
+-
+-[High-level overview of security posture. "The assessment identified X high-risk vulnerabilities..."]
+-
+-### Findings Table
+-
+-| ID  | Title                     | Severity | Status | Fix         |
+-| --- | ------------------------- | -------- | ------ | ----------- |
+-| F01 | CSP Unsafe Inline         | High     | Open   | Restriction |
+-| F02 | CORS Wildcard in mail.php | High     | Open   | Config      |
+-| ... | ...                       | ...      | ...    | ...         |
+-
+-### Detailed Findings
+-
+-#### [F01] CSP Unsafe Inline
+-
+-- **Risk:** High
+-- **Description:** ...
+-- **Evidence:** `script-src 'unsafe-inline'` in `.htaccess`.
+-- **Remediation:** Remove `unsafe-inline`.
+-
+-#### [F02] CORS Wildcard
+-
+-- **Risk:** High
+-- **Description:** ...
+-- **Evidence:** `header("Access-Control-Allow-Origin: *")` in `mail.php`.
+-- **Remediation:** Set strictly to origin domain.
+-
+-### Retest Checklist
+-
+-- [ ] Verify F01 fix (CSP header)
+-- [ ] Verify F02 fix (CORS header)
+-- [ ] Verify F03 fix (Timestamp logic)
+-- [ ] Verify F04 fix (Route removal)
+diff --git a/hostinger_deploy.zip b/hostinger_deploy.zip
+index d414890..e63abb4 100644
+Binary files a/hostinger_deploy.zip and b/hostinger_deploy.zip differ
+diff --git a/index.html b/index.html
+index 5308cd2..2a6b757 100644
+--- a/index.html
++++ b/index.html
+@@ -3,7 +3,7 @@
+   <head>
+     <meta charset="UTF-8" />
+     <link rel="icon" type="image/svg+xml" href="/logo-mark.svg" />
+-    <link rel="icon" type="image/png" sizes="192x192" href="/logo.png" />
++    <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+     <link rel="apple-touch-icon" href="/logo.png" />
+     <link rel="manifest" href="/site.webmanifest" />
+     <meta
+@@ -44,7 +44,7 @@
+     />
+     <meta
+       property="og:image"
+-      content="https://premierlumberco.com/images/logo.png"
++      content="https://premierlumberco.com/og-image.png"
+     />
+     <meta property="og:url" content="https://premierlumberco.com/" />
+     <meta name="twitter:card" content="summary_large_image" />
+@@ -58,7 +58,7 @@
+     />
+     <meta
+       name="twitter:image"
+-      content="https://premierlumberco.com/images/logo.png"
++      content="https://premierlumberco.com/og-image.png"
+     />
+     <!-- Resource Hints: Critical for PageSpeed -->
+     <link
+@@ -70,7 +70,7 @@
+     <link rel="dns-prefetch" href="https://translate.googleapis.com" />
+     <link rel="dns-prefetch" href="https://translate.google.com" />
+     <!-- Preload critical above-the-fold image (app shell logo) -->
+-    <link rel="preload" href="/logo-mark.svg" as="image" type="image/svg+xml" />
++    <link rel="preload" href="/logo.svg" as="image" type="image/svg+xml" />
+   </head>
+   <body>
+     <div id="root" style="opacity: 0"></div>
+@@ -85,84 +85,33 @@
+           flex-direction: column;
+           align-items: center;
+           justify-content: center;
+-          background-color: #fefcf8; /* brand-cream (official) */
+-          font-family:
+-            system-ui,
+-            -apple-system,
+-            BlinkMacSystemFont,
+-            "Segoe UI",
+-            Roboto,
+-            "Helvetica Neue",
+-            Arial,
+-            sans-serif;
+-          transition:
+-            opacity 0.4s ease-out,
+-            visibility 0.4s;
+-        }
+-        #initial-loader.fade-out {
+-          opacity: 0;
+-          visibility: hidden;
+-          pointer-events: none;
+-        }
+-        .app-logo-container {
+-          position: relative;
+-          display: flex;
+-          flex-direction: column;
+-          align-items: center;
+-          margin-bottom: 2.5rem;
+-        }
+-        .app-logo {
+-          width: 64px;
+-          height: 64px;
+-          margin-bottom: 1rem;
+-          /* Subtle breathe animation */
+-          animation: pulse-brand 2s infinite ease-in-out;
+-        }
+-        .brand-text {
+-          font-weight: 800;
+-          font-size: 1.5rem;
+-          color: #1c1917; /* charcoal */
+-          letter-spacing: -0.03em;
+-          line-height: 1;
+-        }
+-        .brand-text span {
+-          color: #ea580c; /* primary orange */
++          background-color: #111827; /* Tailwind gray-900 */
++          z-index: 9999;
++          transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+         }
+         .app-spinner {
+-          width: 48px;
+-          height: 48px;
+-          border: 3px solid #e7e5e4; /* stone-200 */
+-          border-top-color: #ea580c; /* primary orange (official) */
++          width: 32px;
++          height: 32px;
++          border: 3px solid rgba(255, 255, 255, 0.1);
++          border-left-color: #f97316; /* Tailwind orange-500 */
+           border-radius: 50%;
+-          animation: spin 0.8s linear infinite;
++          animation: load-spin 1s linear infinite;
+         }
+-        @keyframes spin {
+-          to {
+-            transform: rotate(360deg);
++        @keyframes load-spin {
++          0% {
++            transform: rotate(0deg);
+           }
+-        }
+-        @keyframes pulse-brand {
+-          0%,
+           100% {
+-            transform: scale(1);
+-            opacity: 1;
+-          }
+-          50% {
+-            transform: scale(0.97);
+-            opacity: 0.9;
++            transform: rotate(360deg);
+           }
+         }
++        body.app-loaded #initial-loader,
++        #initial-loader.fade-out {
++          opacity: 0;
++          visibility: hidden;
++          pointer-events: none;
++        }
+       </style>
+-      <div class="app-logo-container">
+-        <img
+-          src="/logo-mark.svg"
+-          alt="Premier Lumber"
+-          class="app-logo"
+-          width="64"
+-          height="64"
+-        />
+-        <div class="brand-text">Premier <span>Lumber</span></div>
+-      </div>
+       <div class="app-spinner"></div>
+     </div>
+     <script type="module" src="/src/main.tsx"></script>
+@@ -228,7 +177,7 @@
+         "@context": "https://schema.org",
+         "@type": "LumberYard",
+         "name": "Premier Lumber Co",
+-        "image": "https://premierlumberco.com/images/logo.png",
++        "image": "https://premierlumberco.com/logo.png",
+         "url": "https://premierlumberco.com",
+         "telephone": "+12193540720",
+         "priceRange": "$$",
+@@ -248,15 +197,15 @@
+         "openingHoursSpecification": [
+           {
+             "@type": "OpeningHoursSpecification",
+-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+-            "opens": "06:00",
+-            "closes": "15:00"
+-          },
+-          {
+-            "@type": "OpeningHoursSpecification",
+-            "dayOfWeek": ["Friday", "Saturday"],
+-            "opens": "06:00",
+-            "closes": "14:00"
++            "dayOfWeek": [
++              "Monday",
++              "Tuesday",
++              "Wednesday",
++              "Thursday",
++              "Friday"
++            ],
++            "opens": "08:00",
++            "closes": "16:00"
+           }
+         ],
+         "aggregateRating": {
+diff --git a/public/images/logo.png b/public/images/logo.png
+deleted file mode 100644
+index 5122ed4..0000000
+Binary files a/public/images/logo.png and /dev/null differ
+diff --git a/public/images/logo.webp b/public/images/logo.webp
+deleted file mode 100644
+index e3ff185..0000000
+Binary files a/public/images/logo.webp and /dev/null differ
+diff --git a/public/logo-mark.svg b/public/logo-mark.svg
+index 23ce6b3..011d114 100644
+--- a/public/logo-mark.svg
++++ b/public/logo-mark.svg
+@@ -1,37 +1,8 @@
+-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+-  <!-- Saw blade circle -->
+-  <circle cx="50" cy="50" r="45" fill="#1a1a1a"/>
+-  <!-- Saw teeth -->
+-  <g fill="#1a1a1a">
+-    <polygon points="50,2 53,10 47,10"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(15 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(30 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(45 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(60 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(75 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(90 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(105 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(120 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(135 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(150 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(165 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(180 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(195 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(210 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(225 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(240 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(255 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(270 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(285 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(300 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(315 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(330 50 50)"/>
+-    <polygon points="69.5,5.4 70,13.5 64,11.5" transform="rotate(345 50 50)"/>
+-  </g>
+-  <!-- P letter as path - orange -->
+-  <path d="M28,34 L28,66 L35,66 L35,56 L42,56 C50,56 54,51 54,45 C54,39 50,34 42,34 Z M35,41 L41,41 C45,41 47,43 47,45 C47,47.5 45,49.5 41,49.5 L35,49.5 Z" fill="#f97316"/>
+-  <!-- L letter as path - white -->
+-  <path d="M58,34 L58,66 L76,66 L76,59 L65,59 L65,34 Z" fill="#ffffff"/>
+-  <!-- Center hole -->
+-  <circle cx="50" cy="50" r="4" fill="#0f0f0f"/>
+-</svg>
+\ No newline at end of file
++<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Premier Lumber mark">
++  <title>Premier Lumber mark</title>
++  <circle cx="48" cy="48" r="46" fill="#1f1f1f" />
++  <text x="28" y="58" font-family="'Space Grotesk','Manrope','Segoe UI',sans-serif" font-size="38" font-weight="800" letter-spacing="0.5">
++    <tspan fill="#f97316">P</tspan>
++    <tspan fill="#e5e7eb">L</tspan>
++  </text>
++</svg>
+diff --git a/public/logo-truck.jpg b/public/logo-truck.jpg
+deleted file mode 100644
+index 2ea81af..0000000
+Binary files a/public/logo-truck.jpg and /dev/null differ
+diff --git a/public/logo-truck.webp b/public/logo-truck.webp
+deleted file mode 100644
+index 4f5996a..0000000
+Binary files a/public/logo-truck.webp and /dev/null differ
+diff --git a/public/logo.png b/public/logo.png
+index 8edbec3..e6673b3 100644
+Binary files a/public/logo.png and b/public/logo.png differ
+diff --git a/public/logo.webp b/public/logo.webp
+deleted file mode 100644
+index e3ff185..0000000
+Binary files a/public/logo.webp and /dev/null differ
+diff --git a/public/mail.php b/public/mail.php
+index f31ab2d..6dbe04c 100644
+--- a/public/mail.php
++++ b/public/mail.php
+@@ -135,7 +135,7 @@ $comments = clean_body($data['comments'] ?? '');
+ // AT&T: number@txt.att.net
+ // T-Mobile: number@tmomail.net
+ $to_emails = [
+-    'contact@premierlumber.com', // Primary Business Email (if exists)
++    'contact.premierlumber@gmail.com', // Primary Business Email
+     // 'owner_personal@gmail.com', // Backup Personal Email
+     // '2199386275@vtext.com'      // SMS Notification (Verizon Example)
+ ];
+diff --git a/public/site.webmanifest b/public/site.webmanifest
+index a29af17..d4e8ff1 100644
+--- a/public/site.webmanifest
++++ b/public/site.webmanifest
+@@ -9,12 +9,14 @@
+     {
+       "src": "/logo.png",
+       "sizes": "192x192",
+-      "type": "image/png"
++      "type": "image/png",
++      "purpose": "any"
+     },
+     {
+       "src": "/logo.png",
+       "sizes": "512x512",
+-      "type": "image/png"
++      "type": "image/png",
++      "purpose": "any maskable"
+     }
+   ]
+ }
+diff --git a/src/components/Footer.tsx b/src/components/Footer.tsx
+index c0e9066..f235bf8 100644
+--- a/src/components/Footer.tsx
++++ b/src/components/Footer.tsx
+@@ -31,7 +31,7 @@ export function Footer() {
+               <Icon name="phone" size={16} />
+               (219) 354-0720
+             </a>
+-            <a href="tel:+12195164867" className="inline-flex items-center gap-2 text-stone-400 font-bold hover:text-primary transition-colors mt-1 text-sm block">
++            <a href="tel:+12195164867" className="inline-flex items-center gap-2 text-stone-400 font-bold hover:text-primary transition-colors mt-1 text-sm">
+               <span className="text-xs uppercase font-normal text-stone-500 mr-1">Para Espa├▒ol:</span> (219) 516-4867
+             </a>
+             <div className="mt-4">
+@@ -39,7 +39,7 @@ export function Footer() {
+                 href="https://www.google.com/search?q=Premier+Lumber+Co+Gary+IN&lrd=0x8811c05177fe3f73:0x3e514e35aa3d585,3,,,," 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+-                className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-3 py-2 rounded-lg font-bold text-xs uppercase tracking-wide transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
++                className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-3 py-2 rounded-lg font-bold text-xs uppercase tracking-wide transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+               >
+                 <Icon name="star" size={16} fill="currentColor" />
+                 Rate Us on Google
+diff --git a/src/components/Header.tsx b/src/components/Header.tsx
+index a4ba116..fed3b02 100644
+--- a/src/components/Header.tsx
++++ b/src/components/Header.tsx
+@@ -80,7 +80,7 @@ export function Header() {
+             >
+               <img
+                 src="/logo.svg"
+-                alt="Premier Lumber Co - Beaver Mascot"
++                alt="Premier Lumber Co"
+                 className="h-12 md:h-14 lg:h-16 w-auto object-contain group-hover:scale-105 transition-transform"
+               />
+               <div className="flex flex-col">
+diff --git a/src/components/LocalLandingPage.tsx b/src/components/LocalLandingPage.tsx
+index f02e2dc..85c6133 100644
+--- a/src/components/LocalLandingPage.tsx
++++ b/src/components/LocalLandingPage.tsx
+@@ -91,7 +91,7 @@ export const LocalLandingPage: React.FC<LocalLandingPageProps> = ({ city, servic
+     "name": "Premier Lumber Co",
+     "url": canonicalUrl,
+     "telephone": "+12193540720",
+-    "image": `${BASE_URL}/images/logo.png`,
++    "image": `${BASE_URL}/logo.png`,
+     "priceRange": "$$",
+     "address": {
+       "@type": "PostalAddress",
+@@ -109,15 +109,9 @@ export const LocalLandingPage: React.FC<LocalLandingPageProps> = ({ city, servic
+     "openingHoursSpecification": [
+       {
+         "@type": "OpeningHoursSpecification",
+-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+-        "opens": "06:00",
+-        "closes": "15:00"
+-      },
+-      {
+-        "@type": "OpeningHoursSpecification",
+-        "dayOfWeek": ["Friday", "Saturday"],
+-        "opens": "06:00",
+-        "closes": "14:00"
++        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
++        "opens": "08:00",
++        "closes": "16:00"
+       }
+     ],
+     "aggregateRating": {
+@@ -208,13 +202,13 @@ export const LocalLandingPage: React.FC<LocalLandingPageProps> = ({ city, servic
+           </div>
+           <div className="relative max-w-4xl mx-auto text-center">
+             <h1 className="text-4xl md:text-5xl font-bold mb-4 font-serif">
+-              Premium {service} in <span className="text-amber-500">{city}, IN</span>
++              Premium {service} in <span className="text-primary">{city}, IN</span>
+             </h1>
+             <p className="text-xl text-stone-300 mb-8 max-w-2xl mx-auto">
+               {description}
+             </p>
+             <div className="flex flex-wrap justify-center gap-4">
+-              <Link to="/contact" className="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-full transition-colors flex items-center gap-2">
++              <Link to="/contact" className="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-full transition-colors flex items-center gap-2">
+                 Get a Quote <ArrowRight size={20} />
+               </Link>
+               <a href="tel:+12193540720" className="bg-white text-stone-900 hover:bg-gray-100 font-bold py-3 px-8 rounded-full transition-colors">
+@@ -228,21 +222,21 @@ export const LocalLandingPage: React.FC<LocalLandingPageProps> = ({ city, servic
+         <div className="py-16 px-4 max-w-6xl mx-auto">
+           <div className="grid md:grid-cols-3 gap-8">
+             <div className="p-6 bg-stone-50 rounded-lg border border-stone-200">
+-              <MapPin className="text-amber-600 mb-4" size={32} />
++              <MapPin className="text-primary mb-4" size={32} />
+               <h3 className="text-xl font-bold mb-2 text-stone-900">Local to {city}</h3>
+               <p className="text-stone-600">
+                 We are your neighbors. Located just minutes away, we ensure fast and reliable service to {city} residents and businesses.
+               </p>
+             </div>
+             <div className="p-6 bg-stone-50 rounded-lg border border-stone-200">
+-              <Award className="text-amber-600 mb-4" size={32} />
++              <Award className="text-primary mb-4" size={32} />
+               <h3 className="text-xl font-bold mb-2 text-stone-900">Top Rated Quality</h3>
+               <p className="text-stone-600">
+                 Rated 5.0 stars by locals. Our {service.toLowerCase()} is inspected for quality, ensuring you get the best value.
+               </p>
+             </div>
+             <div className="p-6 bg-stone-50 rounded-lg border border-stone-200">
+-              <Truck className="text-amber-600 mb-4" size={32} />
++              <Truck className="text-primary mb-4" size={32} />
+               <h3 className="text-xl font-bold mb-2 text-stone-900">Delivery & Pickup</h3>
+               <p className="text-stone-600">
+                 Need it delivered to {city}? No problem. Prefer to pick up from our yard? We'll load you up.
+diff --git a/src/components/SEO.tsx b/src/components/SEO.tsx
+index 0cc976c..9d26f6e 100644
+--- a/src/components/SEO.tsx
++++ b/src/components/SEO.tsx
+@@ -31,7 +31,7 @@ interface SEOProps {
+ 
+ const SITE_NAME = 'Premier Lumber Co';
+ const BASE_URL = 'https://premierlumberco.com';
+-const DEFAULT_OG_IMAGE = `${BASE_URL}/images/logo.png`;
++const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.png`;
+ 
+ export function SEO({ title, description, path = '/', ogImage, product, service, breadcrumb, faq }: SEOProps) {
+   const fullTitle = path === '/' ? title : `${title} | ${SITE_NAME}`;
+@@ -62,15 +62,9 @@ export function SEO({ title, description, path = '/', ogImage, product, service,
+     "openingHoursSpecification": [
+       {
+         "@type": "OpeningHoursSpecification",
+-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+-        "opens": "06:00",
+-        "closes": "15:00"
+-      },
+-      {
+-        "@type": "OpeningHoursSpecification",
+-        "dayOfWeek": ["Friday", "Saturday"],
+-        "opens": "06:00",
+-        "closes": "14:00"
++        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
++        "opens": "08:00",
++        "closes": "16:00"
+       }
+     ],
+     "sameAs": [
+diff --git a/src/pages/Contact.tsx b/src/pages/Contact.tsx
+index 42ea7f8..235dadc 100644
+--- a/src/pages/Contact.tsx
++++ b/src/pages/Contact.tsx
+@@ -21,7 +21,7 @@ export function Contact() {
+       />
+       
+       {/* FIND OUR YARD ΓÇö top of page, mobile-first */}
+-      <div className="bg-amber-50 border-b border-amber-200">
++      <div className="bg-primary/5 border-b border-primary/10">
+         <div className="container-custom py-4">
+           <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+             <div className="flex items-center gap-3 flex-1 min-w-0">
+@@ -87,7 +87,7 @@ export function Contact() {
+                         >
+                           6717 Atcheson Dr, Gary, IN 46403
+                         </a>
+-                        <p className="text-xs text-stone-500 mt-0.5">M-Th 6am-3pm, F-Sat 6am-2pm</p>
++                        <p className="text-xs text-stone-500 mt-0.5">M-F 8am-4pm, Sat Closed</p>
+                       </div>
+                       
+                       <div>
+diff --git a/src/pages/Home.tsx b/src/pages/Home.tsx
+index 78350b5..a8ec06f 100644
+--- a/src/pages/Home.tsx
++++ b/src/pages/Home.tsx
+@@ -1,9 +1,14 @@
+-import { useEffect, useRef, useState } from 'react';
+-import { Link } from 'react-router-dom';
+-import { Icon } from '../components/Icons';
+-import { SEO } from '../components/SEO';
+-
+-function useCountUp(end: number, duration: number, decimals: number, trigger: boolean) {
++import { useEffect, useRef, useState } from "react";
++import { Link } from "react-router-dom";
++import { Icon } from "../components/Icons";
++import { SEO } from "../components/SEO";
++
++function useCountUp(
++  end: number,
++  duration: number,
++  decimals: number,
++  trigger: boolean,
++) {
+   const [val, setVal] = useState(0);
+   useEffect(() => {
+     if (!trigger) return;
+@@ -20,12 +25,12 @@ function useCountUp(end: number, duration: number, decimals: number, trigger: bo
+   }, [trigger, end, duration, decimals]);
+   return val;
+ }
+-import heroImage from '../assets/images/lumbrr/20260119_102704.opt.webp'; // Optimized Sawmill Hero
+-import palletsImage from '../assets/images/lumbrr/Pallets.opt.webp'; // Optimized Pallet Stacks
+-import firewoodImage from '../assets/images/lumbrr/firewood-stack-new.webp'; // New Firewood Stack
+-import sawdustImage from '../assets/images/lumbrr/sawdust-shovel.webp'; // Optimized Sawdust
+-import customLumberImage from '../assets/images/lumbrr/20260119_103036.webp'; // Large Log on Saw (reused for better quality)
+-import logImage from '../assets/images/lumbrr/logpick.webp'; // Correct Log Pickup WebP
++import heroImage from "../assets/images/lumbrr/20260119_102704.opt.webp"; // Optimized Sawmill Hero
++import palletsImage from "../assets/images/lumbrr/Pallets.opt.webp"; // Optimized Pallet Stacks
++import firewoodImage from "../assets/images/lumbrr/firewood-stack-new.webp"; // New Firewood Stack
++import sawdustImage from "../assets/images/lumbrr/sawdust-shovel.webp"; // Optimized Sawdust
++import customLumberImage from "../assets/images/lumbrr/20260119_103036.webp"; // Large Log on Saw (reused for better quality)
++import logImage from "../assets/images/lumbrr/logpick.webp"; // Correct Log Pickup WebP
+ 
+ export function Home() {
+   const [statsVisible, setStatsVisible] = useState(false);
+@@ -35,8 +40,13 @@ export function Home() {
+     const el = statsRef.current;
+     if (!el) return;
+     const obs = new IntersectionObserver(
+-      ([e]) => { if (e.isIntersecting) { setStatsVisible(true); obs.disconnect(); } },
+-      { threshold: 0.4 }
++      ([e]) => {
++        if (e.isIntersecting) {
++          setStatsVisible(true);
++          obs.disconnect();
++        }
++      },
++      { threshold: 0.4 },
+     );
+     obs.observe(el);
+     return () => obs.disconnect();
+@@ -73,9 +83,9 @@ export function Home() {
+         </div>
+ 
+         <div className="container-custom relative z-10 py-10 sm:py-14 md:py-28 lg:py-32">
+-          <div className="max-w-2xl animate-fade-in-up">
++          <div className="max-w-2xl animate-fade-in-up w-full relative z-20">
+ 
+-        <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 py-2 rounded-full text-sm font-semibold mb-5 sm:mb-8">
++            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 py-2 rounded-full text-sm font-semibold mb-5 sm:mb-8">
+               <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+               Serving NW Indiana Since 2000
+             </div>
+@@ -95,18 +105,18 @@ export function Home() {
+             </div>
+ 
+             {/* H1 - Hormozi Value Equation: Dream Outcome + Low Effort */}
+-            <h1 className="text-white text-[2.35rem] sm:text-5xl md:text-6xl lg:text-display-sm xl:text-display mb-4 sm:mb-6 leading-[1.05]">
++            <h1 className="text-white text-[2.35rem] sm:text-5xl md:text-6xl lg:text-display-sm mb-4 sm:mb-6 leading-[1.05]">
+               Get Quality Wood Products<br />
+               <span className="text-primary">Without the Runaround.</span>
+             </h1>
+ 
+             {/* Subtitle ΓÇö outcome-first, friction-free */}
+-            <p className="text-base sm:text-lg md:text-xl text-white mb-7 sm:mb-10 max-w-2xl leading-relaxed font-medium">
++            <p className="text-base sm:text-lg md:text-xl text-white mb-7 sm:mb-10 max-w-xl leading-relaxed font-medium text-shadow-sm">
+               Pallets, firewood, sawdust, and custom lumber, <strong className="text-white">in stock year-round</strong>. Tell us what you need and we handle the rest. No middlemen, no back-and-forth.
+             </p>
+ 
+             {/* CTAs */}
+-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-12">
++            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-12 relative z-20">
+               <Link to="/contact" className="btn btn-primary w-full sm:w-auto text-base sm:text-lg">
+                 Get Your Free Quote ΓåÆ
+               </Link>
+@@ -134,7 +144,7 @@ export function Home() {
+         </div>
+ 
+         {/* Scroll indicator - hidden on mobile where sticky CTA covers it */}
+-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce-subtle hidden md:block">
++        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce-subtle hidden lg:block">
+           <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
+             <div className="w-1.5 h-3 bg-white/50 rounded-full"></div>
+           </div>
+@@ -142,52 +152,93 @@ export function Home() {
+       </section>
+ 
+       {/* STATS BAR - Animated Social Proof */}
+-      <section ref={statsRef} className="bg-charcoal text-white border-t-2 border-primary border-b border-b-white/10">
++      <section
++        ref={statsRef}
++        className="bg-charcoal text-white border-t-2 border-primary border-b border-b-white/10"
++      >
+         <div className="container-custom">
+           <div className="grid grid-cols-2 md:grid-cols-4">
+-
+             {/* Stat 1 ΓÇö Years */}
+             <div
+               className="flex flex-col items-center text-center py-7 px-4 border-b border-r border-white/10 md:border-b-0 hover:bg-white/5 transition-colors"
+-              style={{ opacity: statsVisible ? 1 : 0, transform: statsVisible ? 'translateY(0)' : 'translateY(16px)', transition: 'opacity 0.5s ease 0s, transform 0.5s ease 0s' }}
++              style={{
++                opacity: statsVisible ? 1 : 0,
++                transform: statsVisible ? "translateY(0)" : "translateY(16px)",
++                transition: "opacity 0.5s ease 0s, transform 0.5s ease 0s",
++              }}
+             >
+-              <span className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1.5">Est. 2000</span>
+-              <span className="text-5xl md:text-6xl font-extrabold text-white leading-none tabular-nums">{years}</span>
+-              <span className="text-[11px] text-white/50 font-semibold mt-2 uppercase tracking-widest">Years in Business</span>
++              <span className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1.5">
++                Est. 2000
++              </span>
++              <span className="text-5xl md:text-6xl font-extrabold text-white leading-none tabular-nums">
++                {years}
++              </span>
++              <span className="text-[11px] text-white/50 font-semibold mt-2 uppercase tracking-widest">
++                Years in Business
++              </span>
+             </div>
+ 
+             {/* Stat 2 ΓÇö Rating */}
+             <div
+               className="flex flex-col items-center text-center py-7 px-4 border-b border-white/10 md:border-b-0 md:border-r hover:bg-white/5 transition-colors"
+-              style={{ opacity: statsVisible ? 1 : 0, transform: statsVisible ? 'translateY(0)' : 'translateY(16px)', transition: 'opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s' }}
++              style={{
++                opacity: statsVisible ? 1 : 0,
++                transform: statsVisible ? "translateY(0)" : "translateY(16px)",
++                transition: "opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s",
++              }}
+             >
+               <div className="flex gap-0.5 text-primary mb-1.5">
+-                {[...Array(5)].map((_, i) => <Icon key={i} name="star" size={11} fill="currentColor" />)}
++                {[...Array(5)].map((_, i) => (
++                  <Icon key={i} name="star" size={11} fill="currentColor" />
++                ))}
+               </div>
+-              <span className="text-5xl md:text-6xl font-extrabold text-white leading-none tabular-nums">{rating.toFixed(1)}</span>
+-              <span className="text-[11px] text-white/50 font-semibold mt-2 uppercase tracking-widest">Google Rating</span>
++              <span className="text-5xl md:text-6xl font-extrabold text-white leading-none tabular-nums">
++                {rating.toFixed(1)}
++              </span>
++              <span className="text-[11px] text-white/50 font-semibold mt-2 uppercase tracking-widest">
++                Google Rating
++              </span>
+             </div>
+ 
+             {/* Stat 3 ΓÇö Service Radius */}
+             <div
+               className="flex flex-col items-center text-center py-7 px-4 border-r border-white/10 hover:bg-white/5 transition-colors"
+-              style={{ opacity: statsVisible ? 1 : 0, transform: statsVisible ? 'translateY(0)' : 'translateY(16px)', transition: 'opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s' }}
++              style={{
++                opacity: statsVisible ? 1 : 0,
++                transform: statsVisible ? "translateY(0)" : "translateY(16px)",
++                transition: "opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s",
++              }}
+             >
+-              <span className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1.5">We Deliver Up To</span>
+-              <span className="text-5xl md:text-6xl font-extrabold text-white leading-none tabular-nums">{pct}</span>
+-              <span className="text-[11px] text-white/50 font-semibold mt-2 uppercase tracking-widest">Miles (Call For Details)</span>
++              <span className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1.5">
++                We Deliver Up To
++              </span>
++              <span className="text-5xl md:text-6xl font-extrabold text-white leading-none tabular-nums">
++                {pct}
++              </span>
++              <span className="text-[11px] text-white/50 font-semibold mt-2 uppercase tracking-widest">
++                Miles (Call For Details)
++              </span>
+             </div>
+ 
+             {/* Stat 4 ΓÇö Coverage */}
+             <div
+               className="flex flex-col items-center text-center py-7 px-4 hover:bg-white/5 transition-colors"
+-              style={{ opacity: statsVisible ? 1 : 0, transform: statsVisible ? 'translateY(0)' : 'translateY(16px)', transition: 'opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s' }}
++              style={{
++                opacity: statsVisible ? 1 : 0,
++                transform: statsVisible ? "translateY(0)" : "translateY(16px)",
++                transition: "opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s",
++              }}
+             >
+-              <span className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1.5">We Come to You</span>
+-              <span className="text-5xl md:text-6xl font-extrabold text-white leading-none">NW</span>
+-              <span className="text-[11px] text-white/50 font-semibold mt-2 uppercase tracking-widest">Indiana Delivery</span>
++              <span className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1.5">
++                We Come to You
++              </span>
++              <span className="text-5xl md:text-6xl font-extrabold text-white leading-none">
++                NW
++              </span>
++              <span className="text-[11px] text-white/50 font-semibold mt-2 uppercase tracking-widest">
++                Indiana Delivery
++              </span>
+             </div>
+-
+           </div>
+         </div>
+       </section>
+@@ -204,7 +255,10 @@ export function Home() {
+           </div>
+ 
+           {/* Mobile CTA */}
+-          <a href="tel:+12193540720" className="tap-to-call mb-8 active:scale-95 transition-transform">
++          <a
++            href="tel:+12193540720"
++            className="tap-to-call mb-8 active:scale-95 transition-transform"
++          >
+             <div className="flex items-center gap-3">
+               <Icon name="phone" size={22} />
+               <div>
+@@ -212,7 +266,9 @@ export function Home() {
+                 <p className="text-sm text-white/80">(219) 354-0720</p>
+               </div>
+             </div>
+-            <span className="text-sm font-bold bg-white/20 px-3 py-1 rounded-lg">Call ΓåÆ</span>
++            <span className="text-sm font-bold bg-white/20 px-3 py-1 rounded-lg">
++              Call ΓåÆ
++            </span>
+           </a>
+ 
+           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8">
+@@ -223,7 +279,8 @@ export function Home() {
+                   src={palletsImage}
+                   alt="Stack of wooden pallets"
+                   className="w-full h-full object-cover transition duration-300 group-hover:scale-105"
+-                  width={800} height={600}
++                  width={800}
++                  height={600}
+                   loading="lazy"
+                 />
+                 <div className="absolute top-4 right-4 bg-success text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide shadow-sm">
+@@ -232,11 +289,21 @@ export function Home() {
+               </div>
+               <div className="p-6 flex flex-col flex-grow">
+                 <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+-                  <Icon name="pallets" className="text-primary" size={22} /> Pallets
++                  <Icon name="pallets" className="text-primary" size={22} />{" "}
++                  Pallets
+                 </h3>
+-                <p className="text-stone-600 mb-6 flex-grow">Stop scrambling for pallets. New, used & heat-treated, always in stock. <strong>We buy your cores too.</strong></p>
+-                <Link to="/pallets" className="btn btn-secondary w-full justify-between group-hover:border-primary group-hover:text-primary transition-colors">
+-                  See Options <span className="opacity-50 group-hover:opacity-100 transition-opacity">ΓåÆ</span>
++                <p className="text-stone-600 mb-6 flex-grow">
++                  Stop scrambling for pallets. New, used & heat-treated, always
++                  in stock. <strong>We buy your cores too.</strong>
++                </p>
++                <Link
++                  to="/pallets"
++                  className="btn btn-secondary w-full justify-between group-hover:border-primary group-hover:text-primary transition-colors"
++                >
++                  See Options{" "}
++                  <span className="opacity-50 group-hover:opacity-100 transition-opacity">
++                    ΓåÆ
++                  </span>
+                 </Link>
+               </div>
+             </div>
+@@ -248,7 +315,8 @@ export function Home() {
+                   src={firewoodImage}
+                   alt="Seasoned firewood for sale"
+                   className="w-full h-full object-cover transition duration-300 group-hover:scale-105"
+-                  width={800} height={600}
++                  width={800}
++                  height={600}
+                   loading="lazy"
+                 />
+                 <div className="absolute top-4 right-4 bg-success text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide shadow-sm">
+@@ -257,11 +325,21 @@ export function Home() {
+               </div>
+               <div className="p-6 flex flex-col flex-grow">
+                 <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+-                  <Icon name="firewood" className="text-primary" size={22} /> Firewood
++                  <Icon name="firewood" className="text-primary" size={22} />{" "}
++                  Firewood
+                 </h3>
+-                <p className="text-stone-600 mb-6 flex-grow">Burn clean all season. Seasoned hardwood, ready to light. <strong>Pickup or delivered to your door.</strong></p>
+-                <Link to="/firewood" className="btn btn-secondary w-full justify-between group-hover:border-primary group-hover:text-primary transition-colors">
+-                  Get Pricing <span className="opacity-50 group-hover:opacity-100 transition-opacity">ΓåÆ</span>
++                <p className="text-stone-600 mb-6 flex-grow">
++                  Burn clean all season. Seasoned hardwood, ready to light.{" "}
++                  <strong>Pickup or delivered to your door.</strong>
++                </p>
++                <Link
++                  to="/firewood"
++                  className="btn btn-secondary w-full justify-between group-hover:border-primary group-hover:text-primary transition-colors"
++                >
++                  Get Pricing{" "}
++                  <span className="opacity-50 group-hover:opacity-100 transition-opacity">
++                    ΓåÆ
++                  </span>
+                 </Link>
+               </div>
+             </div>
+@@ -273,7 +351,8 @@ export function Home() {
+                   src={sawdustImage}
+                   alt="Bulk sawdust"
+                   className="w-full h-full object-cover transition duration-300 group-hover:scale-105"
+-                  width={800} height={600}
++                  width={800}
++                  height={600}
+                   loading="lazy"
+                 />
+                 <div className="absolute top-4 right-4 bg-success text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide shadow-sm">
+@@ -282,11 +361,21 @@ export function Home() {
+               </div>
+               <div className="p-6 flex flex-col flex-grow">
+                 <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+-                  <Icon name="sawdust" className="text-primary" size={22} /> Sawdust
++                  <Icon name="sawdust" className="text-primary" size={22} />{" "}
++                  Sawdust
+                 </h3>
+-                <p className="text-stone-600 mb-6 flex-grow">Bulk sawdust on demand. Bedding, landscaping, spill cleanup. <strong>Loaded while you wait.</strong></p>
+-                <Link to="/sawdust" className="btn btn-secondary w-full justify-between group-hover:border-primary group-hover:text-primary transition-colors">
+-                  Bulk Pricing <span className="opacity-50 group-hover:opacity-100 transition-opacity">ΓåÆ</span>
++                <p className="text-stone-600 mb-6 flex-grow">
++                  Bulk sawdust on demand. Bedding, landscaping, spill cleanup.{" "}
++                  <strong>Loaded while you wait.</strong>
++                </p>
++                <Link
++                  to="/sawdust"
++                  className="btn btn-secondary w-full justify-between group-hover:border-primary group-hover:text-primary transition-colors"
++                >
++                  Bulk Pricing{" "}
++                  <span className="opacity-50 group-hover:opacity-100 transition-opacity">
++                    ΓåÆ
++                  </span>
+                 </Link>
+               </div>
+             </div>
+@@ -298,7 +387,8 @@ export function Home() {
+                   src={customLumberImage}
+                   alt="Custom lumber milling and cuts"
+                   className="w-full h-full object-cover transition duration-300 group-hover:scale-105"
+-                  width={800} height={600}
++                  width={800}
++                  height={600}
+                   loading="lazy"
+                 />
+                 <div className="absolute top-4 right-4 bg-accent text-charcoal px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide shadow-sm">
+@@ -307,11 +397,21 @@ export function Home() {
+               </div>
+               <div className="p-6 flex flex-col flex-grow">
+                 <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+-                  <Icon name="saw" className="text-primary" size={22} /> Custom Lumber
++                  <Icon name="saw" className="text-primary" size={22} /> Custom
++                  Lumber
+                 </h3>
+-                <p className="text-stone-600 mb-6 flex-grow">Can't find the right size? Tell us what you need. <strong>We'll cut it from local hardwood.</strong></p>
+-                <Link to="/custom-lumber" className="btn btn-secondary w-full justify-between group-hover:border-primary group-hover:text-primary transition-colors">
+-                  Get Details <span className="opacity-50 group-hover:opacity-100 transition-opacity">ΓåÆ</span>
++                <p className="text-stone-600 mb-6 flex-grow">
++                  Can't find the right size? Tell us what you need.{" "}
++                  <strong>We'll cut it from local hardwood.</strong>
++                </p>
++                <Link
++                  to="/custom-lumber"
++                  className="btn btn-secondary w-full justify-between group-hover:border-primary group-hover:text-primary transition-colors"
++                >
++                  Get Details{" "}
++                  <span className="opacity-50 group-hover:opacity-100 transition-opacity">
++                    ΓåÆ
++                  </span>
+                 </Link>
+               </div>
+             </div>
+@@ -341,12 +441,19 @@ export function Home() {
+                 Free Service
+               </div>
+               <h2 className="text-white mb-6">
+-                Got Logs Sitting Around?<br />
+-                <span className="text-primary">We'll Come Get Them. For Free.</span>
++                Got Logs Sitting Around?
++                <br />
++                <span className="text-primary">
++                  We'll Come Get Them. For Free.
++                </span>
+               </h2>
+               <p className="text-xl text-stone-200 mb-8 leading-relaxed">
+-                No hauling, no dump fees, no hassle. If your hardwood logs qualify, our truck shows up and takes them.
+-                <strong className="text-white"> You don't lift a finger or spend a dime.</strong>
++                No hauling, no dump fees, no hassle. If your hardwood logs
++                qualify, our truck shows up and takes them.
++                <strong className="text-white">
++                  {" "}
++                  You don't lift a finger or spend a dime.
++                </strong>
+               </p>
+               <div className="space-y-4 mb-8">
+                 <div className="flex items-center gap-4 bg-dark-muted/50 rounded-xl p-4 border border-dark-muted">
+@@ -355,7 +462,9 @@ export function Home() {
+                   </div>
+                   <div>
+                     <div className="font-bold text-white">Hardwood Only</div>
+-                    <div className="text-stone-300 text-sm">Oak, Walnut, Cherry, Maple</div>
++                    <div className="text-stone-300 text-sm">
++                      Oak, Walnut, Cherry, Maple
++                    </div>
+                   </div>
+                 </div>
+                 <div className="flex items-center gap-4 bg-dark-muted/50 rounded-xl p-4 border border-dark-muted">
+@@ -363,8 +472,12 @@ export function Home() {
+                     <Icon name="check" className="text-success" size={20} />
+                   </div>
+                   <div>
+-                    <div className="font-bold text-white">14"+ Diameter, 8'+ Length</div>
+-                    <div className="text-stone-300 text-sm">Big logs only. We need mill-worthy timber</div>
++                    <div className="font-bold text-white">
++                      14"+ Diameter, 8'+ Length
++                    </div>
++                    <div className="text-stone-300 text-sm">
++                      Big logs only. We need mill-worthy timber
++                    </div>
+                   </div>
+                 </div>
+                 <div className="flex items-center gap-4 bg-dark-muted/50 rounded-xl p-4 border border-dark-muted">
+@@ -373,7 +486,9 @@ export function Home() {
+                   </div>
+                   <div>
+                     <div className="font-bold text-white">Truck Accessible</div>
+-                    <div className="text-stone-300 text-sm">Our log truck needs to reach the site</div>
++                    <div className="text-stone-300 text-sm">
++                      Our log truck needs to reach the site
++                    </div>
+                   </div>
+                 </div>
+               </div>
+@@ -381,13 +496,16 @@ export function Home() {
+                 Check If Your Logs Qualify ΓåÆ
+               </Link>
+               <p className="mt-4 text-sm text-stone-300">
+-                Need tree removal first? We can refer independent licensed crews.
+-                <Link to="/tree-service-partners" className="ml-2 font-bold text-primary hover:text-primary-light">
++                Need tree removal first? We can refer independent licensed
++                crews.
++                <Link
++                  to="/tree-service-partners"
++                  className="ml-2 font-bold text-primary hover:text-primary-light"
++                >
+                   Learn more
+                 </Link>
+               </p>
+             </div>
+-
+           </div>
+ 
+           {/* Phone-only section CTA */}
+@@ -409,23 +527,33 @@ export function Home() {
+               ))}
+             </div>
+             <h2 className="mb-2">What Customers Say</h2>
+-            <p className="text-stone-500 text-lg">Every review is 5 stars. See what customers say.</p>
++            <p className="text-stone-500 text-lg">
++              Every review is 5 stars. See what customers say.
++            </p>
+           </div>
+ 
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-10">
+             {/* Real review 1 ΓÇö Roman Gutierrez (Anonymized) */}
+             <div className="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm transition-shadow hover:shadow-md">
+               <div className="flex gap-1 text-[#FBBF24] mb-3">
+-                {[...Array(5)].map((_, i) => <Icon key={i} name="star" size={16} fill="currentColor" />)}
++                {[...Array(5)].map((_, i) => (
++                  <Icon key={i} name="star" size={16} fill="currentColor" />
++                ))}
+               </div>
+               <p className="text-stone-700 text-sm leading-relaxed mb-4">
+                 "Good prices for your pallets. Great people work there."
+               </p>
+               <div className="flex items-center gap-3">
+-                <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary text-sm">R</div>
++                <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary text-sm">
++                  R
++                </div>
+                 <div>
+-                  <p className="font-bold text-charcoal text-sm">Verified Customer</p>
+-                  <p className="text-xs text-stone-400">Local Guide ┬╖ Gary, IN</p>
++                  <p className="font-bold text-charcoal text-sm">
++                    Verified Customer
++                  </p>
++                  <p className="text-xs text-stone-400">
++                    Local Guide ┬╖ Gary, IN
++                  </p>
+                 </div>
+               </div>
+             </div>
+@@ -433,16 +561,24 @@ export function Home() {
+             {/* Real review 2 ΓÇö Michael J. Watts (Anonymized) */}
+             <div className="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm transition-shadow hover:shadow-md">
+               <div className="flex gap-1 text-[#FBBF24] mb-3">
+-                {[...Array(5)].map((_, i) => <Icon key={i} name="star" size={16} fill="currentColor" />)}
++                {[...Array(5)].map((_, i) => (
++                  <Icon key={i} name="star" size={16} fill="currentColor" />
++                ))}
+               </div>
+               <p className="text-stone-700 text-sm leading-relaxed mb-4">
+                 "Verified 5-star review."
+               </p>
+               <div className="flex items-center gap-3">
+-                <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary text-sm">M</div>
++                <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary text-sm">
++                  M
++                </div>
+                 <div>
+-                  <p className="font-bold text-charcoal text-sm">Verified Customer</p>
+-                  <p className="text-xs text-stone-400">Local Guide ┬╖ 6 months ago</p>
++                  <p className="font-bold text-charcoal text-sm">
++                    Verified Customer
++                  </p>
++                  <p className="text-xs text-stone-400">
++                    Local Guide ┬╖ 6 months ago
++                  </p>
+                 </div>
+               </div>
+             </div>
+@@ -472,7 +608,9 @@ export function Home() {
+                 <Icon name="location" size={24} className="text-primary" />
+               </div>
+               <div>
+-                <p className="text-[11px] font-bold uppercase tracking-widest text-primary mb-1">Our Yard</p>
++                <p className="text-[11px] font-bold uppercase tracking-widest text-primary mb-1">
++                  Our Yard
++                </p>
+                 <a
+                   href="https://maps.apple.com/?q=Premier+Lumber+Co&address=6717+Atcheson+Dr,Gary,IN+46403"
+                   target="_blank"
+@@ -481,7 +619,9 @@ export function Home() {
+                 >
+                   6717 Atcheson Dr, Gary, IN 46403
+                 </a>
+-                <p className="text-stone-400 text-sm mt-1">MonΓÇôThu 6AMΓÇô3PM ┬╖ FriΓÇôSat 6AMΓÇô2PM</p>
++                <p className="text-stone-400 text-sm mt-1">
++                  MonΓÇôThu 6AMΓÇô3PM ┬╖ FriΓÇôSat 6AMΓÇô2PM
++                </p>
+               </div>
+             </div>
+             {/* Action buttons */}
+@@ -508,17 +648,20 @@ export function Home() {
+       {/* FINAL CTA - Strong close */}
+       <section className="section bg-primary">
+         <div className="container-custom text-center">
+-          <h2 className="text-white mb-4">
+-            Get Your Price in 24 Hours
+-          </h2>
++          <h2 className="text-white mb-4">Get Your Price in 24 Hours</h2>
+           <p className="text-xl md:text-2xl text-white/80 mb-10 max-w-2xl mx-auto">
+-            Call or fill out the form. No sales pitch, no obligation. Just a straight answer on what it costs.
++            Call or fill out the form. No sales pitch, no obligation. Just a
++            straight answer on what it costs.
+           </p>
+           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+             <Link to="/contact" className="btn btn-white text-lg">
+               Get Your Free Quote ΓåÆ
+             </Link>
+-            <a href="tel:+12193540720" className="btn bg-primary-darker text-white border-2 border-primary-dark text-lg" style={{ boxShadow: '0 4px 0 0 #9a3412' }}>
++            <a
++              href="tel:+12193540720"
++              className="btn bg-primary-darker text-white border-2 border-primary-dark text-lg"
++              style={{ boxShadow: "0 4px 0 0 #9a3412" }}
++            >
+               <Icon name="phone" size={20} className="mr-2" /> (219) 354-0720
+             </a>
+           </div>
+diff --git a/src/pages/LogPickup.tsx b/src/pages/LogPickup.tsx
+index d2eea5d..f4c6f7f 100644
+--- a/src/pages/LogPickup.tsx
++++ b/src/pages/LogPickup.tsx
+@@ -67,20 +67,20 @@ export function LogPickup() {
+ 
+               {/* What We Accept */}
+               <div className="mb-8">
+-                <h3 className="font-bold mb-3 text-base text-charcoal">Accepted Species</h3>
++                <h3 className="font-bold mb-3 text-base text-charcoal">All Wood Types Accepted</h3>
++                <p className="text-stone-600 text-sm mb-3">
++                  We accept any type of wood ΓÇö hardwood, softwood, it doesn't matter. Bring us what you've got.
++                </p>
+                 <div className="flex flex-wrap gap-2">
+-                  {['Walnut', 'Oak', 'Cherry', 'Ash', 'Maple', 'Hickory'].map((species) => (
++                  {['Walnut', 'Oak', 'Cherry', 'Ash', 'Maple', 'Hickory', 'Pine', 'Elm', 'Poplar', 'Cottonwood'].map((species) => (
+                     <span key={species} className="bg-orange-50 text-charcoal px-3 py-1.5 rounded-lg text-sm font-bold border border-orange-100 shadow-sm">
+                       {species}
+                     </span>
+                   ))}
+-                  <span className="bg-stone-100 text-stone-700 px-3 py-1.5 rounded-lg text-sm font-bold border border-stone-200 shadow-sm">
+-                    Other hardwood?*
++                  <span className="bg-primary text-white px-3 py-1.5 rounded-lg text-sm font-bold shadow-sm">
++                    + Any Other Species
+                   </span>
+                 </div>
+-                <p className="mt-3 text-xs text-stone-500">
+-                  *If your species is not listed, call us first and we will confirm before you cut or haul anything.
+-                </p>
+               </div>
+ 
+               {/* Requirements */}
+diff --git a/src/pages/TreeServicePartners.tsx b/src/pages/TreeServicePartners.tsx
+index 4efda6a..5a374e5 100644
+--- a/src/pages/TreeServicePartners.tsx
++++ b/src/pages/TreeServicePartners.tsx
+@@ -53,7 +53,7 @@ export function TreeServicePartners() {
+       <section className="section bg-white">
+         <div className="container-custom max-w-4xl">
+           <FadeInOnScroll>
+-            <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl border border-orange-200/60 p-6 md:p-10 mb-12 shadow-sm">
++            <div className="bg-gradient-to-br from-orange-50 to-primary/5 rounded-2xl border border-orange-200/60 p-6 md:p-10 mb-12 shadow-sm">
+               <div className="flex items-center gap-3 mb-6">
+                 <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
+                   <Icon name="shield" size={22} className="text-primary" />
